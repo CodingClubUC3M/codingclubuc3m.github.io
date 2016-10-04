@@ -1,6 +1,5 @@
 ---
 layout: page
-title: About
 ---
 
 Coding Club UC3M
