@@ -1,20 +1,8 @@
-This is my little blog, a fork from Yihui's repo.
+Coding Club UC3M
+================
 
-Now Yihui:
+A project for a coding club at Carlos III University of Madrid (UC3M). This is our website: <https://codingclubuc3m.github.io/>
 
-This is a minimal example of a Jekyll-based website using **knitr** and R
-Markdown. The interesting bit of this repo is that you can actually serve the
-Jekyll website locally with R, and R Markdown posts can be compiled
-automatically, with the web pages automatically refreshed as well.
+![Coding club](https://raw.githubusercontent.com/egarpor/coding-club/master/logos/Collage_Coding_Club.png "Coding Club UC3M")
 
-After you are satisfied with the local preview, you can either just push the
-Markdown blog posts to your Github repo (e.g. the `gh-pages` branch), and let
-Github generate the website for you, or host the HTML files generated under the
-`_site/` directory on your own server.
-
-The original website was created from `jekyll new .` under the root directory,
-which was part of the [official Jekyll repo](https://github.com/jekyll/jekyll).
-The additional code (R, Makefile) in this repo is under the MIT License, and the
-[blog post](http://yihui.name/knitr-jekyll/2014/09/jekyll-with-knitr.html) I
-wrote is under the [CC-BY 4.0](http://creativecommons.org/licenses/by/4.0/)
-International License.
+Project forked from <https://github.com/homerhanumat/homerhanumat.github.io>
