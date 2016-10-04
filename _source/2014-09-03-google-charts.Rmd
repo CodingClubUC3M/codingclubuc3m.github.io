@@ -1,0 +1,101 @@
+---
+layout: post
+comments:  true
+title: "Google Charts in R Markdown"
+date: 2014-09-03 20:30:00
+published: true
+categories: ['R']
+excerpt_seperator: <!--more-->
+output:
+  html_document:
+    mathjax:  default
+---
+
+* will be replaced by TOC
+{:toc}
+
+```{r include=FALSE}
+knitr::opts_chunk$set(tidy=FALSE,fig.width=4.5,fig.height=3.5)
+```
+
+```{r include=FALSE}
+require(tigerstats)
+require(googleVis)
+```
+
+## Introduction
+
+
+An excellent little post ([Zoom, zoom googleVis](http://lamages.blogspot.com/2014/09/zoom-zoom-googlevis.html)) showed up recently on [R-Bloggers](http://www.r-bloggers.com/).  The author Markus Gesmann is the maintainer of the `googleVis` package that links R to the [Google Charts API](https://developers.google.com/chart/interactive/docs/gallery).  My first thought was:  could I embed charts like those in R Markdown documents that could knit to ioslides or other formats suitable for use in my elementary statistics classes?
+
+<!--more-->
+
+A quick look at the documentation showed that it's very easy indeed to do this sort of thing.
+
+
+## Extrapolation
+
+Suppose, for example, that you want to illustrate to students the risks associated with extrapolation.  You begin by reminding them of the experience they had back in high school with their graphing calculators, when they zoomed in on a curve:  zoom in close enough, and it looks like a straight line.
+
+Then you point out that for the most part we live our lives from a "zoomed-in" perspective, at least where data is concerned.  In situations where we are interested in a pair of numerical measurements on individuals, we usually possess $$ y $$-values for only a fairly narrow range of $$ x $$-values.  Hence it is likely that a scatter plot we make from our "zoomed-in" data will show a roughly linear relationship, even though on a global scale the "real" relationship probably is some kind of a curve.
+
+The app below (a slight modification of the example in Gesmann's post) makes the point in a flash.  Click and drag to establish a zoom region, right-click to reset:
+
+
+```{r echo=FALSE,results='asis'}
+set.seed(2020)
+x <- seq(0,100,by=0.5)
+y <- (50-x)^2+rnorm(length(x),sd=100)
+
+curvy <- data.frame(x,y)
+
+gvScat <- gvisScatterChart(curvy,
+                   options=list(
+                     explorer="{actions: ['dragToZoom',
+                     'rightClickToReset'],
+                     maxZoomIn:0.05}",
+                     chartArea="{width:'85%',height:'80%'}",
+                     hAxis="{title: 'Explanatory x',
+                     titleTextStyle: {color: '#000000'}}",
+                     vAxis="{title: 'Response y',
+                     titleTextStyle: {color: '#000000'}}",
+                     title="Curvilinear Relationship",
+                     width=550, height=500,
+                     legend="none"),
+                   chartid="ZoomZoom")
+
+print(gvScat,'chart')
+```
+
+All we needed was the following code (be sure to add the chunk option `results='asis'`):
+
+```{r eval=FALSE}
+set.seed(2020)
+x <- seq(0,100,by=0.5)
+y <- (50-x)^2+rnorm(length(x),sd=100)
+
+curvy <- data.frame(x,y)
+
+
+gvScat <- gvisScatterChart(curvy,
+                   options=list(
+                     explorer="{actions: ['dragToZoom',
+                     'rightClickToReset'],
+                     maxZoomIn:0.05}",
+                     chartArea="{width:'85%',height:'80%'}",
+                     hAxis="{title: 'Explanatory x',
+                     titleTextStyle: {color: '#000000'}}",
+                     vAxis="{title: 'Response y',
+                     titleTextStyle: {color: '#000000'}}",
+                     title="Curvilinear Relationship",
+                     width=550, height=500,
+                     legend="none"),
+                   chartid="ZoomZoom")
+
+print(gvScat,'chart')
+```
+
+
+The same approach works in any R Markdown document (including the source document for this Jekyll-powered post).  I will certainly take a closer look at `googleVis`:  thanks, Markus!
+
+
