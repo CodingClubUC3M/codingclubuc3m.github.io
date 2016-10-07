@@ -3,7 +3,7 @@ layout: post
 title: "How to create your very first post with Rmarkdown and Knitr"
 author: "Hoang Nguyen"
 date: "October 1, 2016"
-tag: [Rmarkdown, jekyll, Knitr]
+categories: [Rmarkdown, jekyll, Knitr]
 output:
   pdf_document:
     number_sections: true
@@ -92,7 +92,7 @@ layout: post
 And also we could create tag to the post as
 
 {% highlight r %}
-tag: [Rmarkdown, jekyll, Knitr]
+categories: [Rmarkdown, jekyll, Knitr]
 {% endhighlight %}
 
 
