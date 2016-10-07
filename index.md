@@ -1,6 +1,6 @@
 ---
-layout: page
-title: Archives
+layout: default
+title: Home
 ---
 
 <section id="archive">

@@ -1,15 +1,15 @@
 # Site settings
-title: R Contour
-email: homerhanumatATgmailDOTcom
+title: Coding Club UC3M
+email: codingDOTclubDOTuc3mATgmailDOTcom
 description: > # this means to ignore newlines until "baseurl:"
-  A blog devoted mostly to the the teaching of undergraduate-level statstics
+  A blog devoted mostly to the teaching of undergraduate-level statstics
   and data analysis with R, along with occasional technical notes on R-related
   tools.
-url: "https://homerhanumat.github.io" # the base hostname & protocol for your site
-github_username:  homerhanumat
+url: "https://codingclubuc3m.github.io" # the base hostname & protocol for your site
+github_username: codingclubuc3m
 permalink: /:year/:month/:day/:title.html
 # highlighter:  rouge (on my Mac, need to set this to rouge or flas with Jekyll 3.0)
-author:  Homer White
+author: Coding Club UC3M
 
 baseurl: "/" # the sub-path of your proejct site, e.g. /myProject/
              # or "/" for user site
@@ -19,7 +19,7 @@ homepostlimit:  4
 
 # Disqus comments:
 disqus:           true
-shortname:        homerhanumatgithubio
+shortname:        codingclubuc3m
 
 # Social Media
 twitter:          true # add a twitter button to each post
@@ -31,8 +31,8 @@ facebook:         true # add a facebook share button to each post
 markdown: kramdown
 
 author:
-  name:           'Homer White'
-  url:            https://statistics.rainandrhino.org
+  name:           'Coding Club UC3M'
+  url:            https://codingclubuc3m.github.io
 
 github:
-  repo:           https://github.com/homerhanumat/homerhanumat.github.io
+  repo:           https://github.com/codingclubuc3m/codingclubuc3m.github.io
