@@ -5,23 +5,23 @@ title: About
 
 ![Coding club](public/logos/Collage_Coding_Club.png "Coding Club UC3M")
 
-# What?
+## What?
 
 A series of **informal sessions among enthusiasts of coding**, with a common interest in tools for crunching data, performing statistical analyses and reporting them. Quite `R`-based but definitely open to other languages/tools of interest.
 
-# Who?
+## Who?
 
 Members of the Department of Statistics (professors, postdocs, PhD students, MSc students) and of other departments (Mathematics, Economics, Computer Science and Engineering, etc). Late BSc students with interest in coding are also welcome to join.
 
-# When?
+## When?
 
 Biweekly or triweekly sessions, in a day and time to be decided.
 
-# Where?
+## Where?
 
 At the Department of Statistics. The proportion of meetings in Getafe/Leganés will be according to the proportion of participants from each campus.
 
-# Why?
+## Why?
 
 Because:
 
@@ -31,15 +31,15 @@ Because:
 - We want to receive and provide **feedback** on how to approach **programming problems**.
 - It is funnier to learn with more people than on your own!
 
-# How?
+## How?
 
 Sessions to be held in a common room equipped with a projector and a large table. (In Getafe: Sala Costas Goutis 10.0.23 or meeting room 10.1.21A). We bring our own laptops to the session. The main topic of the session is communicated by email a week before to all the department(s) and past attendees.
 
-# Session duration
+## Session duration
 
 Initially, the sessions are scheduled for **60 minutes**, with a strong compromise to keep the duration of the session at this limit.
 
-# Session structure
+## Session structure
 
 A possible one is:
 
@@ -49,7 +49,7 @@ A possible one is:
 4. **Miscellanea tricks** (~5). Did you find a solution for a tricky problem or a great productivity hack? You can tell us about it, if you think is useful.
 5. **Proposals for next sessions** (~10). We vote and discuss what are the most interesting topics for the next sections, based on a list of common interests and available presenters.
 
-# Visibility
+## Visibility
 
 We plan to create a blog-webpage where we host the materials for each session as posts. Each post will be solely authored by the presenter, hence providing a proof of participation. Also, the blog-webpage may contain possible follow-ups to the sessions, reporting the topics discussed in points 3 and 4.
 
@@ -58,7 +58,7 @@ The website is likely to be based in `knitr-jekyll`, which makes possible the cr
 - <http://yihui.name/knitr-jekyll>
 - <http://statistics.rainandrhino.org/>
 
-# Sounds good? Then join us!
+## Sounds good? Then join us!
 
 We are looking for:
 
@@ -66,7 +66,7 @@ We are looking for:
 - **Active members**. Regular members that are willing to contribute a main topic presentation at some point.
 - Irregular attendees. People that would like to come to learn only a specific topic.
 
-# Topics for the first sessions
+## Topics for the first sessions
 
 These are some ideas about `R` packages that could be covered in the first sessions:
 
@@ -101,6 +101,6 @@ And here are other more generic topics that could be of interest:
 - Introduction to [Mathematica](https://www.wolfram.com/mathematica/)
 - How to develop efficiently with [GitHub](https://github.com/)
 
-# Contact
+## Contact
 
 Send an email to <coding.club.uc3m@gmail.com>
