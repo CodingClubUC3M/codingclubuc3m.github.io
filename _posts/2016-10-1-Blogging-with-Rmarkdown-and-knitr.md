@@ -1,5 +1,6 @@
 ---
 layout: post
+comments:  true
 title: "How to create your very first post with Rmarkdown and Knitr"
 author: "Hoang Nguyen"
 date: "October 1, 2016"
@@ -26,8 +27,8 @@ You could click on the *Knit button* in the menu bar to see how thing looks like
 
 Here I include some examples from ggplot2:
 
-## Irish data
-We plot the irish data as follows:
+## Iris data
+We plot the iris data as follows:
 
 
 
