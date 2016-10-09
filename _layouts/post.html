@@ -10,6 +10,11 @@ layout: default
   {{ content }}
 </div>
 
+
+{% if site.twitter %}
+{% include share-page.html %}
+{% endif %}
+
 <div class="related">
   <h2>Related Posts</h2>
   <ul class="related-posts">
@@ -25,10 +30,6 @@ layout: default
     {% endfor %}
   </ul>
 </div>
-
-{% if site.twitter %}
-{% include share-page.html %}
-{% endif %}
 
 
 {% if site.disqus %}
