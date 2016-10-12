@@ -17,7 +17,21 @@ someuser<-'user'
 somepassword<-'password'
 gconnect(someuser, somepassword)
 {% endhighlight %}
-Let see how is the interest in markdown, rmarkdown and knitr by google searchs,
+Lets see how is the interest in markdown, rmarkdown and knitr by google searchs,
 ![center](/figure/source/2016-10-12-Our-topics-google-trends/pressure-1.png)
 
+{% highlight text %}
+## NULL
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## NULL
+{% endhighlight %}
+
 ![center](/figure/source/2016-10-12-Our-topics-google-trends/pressure-2.png)
+
+{% highlight text %}
+## NULL
+{% endhighlight %}
