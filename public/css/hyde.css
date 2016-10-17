@@ -84,6 +84,16 @@ html {
 }
 
 /* Sidebar nav */
+
+.sidebar .sidebar-about img{
+ margin: 0 auto;
+ max-width: 200px;
+}
+
+.sidebar .sidebar-about h1{
+font-size: 1.5rem;
+}
+
 .sidebar-nav {
   margin-bottom: 1rem;
 }
@@ -109,7 +119,7 @@ a.sidebar-nav-item:focus {
   .sidebar-sticky {
     position: absolute;
     right:  1rem;
-    bottom: 1rem;
+    top: 1rem;
     left:   1rem;
   }
 }
