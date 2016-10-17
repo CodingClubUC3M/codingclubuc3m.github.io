@@ -60,7 +60,7 @@ html {
 
 body {
   color: #515151;
-  background-color: #fff;
+  background-color: #DEE2EC;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
@@ -89,6 +89,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 h1 {
   font-size: 2rem;
+  font-family: 'Special Elite', cursive;
 }
 h2 {
   margin-top: 1rem;
@@ -259,7 +260,7 @@ tbody tr:nth-child(odd) th {
  */
 
 .lead {
-  font-size: 1rem;
+  font-size: .8rem;
   font-weight: 300;
   text-align: justify;
 }

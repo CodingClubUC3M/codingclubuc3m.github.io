@@ -32,7 +32,7 @@
  */
 
 html {
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+   font-family: 'Open Sans', sans-serif;
 }
 @media (min-width: 48em) {
   html {
@@ -79,7 +79,7 @@ html {
 .sidebar-about h1 {
   color: #fff;
   margin-top: 0;
-  font-family: "Abril Fatface", serif;
+  font-family: 'Special Elite', cursive;
   font-size: 3.25rem;
 }
 
@@ -233,11 +233,11 @@ a.sidebar-nav-item:focus {
 
 /* Blue */
 .theme-base-0d .sidebar {
-  background-color: #216fb4;
+  background-color: #000E70;
 }
 .theme-base-0d .content a,
 .theme-base-0d .related-posts li a:hover {
-  color: #0084b4;
+  color: #000E70;
 }
 
 /* Magenta */
