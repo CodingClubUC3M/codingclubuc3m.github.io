@@ -260,7 +260,7 @@ tbody tr:nth-child(odd) th {
  */
 
 .lead {
-  font-size: .8rem;
+  font-size: 1rem;
   font-weight: 300;
   text-align: justify;
 }
