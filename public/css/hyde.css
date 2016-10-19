@@ -32,7 +32,7 @@
  */
 
 html {
-   font-family: 'Open Sans', sans-serif;
+   font-family: 'Lora', serif;
 }
 @media (min-width: 48em) {
   html {
@@ -41,10 +41,9 @@ html {
 }
 @media (min-width: 58em) {
   html {
-    font-size: 20px;
+    font-size: 25px;
   }
 }
-
 
 /*
  * Sidebar
@@ -79,7 +78,7 @@ html {
 .sidebar-about h1 {
   color: #fff;
   margin-top: 0;
-  font-family: 'Special Elite', cursive;
+  font-family: 'Inconsolata', monospace;
   font-size: 3.25rem;
 }
 
@@ -91,7 +90,7 @@ html {
 }
 
 .sidebar .sidebar-about h1{
-font-size: 1.5rem;
+font-size: 1.75rem;
 }
 
 .sidebar-nav {
