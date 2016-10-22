@@ -2,9 +2,9 @@
 title: Coding Club UC3M
 email: codingDOTclubDOTuc3mATgmailDOTcom
 description: > # this means to ignore newlines until "baseurl:"
-  A blog devoted mostly to the teaching of undergraduate-level statstics
-  and data analysis with R, along with occasional technical notes on R-related
-  tools.
+  A series of participative sessions among coding enthusiasts interested
+  in data analysis, number crunching and teaching of statistics. Quite R-based
+  but welcoming other languages and tools.
 url: "https://codingclubuc3m.github.io" # the base hostname & protocol for your site
 github_username: codingclubuc3m
 permalink: /:year/:month/:day/:title.html

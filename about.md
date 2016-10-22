@@ -7,7 +7,7 @@ title: About
 
 ## What?
 
-A series of **informal sessions among enthusiasts of coding**, with a common interest in tools for crunching data, performing statistical analyses and reporting them. Quite `R`-based but definitely open to other languages/tools of interest.
+A series of **informal sessions among coding enthusiasts**, with a common interest in tools for crunching data, performing statistical analyses and reporting them. Quite `R`-based but definitely open to other languages/tools of interest.
 
 ## Who?
 
