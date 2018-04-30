@@ -42,11 +42,11 @@ padding:15px;
 
 table, td, th
 {
-border:1px solid green;
+border:0px solid green;
 }
 th
 {
-background-color: rgb(147,161,161);
+background-color: rgb(48,49,138);
 color:white;
 }
 
@@ -75,4 +75,25 @@ dd {
 
 dl {
   margin-bottom:  30px;
+}
+
+.avatar {
+    /* fill the container, preserving aspect ratio, and cropping to fit */
+    background-size: cover;
+
+    /* center the image vertically and horizontally */
+    background-position: top center;
+
+    /* round the edges to a circle with border radius 1/2 container size */
+    border-radius: 50%;
+}
+
+.highlighter-red {
+    font-weight: bold;
+    color: #ff3200;    
+}
+
+.highlighter-black {
+    font-weight: bold;
+    color: #000000;    
 }
