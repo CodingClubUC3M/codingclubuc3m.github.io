@@ -33,6 +33,30 @@ Just show up or send an email to <coding.club.uc3m@gmail.com>. If you plan to co
 
 <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;hl=en_GB&amp;bgcolor=%23FFFFFF&amp;src=coding.club.uc3m%40gmail.com&amp;color=%23125A12&amp;src=uc3m.es_rf416kf90mttgqjks6vj4kfdbo%40group.calendar.google.com&amp;color=%23333333&amp;ctz=Europe%2FMadrid" style="border-width:0" width="100%" height="700" frameborder="0" scrolling="no"></iframe>
 
-https://calendar.google.com/calendar/r/eventedit?text=CodingClubUc3m&dates=20140127T224000Z/20140320T221500Z&details=For+details,+link+here:+https://codingclubuc3m.github.io/calendar.html&location=Waldorf+Astoria,+301+Park+Ave+,+New+York,+NY+10022&sf=true&output=xml
+{% comment %} 
+https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_tolocaletimestring
 
-https://calendar.google.com/calendar/r/eventedit?text=Your+Event+Name&dates=20140127T224000Z/20140320T221500Z&details=For+details,+link+here:+http://www.example.com&location=Waldorf+Astoria,+301+Park+Ave+,+New+York,+NY+10022&sf=true&output=xml
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to display the time as a string.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var d = new Date();
+    var date = "Mon May 08 2018 13:00:00 GMT+0200 (CEST)";
+    var n = d.toLocaleTimeString();
+    //document.getElementById("demo").innerHTML = (new Date()).toISOString().replace(/-|:|\.\d\d\d/g,"");
+    document.getElementById("demo").innerHTML = (new Date(date)).toISOString().replace(/-|:|\.\d\d\d/g,"");
+    
+}
+</script>
+
+</body>
+</html>
+{% endcomment %}
