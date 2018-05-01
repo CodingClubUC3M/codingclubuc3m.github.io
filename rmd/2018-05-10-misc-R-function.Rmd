@@ -1,0 +1,725 @@
+---
+title: "Useful one-function `R` packages, big data solutions, and a message from Yoda"
+author: Eduardo García-Portugués
+output: html_document
+---
+
+```{r, setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Required packages
+
+We will need these packages for today's session:
+
+```{r, eval = FALSE}
+install.packages(c("viridis", "microbenchmark", "multcomp", "manipulate", 
+                   "Rmpfr", "ffbase", "biglm", "leaps", "txtplot", 
+                   "NostalgiR", "cowsay"), 
+                 dependencies = TRUE)
+```
+
+## Some simple and useful `R` packages
+
+### Color palettes with `viridis`
+
+Built-in color palettes in base `R` are somehow limited. We have `rainbow`, `topo.colors`, `terrain.colors`, `heat.colors`, and `cm.colors`. We also have flexibility to create our own palettes, e.g. by using `colorRamp`. These palettes look like:
+
+```{r, viridis-1, message = FALSE, cache = TRUE}
+# MATLAB's color palette
+jet.colors <- colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan",
+                                 "#7FFF7F", "yellow", "#FF7F00", "red", 
+                                 "#7F0000"))
+# Plot for palettes
+testPalette <- function(col, n = 200, ...) {
+  image(1:n, 1, as.matrix(1:n), col = get(col)(n = n, ...), 
+        main = col, xlab = "", ylab = "", axes = FALSE)
+}
+
+# Color palettes comparison
+par(mfrow = c(2, 3))
+res <- sapply(c("rainbow", "topo.colors", "terrain.colors", 
+                "heat.colors", "cm.colors", "jet.colors"), testPalette)
+```
+
+Notice that some palettes clearly show **non-uniformity** in the color gradient. This potentially leads to a bias when interpreting the color scales: some features are (unfairly) weakened and others are (unfairly) strengthen. This distortion on the representation of the data can be quite misleading.
+
+In addition to these problems, some problematic points that are not usually thought when choosing a color scale are:
+
+- What happens when you print out the image in **black-and-white**?
+- How do **colorblind** people read the images?
+
+The package [`viridisLite`](https://cran.r-project.org/web/packages/viridisLite/index.html) (a port from `Python`'s [`Matplotlib`](http://matplotlib.org/)) comes to solve these issues. It provides the *viridis* color palette, which uses notions from color theory to be as much uniform as possible, black-and-white-ready, and colorblind-friendly. From `viridisLite`'s help:
+
+> This color map is designed in such a way that it will analytically be perfectly perceptually-uniform, both in regular form and also when converted to black-and-white. It is also designed to be perceived by readers with the most common form of color blindness.
+
+More details can be found in this great talk by one of the authors:
+
+```{r, viridis-2, echo = FALSE, screenshot.opts = list(delay = 10), dev = 'png', message = FALSE, cache = TRUE}
+knitr::include_url("https://www.youtube.com/watch?v=xAoljeRJ3lU")
+```
+
+There are several palettes in the package. All of them have the same properties as `viridis` (*i.e.*, perceptually-uniform, black-and-white-ready, and colorblind-friendly). The `cividis` is specifically aimed to people with color vision deficiency. Let's see them in action:
+
+```{r, viridis-3, message = FALSE, cache = TRUE}
+library(viridisLite)
+# Color palettes comparison
+par(mfrow = c(2, 3))
+res <- sapply(c("viridis", "magma", "inferno", "plasma", "cividis"), 
+              testPalette)
+```
+
+Some useful options for any of the palettes are:
+
+```{r, viridis-4, message = FALSE, cache = TRUE}
+# Reverse palette
+par(mfrow = c(1, 2))
+testPalette("viridis", direction = 1)
+testPalette("viridis", direction = -1)
+
+# Truncate
+par(mfrow = c(1, 2))
+testPalette("viridis", begin = 0, end = 1)
+testPalette("viridis", begin = 0.25, end = 0.75)
+
+# Transparency
+par(mfrow = c(1, 2))
+testPalette("viridis", alpha = 1)
+testPalette("viridis", alpha = 0.5)
+```
+
+In the extended [`viridis`](https://cran.r-project.org/web/packages/viridis/index.html) package there are color palettes functions for `ggplot2` fans: `scale_colour_viridis` (or `scale_color_viridis`) and `scale_fill_viridis`. Some examples of their use:
+
+```{r, viridis-5, message = FALSE, cache = TRUE}
+library(viridis)
+library(ggplot2)
+
+# scale_color_viridis
+ggplot(mtcars, aes(wt, mpg)) + 
+  geom_point(size = 4, aes(colour = factor(cyl))) +
+  scale_color_viridis(discrete = TRUE) +
+  theme_bw()
+
+# scale_fill_viridis
+dat <- data.frame(x = rnorm(1e4), y = rnorm(1e4))
+ggplot(dat, aes(x = x, y = y)) +
+  geom_hex() + coord_fixed() +
+  scale_fill_viridis() + theme_bw()
+
+# scale_fill_gradientn with viridis
+ggplot(dat, aes(x = x, y = y)) +
+  geom_hex() + coord_fixed() +
+  scale_fill_gradientn(colours = viridis(256))
+```
+
+### Benchmarking with `microbenchmark`
+
+Measuring the code performance is a day-to-day routine for many developers. It is also a requirement for regular users that want to choose the most efficient coding strategy for implementing a method.
+
+We can measure computing times in base `R` using `proc.time` or `system.time`:
+
+```{r, bench-1, message = FALSE, cache = TRUE}
+# Using proc.time
+time <- proc.time()
+for (i in 1:100) rnorm(100)
+time <- proc.time() - time
+time # elapsed is the 'real' elapsed time since the process was started
+
+# Using system.time - a wrapped for the above code
+system.time({for (i in 1:100) rnorm(100)})
+```
+
+However, this very basic approach presents several inconveniences to be aware:
+
+- The precision of `proc.time` is within the millisecond. This means that evaluating `1:1000000` takes `0` seconds at the sight of `proc.time`.
+- Each time measurement of a procedure is subject to variability (depends on the processor usage at that time, processor warm-up, memory status, etc). So, one single call is not enough to assess the time performance, several must be made (conveniently) and averaged.
+- It is cumbersome to check the times for different expressions. We will need several lines of code for each and creating auxiliary variables.
+- We do not have easy-to-use summaries of the timings. We have to code them by ourselves.
+- We cannot check automatically if the different procedures yield the same result (accuracy is also important, not only speed).
+
+Hopefully, the [`microbenchmark`](https://cran.r-project.org/package=microbenchmark) package fills in these gaps. Let's see an example of its usage on approaching a common problem in `R`: how to **recentre a matrix by columns**, *i.e.*, how to make each column to have zero mean. There are several possibilities to do so, with different efficiencies.
+
+```{r, bench-2, message = FALSE, cache = TRUE}
+# Data and mean
+n <- 3
+m <- 10
+X <- matrix(1:(n * m), nrow = n, ncol = m)
+mu <- colMeans(X)
+# We assume mu is given in the time comparisons
+
+# The competing approaches
+
+# 1) sweep
+Y1 <- sweep(x = X, MARGIN = 2, STATS = mu, FUN = "-")
+
+# 2) apply (+ transpose to maintain the arrangement of X)
+Y2 <- t(apply(X, 1, function(x) x - mu))
+
+# 3) scale
+Y3 <- scale(X, center = mu, scale = FALSE)
+
+# 4) loop
+Y4 <- matrix(0, nrow = n, ncol = m)
+for (j in 1:m) Y4[, j] <- X[, j] - mu[j]
+  
+# 5) implicit column recycling (my favourite!)
+Y5 <- t(t(X) - mu)
+
+# All the same?
+c(max(abs(Y1 - Y2)), max(abs(Y1 - Y3)), 
+  max(abs(Y1 - Y4)), max(abs(Y1 - Y5))) < 1e-15
+
+# With microbenchmark
+library(microbenchmark)
+bench <- microbenchmark(
+  sweep(x = X, MARGIN = 2, STATS = mu, FUN = "-"), 
+  t(apply(X, 1, function(x) x - mu)), 
+  scale(X, center = mu, scale = FALSE), 
+  {for (j in 1:m) Y4[, j] <- X[, j] - mu[j]; Y4},
+  t(t(X) - mu)
+)
+
+# Printing a microbenchmark object gives a numerical summary
+bench
+# Notice the last column. It is only present if the package multcomp is present.
+# It provides a statistical ranking (accounts for which method is significantly 
+# slower or faster) using multcomp::cld
+ 
+# Adjusting display
+print(bench, unit = "ms", signif = 2)
+# unit = "ns" (nanosecs), "us" ("microsecs"), "ms" (millisecs), "s" (secs)
+
+# Graphical methods for the microbenchmark object
+# Raw time data
+plot(bench, names = c("sweep", "apply", "scale", "for", "recycling"))
+# Employs time logarithms
+boxplot(bench, names = c("sweep", "apply", "scale", "for", "recycling")) 
+# Violin plots
+autoplot(bench)
+
+# microbenchmark uses 100 evaluations and 2 warmup evaluations (these are not 
+# measured) by default. Here is how to change these dafaults:
+bench2 <- microbenchmark(
+  sweep(x = X, MARGIN = 2, STATS = mu, FUN = "-"), 
+  t(apply(X, 1, function(x) x - mu)), 
+  scale(X, center = mu, scale = FALSE), 
+  {for (j in 1:m) Y4[, j] <- X[, j] - mu[j]; Y4},
+  t(t(X) - mu),
+  times = 1000, control = list(warmup = 10)
+)
+bench2
+
+# Let's check the accuracy of the methods as well as their timings. For that 
+# we need to define a check function that takes as input a LIST with each slot
+# representing the output of each method. The check must return TRUE or FALSE
+check1 <- function (results) {
+  all(sapply(results[-1], function(x) {
+    max(abs(x - results[[1]]))
+    }) < 1e-15) # Compares all results pair-wisely with the first
+}
+
+# Example with check function
+bench3 <- microbenchmark(
+  sweep(x = X, MARGIN = 2, STATS = mu, FUN = "-"), 
+  t(apply(X, 1, function(x) x - mu)), 
+  scale(X, center = mu, scale = FALSE), 
+  {for (j in 1:m) Y4[, j] <- X[, j] - mu[j]; Y4},
+  t(t(X) - mu),
+  check = check1
+)
+bench3
+```
+
+### Quick animations with `manipulate`
+
+The [`manipulate`](https://cran.r-project.org/package=manipulate) package (works only within `RStudio`!) allows to easily create simple animations. It is a simpler, local, alternative to `Shiny` applications.
+
+```{r, manipulate-1, eval = FALSE, message = FALSE, cache = TRUE}
+library(manipulate)
+
+# A simple example
+manipulate({
+  plot(1:n, sin(2 * pi * (1:n) / 100), xlim = c(1, 100), ylim = c(-1, 1),
+       type = "o", xlab = "x", ylab = "y")
+  lines(1:100, sin(2 * pi * 1:100 / 100), col = 2)
+}, n = slider(min = 1, max = 100, step = 1, ticks = TRUE))
+```
+
+```{r, manipulate-2, eval = FALSE, message = FALSE, cache = TRUE}
+# Illustrating several types of controls using the kernel density estimator
+manipulate({
+  
+  # Sample data
+  if (newSample) {
+    set.seed(sample(1:1000))
+  } else {
+    set.seed(12345678)
+  }
+  samp <- rnorm(n = n, mean = 0, sd = 1.5) 
+  
+  # Density estimate
+  plot(density(x = samp, bw = h, kernel = kernel), 
+       xlim = c(-x.rang, x.rang)/2, ylim = c(0, y.max))
+  
+  # Show data
+  if (rugSamp) {
+    rug(samp)
+  }
+  
+  # Add reference density
+  if (realDensity) {
+    tt <- seq(-x.rang/2, x.rang/2, l = 200)
+    lines(tt, dnorm(x = tt, mean = 0, sd = 1.5), col = 2)
+  }
+  },
+  n = slider(min = 1, max = 250, step = 5, initial = 10),
+  h = slider(0.05, 2, initial = 0.5, step = 0.05),
+  x.rang = slider(1, 10, initial = 6, step = 0.5),
+  y.max = slider(0.1, 2, initial = 0.5, step = 0.1),
+  kernel = picker("gaussian", "epanechnikov", "rectangular", 
+                  "triangular", "biweight", "cosine", "optcosine"),
+  rugSamp = checkbox(TRUE, "Show rug"),
+  realDensity = checkbox(TRUE, "Draw real density"),
+  newSample = button("New sample!")
+  )
+```
+
+```{r, manipulate-3, eval = FALSE, message = FALSE, cache = TRUE}
+# Another example: rotating 3D graphs without using rgl
+
+# Mexican hat
+x <- seq(-10, 10, l = 50)
+y <- x
+f <- function(x, y) {r <- sqrt(x^2 + y^2); 10 * sin(r)/r}
+z <- outer(x, y, f)
+
+# Colors
+nrz <- nrow(z)
+ncz <- ncol(z)
+zfacet <- z[-1, -1] + z[-1, -ncz] + z[-nrz, -1] + z[-nrz, -ncz]
+col <- viridis(100)
+facetcol <- cut(zfacet, length(col))
+col <- col[facetcol]
+
+# 3D plot
+manipulate(
+  persp(x, y, z, theta = theta, phi = phi, expand = 0.5, col = col,
+        ticktype = "detailed", xlab = "X", ylab = "Y", zlab = "Sinc(r)"),
+  theta = slider(-180, 180, initial = 30, step = 5),
+  phi = slider(-90, 90, initial = 30, step = 5))
+```
+
+## Handling big data in `R`
+
+### The `ff` and `ffbase` packages
+
+`R` stores all the data in RAM, which is where all the processing takes place. But when the data does not fit into RAM (e.g., vectors of size $2\times10^9$), alternatives are needed. [`ff`](https://cran.r-project.org/web/packages/ff/index.html) is an `R` package for working with data that does not fit in RAM. From `ff`'s description:
+
+> The `ff` package provides data structures that are stored on disk but behave (almost) as if they were in RAM by transparently mapping only a section (pagesize) in main memory - the effective virtual memory consumption per `ff` object.
+
+The package `ff` lacks some standard statistical methods for operating with `ff` objects. These are provided by [``ffbase`](https://cran.r-project.org/web/packages/ffbase/index.html).
+
+Let's see some examples.
+
+```{r, ffbase-1, cache = TRUE, message = FALSE}
+# Not really "big data", but for the sake of illustration
+set.seed(12345)
+n <- 1e6
+p <- 10
+beta <- seq(-1, 1, length.out = p)^5
+
+# Data for linear regression
+x1 <- matrix(rnorm(n * p), nrow = n, ncol = p)
+x1[, p] <- 2 * x1[, 1] + rnorm(n, sd = 0.1)
+x1[, p - 1] <- 2 - x1[, 2] + rnorm(n, sd = 0.5)
+y1 <- 1 + x1 %*% beta + rnorm(n)
+bigData1 <- data.frame("resp" = y1, "pred" = x1)
+
+# Data for logistic regression
+x2 <- matrix(rnorm(n * p), nrow = n, ncol = p)
+y2 <- rbinom(n = n, size = 1, prob = 1 / (1 + exp(-(1 + x2 %*% beta))))
+bigData2 <- data.frame("resp" = y2, "pred" = x2)
+
+# Sizes of objects
+print(object.size(bigData1), units = "Mb")
+print(object.size(bigData2), units = "Mb")
+
+# Save files to disk to emulate the situation with big data
+write.csv(x = bigData1, file = "bigData1.csv", row.names = FALSE)
+write.csv(x = bigData2, file = "bigData2.csv", row.names = FALSE)
+
+# Read files using ff
+library(ffbase) # Imports ff
+bigData1ff <- read.table.ffdf(file = "bigData1.csv", header = TRUE, sep = ",")
+bigData2ff <- read.table.ffdf(file = "bigData2.csv", header = TRUE, sep = ",")
+
+# Recall: the *.csv are not copied into RAM!
+print(object.size(bigData1ff), units = "Kb")
+print(object.size(bigData2ff), units = "Kb")
+
+# Delete the csv files in disk
+file.remove(c("bigData1.csv", "bigData2.csv"))
+
+# Operations on ff objects "almost" as with regular data.frames
+class(bigData1ff)
+class(bigData1ff[, 1])
+bigData1ff[1:5, 1] <- rnorm(5)
+# See ?ffdf for more allowed operations
+
+# Filter of data frames
+ffwhich(bigData1ff, bigData1ff$resp > 5)
+```
+
+### Regression using `biglm`
+
+#### Linear models
+
+Linear regression with big data is done iteratively, an approach that is possible thanks to the nice properties of the least squares solution (more details of this can be found [here](https://bookdown.org/egarpor/PM-UC3M/lm-iii-bigdata.html)). The [`biglm`](https://cran.r-project.org/web/packages/biglm/index.html) package employs an iterative approach based on the QR decomposition. The package accepts as data input:
+
+- either a regular `data.frame` object
+- or a `ffdf` object.
+
+Let's see how `biglm` works for the first case. Then we will use `ffdf` for the case of generalized linear models.
+
+```{r, biglm-1, message = FALSE, cache = TRUE}
+# biglm has a very similar syntaxis to lm - but the formula interface does not
+# work always as expected
+library(biglm)
+# biglm(formula = resp ~ ., data = bigData1) # Does not work
+# biglm(formula = y ~ x) # Does not work
+# biglm(formula = resp ~ pred.1 + pred.2, data = bigData1) # Does work, but 
+# not very convenient for a large number of predictors
+# Hack for automatic inclusion of all the predictors
+f <- formula(paste("resp ~", paste(names(bigData1)[-1], collapse = " + ")))
+biglmMod <- biglm(formula = f, data = bigData1)
+ 
+# lm's call
+lmMod <- lm(formula = resp ~ ., data = bigData1)
+
+# The reduction in size of the resulting object is more than notable
+print(object.size(biglmMod), units = "Kb")
+print(object.size(lmMod), units = "Mb")
+
+# Summaries
+s1 <- summary(biglmMod)
+s2 <- summary(lmMod)
+s1
+s2
+# The summary of a biglm object yields slightly different significances for the
+# coefficients than for lm. The reason is that biglm employs N(0, 1) 
+# approximations for the distributions of the t-tests instead of the exact 
+# t distribution. Obviously, if n is large, the differences are inappreciable.
+
+# Extract coefficients
+coef(biglmMod)
+
+# AIC and BIC
+AIC(biglmMod, k = 2)
+AIC(biglmMod, k = log(n))
+
+# Prediction works as usual
+predict(biglmMod, newdata = bigData1[1:5, ])
+
+# Must contain a column for the response
+# predict(biglmMod, newdata = bigData2[1:5, -1]) # Error
+
+# Update the model with more training data - this is key for chunking the data
+update(biglmMod, moredata = bigData1[1:100, ])
+
+# Features not immediately available for biglm objects: stepwise selection by 
+# stepAIC, residuals, variance of the error, model diagnostics, and vifs
+```
+
+Model selection of `biglm` models can be done with the [`leaps`](https://cran.r-project.org/web/packages/leaps/index.html) package. This is achieved by the `regsubsets` function, which returns the *best subset* of up to (by default) `nvmax = 8` predictors. The function requires the *full* `biglm` model to begin the "exhaustive" search, in which is crucial the linear structure of the estimator. 
+
+```{r, biglm-2, message = FALSE, cache = TRUE}
+# Model selection adapted to big data models
+library(leaps)
+reg <- regsubsets(biglmMod, nvmax = p, method = "exhaustive")
+plot(reg) # Plot best model (top row) to worst model (bottom row)
+
+# Summarize (otherwise regsubsets's outptut is hard to decypher)
+subs <- summary(reg)
+subs
+
+# Lots of useful information
+str(subs, 1)
+
+# Get the model with lowest BIC
+subs$which
+subs$bic
+subs$which[which.min(subs$bic), ]
+
+# It also works with ordinary linear models and it is much faster and 
+# informative than stepAIC
+reg <- regsubsets(resp ~ ., data = bigData1, nvmax = p, 
+                  method = "backward")
+subs$bic
+subs$which[which.min(subs$bic), ]
+
+# Compare it with stepAIC
+library(MASS)
+stepAIC(lm(resp ~ ., data = bigData1), trace = 0, 
+        direction = "backward", k = log(n))
+```
+
+Let's see an example on how to fit a linear model to a large dataset that does not fit in RAM. A possible approach is to split the dataset and perform updates of the model in chunks of reasonable size. The next code provides a template for such approach using `biglm` and `update`.
+
+```{r, biglm-4, message = FALSE, cache = TRUE}
+# Linear regression with N = 10^8 and p = 10
+N <- 10^8
+p <- 10
+beta <- seq(-1, 1, length.out = p)^5
+
+# Number of chunks for splitting the dataset
+nChunks <- 1e3
+nSmall <- N / nChunks
+
+# Simulates reading the first chunk of data
+set.seed(12345)
+x <- matrix(rnorm(nSmall * p), nrow = nSmall, ncol = p)
+x[, p] <- 2 * x[, 1] + rnorm(nSmall, sd = 0.1)
+x[, p - 1] <- 2 - x[, 2] + rnorm(nSmall, sd = 0.5)
+y <- 1 + x %*% beta + rnorm(nSmall)
+
+# First fit
+bigMod <- biglm(y ~ x, data = data.frame(y, x))
+
+# Update fit
+# pb <- txtProgressBar(style = 3)
+for (i in 2:nChunks) {
+  
+  # Simulates reading the i-th chunk of data
+  set.seed(12345 + i)
+  x <- matrix(rnorm(nSmall * p), nrow = nSmall, ncol = p)
+  x[, p] <- 2 * x[, 1] + rnorm(nSmall, sd = 0.1)
+  x[, p - 1] <- 2 - x[, 2] + rnorm(nSmall, sd = 0.5)
+  y <- 1 + x %*% beta + rnorm(nSmall)
+  
+  # Update the fit
+  bigMod <- update(bigMod, moredata = data.frame(y, x))
+  
+  # Progress
+  # setTxtProgressBar(pb = pb, value = i / nChunks)
+
+}
+
+# Final model
+summary(bigMod)
+print(object.size(bigMod), units = "Kb")
+```
+
+#### Generalized linear models
+
+Fitting a generalized linear model involves fitting a series of linear models using the the IRLS algorithm. The nonlinearities introduced through this process imply that (more details are available [here](https://bookdown.org/egarpor/PM-UC3M/glm-bigdata.html)):
+
+1. *Updating* the model with a new chunk implies re-fitting with *all* the data.
+2. The IRLS algorithm requires *reading the data as many times as iterations*.
+
+This means that `biglm`'s fitting function for generalized linear models, `bigglm`, needs to have access to the *full data* while performing the fitting. So the only possibility, if the data does not fit into RAM, is to go with an `ffbase` approach.
+
+Let's see an example for logistic regression.
+
+```{r, bigglm-1, message = FALSE, cache = TRUE}
+# Logistic regression
+# Same comments for the formula framework - this is the hack for automatic
+# inclusion of all the predictors
+f <- formula(paste("resp ~", paste(names(bigData2ff)[-1], collapse = " + ")))
+bigglmMod <- bigglm.ffdf(formula = f, data = bigData2ff, family = binomial())
+
+# glm's call
+glmMod <- glm(formula = resp ~ ., data = bigData2, family = binomial())
+
+# Compare sizes
+print(object.size(bigglmMod), units = "Kb")
+print(object.size(glmMod), units = "Mb")
+
+# Summaries
+s1 <- summary(bigglmMod)
+s2 <- summary(glmMod)
+s1
+s2
+
+# Further information
+s1$mat # Coefficients and their inferences
+s1$rsq # R^2
+s1$nullrss # Null deviance
+
+# Extract coefficients
+coef(bigglmMod)
+
+# AIC and BIC
+AIC(bigglmMod, k = 2)
+AIC(bigglmMod, k = log(n))
+
+# Prediction works as usual
+predict(bigglmMod, newdata = bigData2[1:5, ], type = "response")
+# predict(bigglmMod, newdata = bigData2[1:5, -1]) # Error
+
+# Update the model with training data
+update(bigglmMod, moredata = bigData2[1:100, ])
+```
+
+Note that this is also a perfectly valid approach for linear models, we just need to specify `family = gaussian()` in the call to `bigglm.ffdf`.
+
+```{r, bigglm-2, message = FALSE, cache = TRUE}
+f <- formula(paste("resp ~", paste(names(bigData1ff)[-1], collapse = " + ")))
+bigglmMod <- bigglm.ffdf(formula = f, data = bigData1ff, family = gaussian())
+
+# Comparison with the first lm
+summary(bigglmMod)
+summary(lmMod)
+```
+
+Model selection of `bigglm` is not so straightforward. The trick that `regsubsets` employs for simplifying the model search in linear models does not apply for generalized linear models. However, there is a hack. We can do best subset selection in the *linear model associated to the last iteration of the IRLS algorithm* and then refine the search by computing the exact BIC/AIC from a set of candidate models. If we do so, we translate the model selection problem back to the linear case, plus the extra overhead of fitting several generalized linear models. Keep in mind that, albeit useful, this approach is an *approximation*.
+
+```{r, bigglm-3, message = FALSE, cache = TRUE}
+# Model selection adapted to big data generalized linear models
+library(leaps)
+f <- formula(paste("resp ~", paste(names(bigData2ff)[-1], collapse = " + ")))
+bigglmMod <- bigglm.ffdf(formula = f, data = bigData2ff, family = binomial())
+reg <- regsubsets(bigglmMod, nvmax = p + 1, method = "exhaustive")
+# This takes the QR decomposition, which encodes the linear model associated to
+# the last iteration of the IRLS algorithm. However, the reported BICs are *not*
+# the true BICs of the generalized linear models, but a sufficient 
+# approximation to obtain a list of candidate models in a fast way
+
+# Get the model with lowest BIC
+plot(reg)
+subs <- summary(reg)
+subs$which
+subs$bic
+subs$which[which.min(subs$bic), ]
+
+# Let's compute the true BICs for the p models. This implies fitting p bigglm's
+bestModels <- list()
+for (i in 1:nrow(subs$which)) {
+  f <- formula(paste("resp ~", paste(names(which(subs$which[i, -1])), 
+                                     collapse = " + ")))
+  bestModels[[i]] <- bigglm.ffdf(formula = f, data = bigData2ff, 
+                                 family = binomial(), maxit = 20) 
+}
+
+# The approximate BICs and the true BICs are very similar (in this example)
+exactBICs <- sapply(bestModels, AIC, k = log(n))
+plot(subs$bic, exactBICs, type = "o", xlab = "Exact", ylab = "Approximate")
+cor(subs$bic, exactBICs, method = "pearson") # Correlation
+
+# Both give the same model selection and same order
+subs$which[which.min(subs$bic), ] # Approximate
+subs$which[which.min(exactBICs), ] # Exact
+cor(subs$bic, exactBICs, method = "spearman") # Order correlation
+```
+
+## ASCII fun in `R`
+
+### Text-based graphs with `txtplot`
+
+When evaluating `R` in a terminal with no possible graphical outputs (e.g. in a supercomputing cluster), it may be of usefulness to, at least, visualize some simple plots in a rudimentary way. This is what the [`txtplot`](https://cran.r-project.org/web/packages/txtplot/index.html) and the [`NostalgiR`](https://cran.r-project.org/web/packages/NostalgiR/index.html) package do, by means of ASCII graphics that are equivalent to some `R` functions.
+
+| `R` graph | ASCII analogue |
+|:--------------|:-------------------|
+| `plot` | `txtplot` |
+| `boxplot` | `txtboxplot` |
+| `barplot(table())` | `txtbarchart` |
+| `curve` | `txtcurve` |
+| `acf` | `txtacf` |
+| `plot(density())` | `nos.density` |
+| `hist` | `nos.hist` |
+| `plot(ecdf())` | `nos.ecdf` |
+| `qqnorm(); qqline()` | `nos.qqnorm` |
+| `qqplot` | `nos.qqplot` |
+| `contour` | `nos.contour` |
+| `image` | `nos.image` |
+
+Let's see some examples.
+
+```{r, ascii-1, message = FALSE, cache = TRUE}
+library(txtplot) # txt* functions
+
+# Generate common data
+x <- rnorm(100)
+y <- 1 + x + rnorm(100, sd = 1)
+let <- as.factor(sample(letters, size = 1000, replace = TRUE))
+
+# txtplot
+plot(x, y)
+txtplot(x, y)
+
+# txtboxplot
+boxplot(x, horizontal = TRUE)
+txtboxplot(x)
+
+# txtbarchart
+barplot(table(let))
+txtbarchart(x = let)
+
+# txtcurve
+curve(expr = sin(x), from = 0, to = 2 * pi)
+txtcurve(expr = sin(x), from = 0, to = 2 * pi)
+
+# txtacf
+acf(x)
+txtacf(x)
+```
+
+```{r, ascii-2, message = FALSE, cache = TRUE}
+library(NostalgiR) # nos.* functions
+
+# Mexican hat
+xx <- seq(-10, 10, l = 50)
+yy <- xx
+f <- function(x, y) {r <- sqrt(x^2 + y^2); 10 * sin(r)/r}
+zz <- outer(xx, yy, f)
+
+# nos.density
+plot(density(x))
+nos.density(x)
+
+# nos.hist
+hist(x)
+nos.hist(x)
+
+# nos.ecdf
+plot(ecdf(x))
+nos.ecdf(x)
+
+# nos.qqnorm
+qqnorm(x); qqline(x)
+nos.qqnorm(x)
+
+# nos.qqplot
+qqplot(x, y)
+nos.qqplot(x, y)
+
+# nos.contour
+contour(xx, yy, zz)
+nos.contour(data = zz, xmin = min(xx), xmax = max(xx), 
+            ymin = min(yy), ymax = max(yy))
+
+# nos.image
+image(zz)
+nos.image(data = zz, xmin = min(xx), xmax = max(xx), 
+          ymin = min(yy), ymax = max(yy))
+```
+
+### Cute animals with `cowsay`
+
+[`cowsay`](https://cran.r-project.org/web/packages/cowsay/index.html) is a package for printing messages with ASCII animals. Although it has little practical use, it is way fun! There is only one function,`say`, that produces an animal with a speech bubble.
+
+```{r, ascii-3, message = TRUE, cache = TRUE, collapse = TRUE}
+library(cowsay)
+
+# Random fortunes
+say("fortune", by = "random")
+
+# All animals
+# sapply(names(animals), function(x) say(x, by = x))
+
+# How to annoy the users of your package
+say(what = "It looks like you\'re writing a letter!", 
+    by = "clippy", type = "warning")
+
+# A message from Yoda
+say("Contribute to the Coding Club UC3M you must!", by = "yoda")
+```

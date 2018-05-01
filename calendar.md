@@ -8,11 +8,11 @@ title: Calendar
 - Day : Title - Presenter - Location
 {% endcomment %}
 
-<div class="highlighter-red"> Title : Coding club Uc3m </div>
-<div class="highlighter-black"> Time: 08.05.2018 - 13.00pm 
+<div class="highlighter-red"> Title : Useful one-function R packages, big data solutions, and a message from Yoda </div>
+<div class="highlighter-black"> Time: 10.05.2018 - 12.00am 
 	<a href="https://calendar.google.com/calendar/r/eventedit?
 	text=CodingClubUc3m
-	&dates=20180508T110000Z/20180508T120000Z
+	&dates=20180508T100000Z/20180508T110000Z
 	&details=For+details,+link+here:+https://codingclubuc3m.github.io/calendar.html
 	&location=Juan+Benet+Building+7.0J
 	&sf=true
