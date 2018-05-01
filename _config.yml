@@ -30,6 +30,7 @@ facebook:         true # add a facebook share button to each post
 # rendering engine
 markdown: kramdown
 
+
 author:
   name:           'Coding Club UC3M'
   url:            https://codingclubuc3m.github.io
