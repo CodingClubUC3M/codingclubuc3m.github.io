@@ -1,23 +1,23 @@
 ---
+title: "Contributors"
 layout: page
-title: Contributors
 images:
-  - image_path: /public/contributor/edu.png
-    title: Eduardo García
-    link: http://egarpor.github.io/
-    description: Short bio
-  - image_path: /public/contributor/antonio.jpeg
-    title:  Antonio Elías 
-    description: Short bio    
-    link: https://www.linkedin.com/in/antonio-el%C3%ADas-fern%C3%A1ndez-656ab495/
-  - image_path: /public/contributor/hoang.jpg
-    title: Hoang Nguyen
-    description: Short bio
-    link: http://hoanguc3m.github.io/
-  - image_path: /public/contributor/person.png
-    title: David García
-    link:   
-    description: Short bio
+- description: Assistant professor at the Department of Statistics of Carlos III University of Madrid. Enthusiast of coding since his early days as a student fighting against `FORTRAN`. Now with a reasonable expertise in `R` and its evolving ecosystem. His developed software is available at <https://github.com/egarpor>. 
+  image_path: /public/contributor/edu.png
+  link: http://egarpor.github.io/
+  title: Eduardo García Portugués
+- description: Short bio
+  image_path: /public/contributor/antonio.jpeg
+  link: https://www.linkedin.com/in/antonio-el%C3%ADas-fern%C3%A1ndez-656ab495/
+  title: Antonio Elías Fernández
+- description: Short bio
+  image_path: /public/contributor/hoang.jpg
+  link: http://hoanguc3m.github.io/
+  title: Hoang Nguyen
+- description: Short bio
+  image_path: /public/contributor/person.png
+  link: null
+  title: David García Heredia
 ---
 
 <table>
