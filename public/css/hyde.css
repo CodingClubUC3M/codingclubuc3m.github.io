@@ -90,7 +90,7 @@ html {
 }
 
 .sidebar .sidebar-about h1{
-font-size: 1.75rem;
+font-size: 1.5rem;
 }
 
 .sidebar-nav {
@@ -98,7 +98,7 @@ font-size: 1.75rem;
 }
 .sidebar-nav-item {
   display: block;
-  line-height: 1.75;
+  line-height: 1.5;
 }
 a.sidebar-nav-item:hover,
 a.sidebar-nav-item:focus {
