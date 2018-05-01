@@ -3,7 +3,7 @@ layout: page
 title: About
 ---
 
-![Coding club](public/logos/Collage_Coding_Club.png "Coding Club UC3M")
+![Coding Club UC3M](public/logos/Collage_Coding_Club.png "Coding Club UC3M")
 
 ## What?
 
@@ -11,29 +11,29 @@ A series of **informal sessions among coding enthusiasts**, with a common intere
 
 ## Who?
 
-Members of the Department of Statistics (professors, postdocs, PhD students, MSc students) and of other departments (Mathematics, Economics, Computer Science and Engineering, etc). Late BSc students with interest in coding are also welcome to join.
+Members of the Department of Statistics (professors, postdocs, PhD students, MSc students) and other departments (Mathematics, Economics, Computer Science and Engineering, etc). Any person with interest in coding is welcome to join.
 
 ## When?
 
-Biweekly or triweekly sessions, in a day and time to be decided.
+Biweekly or triweekly sessions, see the [calendar](https://codingclubuc3m.github.io/calendar.html) for more info.
 
 ## Where?
 
-At the Department of Statistics. The proportion of meetings in Getafe/Leganés will be according to the proportion of participants from each campus.
+At the Department of Statistics, either in Leganés or Getafe. <!--The proportion of meetings in Getafe/Leganés will be according to the proportion of participants from each campus.-->
 
 ## Why?
 
 Because:
 
 - We **like coding and keeping up-to-date** in the most recent advances and methodologies.
-- We want to **exchange knowledge** between colleages and benefit from their expertise.
+- We want to **exchange knowledge** between colleagues and benefit from their expertise.
 - We look forward to learn **better tools for teaching and presenting results**.
-- We want to receive and provide **feedback** on how to approach **programming problems**.
+<!-- - We want to receive and provide **feedback** on how to approach **programming problems**. -->
 - It is funnier to learn with more people than on your own!
 
 ## How?
 
-Sessions to be held in a common room equipped with a projector and a large table. (In Getafe: Sala Costas Goutis 10.0.23 or meeting room 10.1.21A). We bring our own laptops to the session. The main topic of the session is communicated by email a week before to all the department(s) and past attendees.
+Sessions to be held in a room equipped with a projector and spots for laptops. The idea is that attendees bring their own laptops to the session and are able to follow the reproducible codes. The main topic of the session is communicated by email a week before.
 
 ## Session duration
 
@@ -41,6 +41,9 @@ Initially, the sessions are scheduled for **60 minutes**, with a strong compromi
 
 ## Session structure
 
+One speaker presents a topic he/she may think it is of interest using materials with reproducible code. Attendees follow the materials and may ask questions or doubts on the go. The presentation is informal and the speaker's goal is to deliver the key insights behind the code, useful tricks and common errors.
+
+<!--
 A possible one is:
 
 1. **Introduction** (~5 minutes). Presentation and quick overview of the session's scope.
@@ -48,58 +51,52 @@ A possible one is:
 3. **Feedback for problem solving** (~10). Tell us how are you solving or trying to solve a current problem to gain advice from the rest.
 4. **Miscellanea tricks** (~5). Did you find a solution for a tricky problem or a great productivity hack? You can tell us about it, if you think is useful.
 5. **Proposals for next sessions** (~10). We vote and discuss what are the most interesting topics for the next sections, based on a list of common interests and available presenters.
+-->
 
 ## Visibility
 
-We plan to create a blog-webpage where we host the materials for each session as posts. Each post will be solely authored by the presenter, hence providing a proof of participation. Also, the blog-webpage may contain possible follow-ups to the sessions, reporting the topics discussed in points 3 and 4.
-
-The website is likely to be based in `knitr-jekyll`, which makes possible the creation of `R`-friendly, elegant and simple webpages. Here are some examples (each blog post is a `rmarkdown` document):
-
-- <http://yihui.name/knitr-jekyll>
-- <http://statistics.rainandrhino.org/>
+The materials for each session are hosted in this website as posts. Each post will be solely authored by the presenter, hence providing a proof of participation. Also, the post may contain possible follow-ups and comments to the sessions.
 
 ## Sounds good? Then join us!
 
-We are looking for:
+We are looking for speakers that are willing to contribute a main topic presentation at some point. If you are interested, then please fill in [this form](TODO). 
 
-- **Co-organizers**. Their duties are to co-manage (together with Eduardo García-Portugués) the website, logistics and club organization.
-- **Active members**. Regular members that are willing to contribute a main topic presentation at some point.
-- Irregular attendees. People that would like to come to learn only a specific topic.
+## Topics suggestions
 
-## Topics for the first sessions
+If you want to contribute a talk and are looking for inspiration, you may want to take a look into some suggestions (~~strikeout~~ text means the topic was already covered) of topics that could be of interest to the participants. Feel free to suggest topics in which you are interested that are not listed here.
 
-These are some ideas about `R` packages that could be covered in the first sessions:
+1. `R` packages:
+    
+    - [animation](https://cran.r-project.org/web/packages/animation)
+    - [dplyr](https://cran.r-project.org/web/packages/dplyr)
+    - [foreach](https://cran.r-project.org/web/packages/foreach) (with parallelization)
+    - [ggplot2](https://cran.r-project.org/web/packages/ggplot2)
+    - [magrittr](https://cran.r-project.org/web/packages/magrittr)
+    - [Matrix](https://cran.r-project.org/web/packages/Matrix)
+    - [matrixcalc](https://cran.r-project.org/web/packages/matrixcalc)
+    - [memoise](https://cran.r-project.org/web/packages/memoise)
+    - ~~[microbenchmark](https://cran.r-project.org/web/packages/microbenchmark)~~
+    - [Rcpp](https://cran.r-project.org/web/packages/Rcpp)
+    - [RcppArmadillo](https://cran.r-project.org/web/packages/RcppArmadillo)
+    - [RcppEigen](https://cran.r-project.org/web/packages/RcppEigen)
+    - [readr](https://cran.r-project.org/web/packages/readr)
+    - [rgl](https://cran.r-project.org/web/packages/rgl)
+    - [rmarkdown](https://cran.r-project.org/web/packages/rmarkdown)
+    - [Rmpfr](https://cran.r-project.org/web/packages/Rmpfr)
+    - [roxygen2](https://cran.r-project.org/web/packages/roxygen2)
+    - ~~[Shiny](https://cran.r-project.org/web/packages/shiny)~~
+    - [SimDesign](https://cran.r-project.org/web/packages/SimDesign) or [simTool](https://cran.r-project.org/web/packages/simTool)
+    - [stringr](https://cran.r-project.org/web/packages/stringr)
+    - [tidyr](https://cran.r-project.org/web/packages/tidyr)
+    - ~~[txtplot](https://cran.r-project.org/web/packages/txtplot)~~
 
-- [txtplot](https://cran.r-project.org/web/packages/txtplot)
-- [ggplot2](https://cran.r-project.org/web/packages/ggplot2)
-- [SimDesign](https://cran.r-project.org/web/packages/SimDesign) or [simTool](https://cran.r-project.org/web/packages/simTool)
-- [microbenchmark](https://cran.r-project.org/web/packages/microbenchmark)
-- [rmarkdown](https://cran.r-project.org/web/packages/rmarkdown)
-- [Matrix](https://cran.r-project.org/web/packages/Matrix)
-- [Rcpp](https://cran.r-project.org/web/packages/Rcpp)
-- [RcppArmadillo](https://cran.r-project.org/web/packages/RcppArmadillo)
-- [RcppEigen](https://cran.r-project.org/web/packages/RcppEigen)
-- [memoise](https://cran.r-project.org/web/packages/memoise)
-- [foreach](https://cran.r-project.org/web/packages/foreach) (with parallelization)
-- [Rmpfr](https://cran.r-project.org/web/packages/Rmpfr)
-- [matrixcalc](https://cran.r-project.org/web/packages/matrixcalc)
-- [tidyr](https://cran.r-project.org/web/packages/tidyr)
-- [Shiny](https://cran.r-project.org/web/packages/shiny)
-- [animation](https://cran.r-project.org/web/packages/animation)
-- [rgl](https://cran.r-project.org/web/packages/rgl)
-- [dplyr](https://cran.r-project.org/web/packages/dplyr)
-- [roxygen2](https://cran.r-project.org/web/packages/roxygen2)
-- [readr](https://cran.r-project.org/web/packages/readr)
-- [stringr](https://cran.r-project.org/web/packages/stringr)
-- [magrittr](https://cran.r-project.org/web/packages/magrittr)
+2. More general topics:
 
-And here are other more generic topics that could be of interest:
-
-- Introduction to [Python](https://www.python.org/)
-- Introduction to [Stan](http://mc-stan.org/)
-- Introduction to [Julia](http://julialang.org/)
-- Introduction to [Mathematica](https://www.wolfram.com/mathematica/)
-- How to develop efficiently with [GitHub](https://github.com/)
+    - ~~Introduction to [Julia](http://julialang.org/)~~
+    - Introduction to [Mathematica](https://www.wolfram.com/mathematica/)
+    - Introduction to [Python](https://www.python.org/)
+    - Introduction to [Stan](http://mc-stan.org/)
+    - How to develop efficiently with [GitHub](https://github.com/)
 
 ## Contact
 
