@@ -39,9 +39,9 @@ html {
     font-size: 16px;
   }
 }
-@media (min-width: 58em) {
+@media (min-width: 63em) {
   html {
-    font-size: 25px;
+    font-size: 20px;
   }
 }
 
@@ -86,7 +86,7 @@ html {
 
 .sidebar .sidebar-about img{
  margin: 0 auto;
- max-width: 230px;
+ max-width: 200px;
 }
 
 .sidebar .sidebar-about h1{
@@ -137,7 +137,7 @@ a.sidebar-nav-item:focus {
 
 @media (min-width: 48em) {
   .content {
-    max-width: 38rem;
+    max-width: 43rem;
     margin-left: 20rem;
     margin-right: 2rem;
   }
@@ -145,8 +145,8 @@ a.sidebar-nav-item:focus {
 
 @media (min-width: 64em) {
   .content {
-    margin-left: 22rem;
-    margin-right: 4rem;
+    margin-left: 20rem;
+    margin-right: 1rem;
   }
 }
 
