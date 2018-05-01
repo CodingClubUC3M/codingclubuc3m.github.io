@@ -2,6 +2,20 @@
 layout: default
 title: Home
 ---
+<!-- HTML elements for search -->
+<input type="text" id="search-input" placeholder="Type / to search...">
+<br/>
+<div id="results-container"></div>
+
+
+<script>
+SimpleJekyllSearch({
+  search-input: document.querySelector('.search-input'),
+  resultsContainer: document.getElementById('results-container'),
+  json: '/search.json',
+  searchResultTemplate: '<li><a href="{{ site.url }}{url}">{title}</a></li>'
+})
+</script>
 
 <section id="archive">
   <h3>This year's posts</h3>
