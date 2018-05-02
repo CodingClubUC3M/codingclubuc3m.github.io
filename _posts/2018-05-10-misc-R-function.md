@@ -12,6 +12,11 @@ output:
     mathjax:  default
 ---
 
+**Abstract:** As the title reads, in this heterogeneous talk we will see three topics of different interest. The first is a collection of three simple and useful one-function R packages that I use regularly in my coding workflow. The second collects some approaches to handling and performing linear regression with big data. The third brings in the freaky component: it presents tools to display graphical information in plain ASCII, from bivariate contours to messages from Yoda!
+
+Materials to be disclosed at the session! 
+
+<!--
 
 ## Required packages
 
@@ -2138,3 +2143,5 @@ say("Contribute to the Coding Club UC3M you must!", by = "yoda")
 ##                 "-.t-._:'
 ## 
 {% endhighlight %}
+
+-->
