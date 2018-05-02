@@ -9,7 +9,7 @@ title: Home
 </div>
 
 <!-- Script pointing to search-script.js -->
-<script src="/_includes/simple-jekyll-search.min.js" type="text/javascript"></script>
+<script src="_includes/simple-jekyll-search.js" type="text/javascript"></script>
 
 <!-- Configuration -->
 <script>
