@@ -3,7 +3,7 @@ layout: post
 comments:  true
 title: "Useful one-function R packages, big data solutions, and a message from Yoda"
 author: Eduardo García-Portugués
-date: 2018-05-01 20:30:00
+date: 2018-05-10 20:30:00
 published: true
 categories: [R, big data, visualization, benchmark]
 excerpt_seperator: <!--more-->
