@@ -11,7 +11,7 @@ permalink: /:year/:month/:day/:title.html
 # highlighter:  rouge (on my Mac, need to set this to rouge or flas with Jekyll 3.0)
 author: Coding Club UC3M
 
-baseurl: "" # the sub-path of your proejct site, e.g. /myProject/
+baseurl: "https://codingclubuc3m.github.io/" # the sub-path of your proejct site, e.g. /myProject/
              # or "/" for user site
 url: 'https://codingclubuc3m.github.io/'
 
