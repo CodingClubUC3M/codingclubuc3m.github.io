@@ -18,6 +18,9 @@ url: 'https://codingclubuc3m.github.io/'
 # limit posts on Home page to this number:
 homepostlimit:  4
 
+# Future posts
+future: true
+
 # Disqus comments:
 disqus:           true
 shortname:        codingclubuc3m
@@ -41,4 +44,3 @@ github:
 
 include:
   - public
-future: false
