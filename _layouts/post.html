@@ -7,6 +7,10 @@ layout: default
   <div class="post-date">
     Written on {{ page.date | date: "%B %e, %Y" }} by {{ page.author }}
   </div>
+  <div class="post-toc">
+    <strong>Table of contents</strong>
+    </div>
+  {% include toc.html html=content %}
   {{ content }}
 </div>
 
