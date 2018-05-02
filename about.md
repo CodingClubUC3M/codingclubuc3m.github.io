@@ -59,7 +59,7 @@ The materials for each session are hosted in this website as posts. Each post wi
 
 ## Sounds good? Then join us!
 
-We are looking for speakers that are willing to contribute a main topic presentation at some point. If you are interested, then please fill in [this form](TODO). 
+We are looking for speakers that are willing to contribute a main topic presentation at some point. If you are interested, then please fill in [this form](https://docs.google.com/forms/d/e/1FAIpQLSesu_kvqzmwqZc4m25_WygeBJLjeaLCYRk45XiS96T_HHsGcQ/viewform?usp=sf_link). 
 
 ## Topics suggestions
 
