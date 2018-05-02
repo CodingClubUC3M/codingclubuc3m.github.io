@@ -1,46 +1,42 @@
 # Site settings
 title: Coding Club UC3M
 email: codingDOTclubDOTuc3mATgmailDOTcom
-description: > # this means to ignore newlines until "baseurl:"
+description: > # This means to ignore newlines until "baseurl:"
   A series of participative sessions among coding enthusiasts interested
   in data analysis, number crunching and teaching of statistics. Quite R-based
   but welcoming other languages and tools.
-url: "https://codingclubuc3m.github.io" # the base hostname & protocol for your site
+url: "https://codingclubuc3m.github.io" # The base hostname & protocol for your site
 github_username: codingclubuc3m
-permalink: /:year-:month-:day-:title.html
-# highlighter:  rouge (on my Mac, need to set this to rouge or flas with Jekyll 3.0)
+permalink: /:year/:month/:day/:title.html
 author: Coding Club UC3M
-
-baseurl: "https://codingclubuc3m.github.io/" # the sub-path of your proejct site, e.g. /myProject/
-             # or "/" for user site
+baseurl: "https://codingclubuc3m.github.io/"
 url: 'https://codingclubuc3m.github.io/'
 
-# limit posts on Home page to this number:
-homepostlimit:  4
+# Limit posts on Home page to this number
+homepostlimit: 10
 
-# Future posts
+# Display future posts
 future: true
 
 # Disqus comments:
-disqus:           true
-shortname:        codingclubuc3m
+disqus: true
+shortname: codingclubuc3m
 
-# Social Media
-twitter:          true # add a twitter button to each post
-facebook:         true # add a facebook share button to each post
+# Social media buttons
+twitter: true # Add a twitter button to each post
+facebook: true # Add a facebook share button to each post
 
 # Build settings
 
-# rendering engine
+# Rendering engine
 markdown: kramdown
 
-
 author:
-  name:           'Coding Club UC3M'
-  url:            https://codingclubuc3m.github.io
+  name: 'Coding Club UC3M'
+  url: https://codingclubuc3m.github.io
 
 github:
-  repo:           https://github.com/codingclubuc3m/codingclubuc3m.github.io
+  repo: https://github.com/codingclubuc3m/codingclubuc3m.github.io
 
 include:
   - public
