@@ -2,18 +2,21 @@
 layout: default
 title: Home
 ---
-<!-- HTML elements for search -->
-<input type="text" id="search-input" placeholder="Type / to search...">
-<br/>
-<div id="results-container"></div>
+<!-- Html Elements for Search -->
+<div id="search-container">
+<input type="text" id="search-input" placeholder="search...">
+<ul id="results-container"></ul>
+</div>
 
+<!-- Script pointing to search-script.js -->
+<script src="/_includes/simple-jekyll-search.min.js" type="text/javascript"></script>
 
+<!-- Configuration -->
 <script>
 SimpleJekyllSearch({
-  search-input: document.querySelector('.search-input'),
+  searchInput: document.getElementById('search-input'),
   resultsContainer: document.getElementById('results-container'),
-  json: '/search.json',
-  searchResultTemplate: '<li><a href="{{ site.url }}{url}">{title}</a></li>'
+  json: '/search.json'
 })
 </script>
 
