@@ -5,7 +5,7 @@ images:
   - name: Eduardo García Portugués
     image_path: /public/contributor/edu.png
     link: http://egarpor.github.io/  
-    description: Assistant professor at the Department of Statistics of Carlos III University of Madrid. Enthusiast of coding since his early days as a student fighting against <code class="highlighter-rouge">FORTRAN</code>. Now with a reasonable expertise in <code class="highlighter-rouge">R</code> and its evolving ecosystem. His developed software is available at <a href="http://egarpor.github.io/">http://egarpor.github.io/</a>
+    description: Assistant professor at the Department of Statistics of Carlos III University of Madrid. Enthusiast of coding since his early days as a student fighting against <code class="highlighter-rouge">FORTRAN</code>. Now with a reasonable expertise in <code class="highlighter-rouge">R</code> and its evolving ecosystem. His developed software is available at <a href="https://github.com/egarpor/">https://github.com/egarpor/</a>
 
   - name: Antonio Elías Fernández
     image_path: /public/contributor/antonio.jpeg
