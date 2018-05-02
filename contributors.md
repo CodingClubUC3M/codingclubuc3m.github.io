@@ -15,8 +15,8 @@ images:
   - name: Hoang Nguyen
     image_path: /public/contributor/hoang.jpg
     link: http://hoanguc3m.github.io/
-    description: Hoang is on his final year of the PhD program in Statistics at Carlos III University of Madrid. He enjoys Bayesian inference and statistical computation. He contributes to several <code class="highlighter-rouge">R</code> package in his <a href="https://github.com/hoanguc3m/">repositories</a>. 
-    
+    description: Hoang is on his final year of the PhD program in Statistics at Carlos III University of Madrid. He enjoys Bayesian inference and statistical computation. He contributes to several <code class="highlighter-rouge">R</code> packages in his <a href="https://github.com/hoanguc3m/">repositories</a>. 
+
   - name: David García Heredia
     image_path: /public/contributor/person.png
     link: null
