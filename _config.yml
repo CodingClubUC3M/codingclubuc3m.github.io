@@ -38,3 +38,6 @@ author:
 
 github:
   repo:           https://github.com/codingclubuc3m/codingclubuc3m.github.io
+
+include:
+  - public
