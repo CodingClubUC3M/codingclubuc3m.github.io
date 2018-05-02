@@ -11,7 +11,7 @@ permalink: /:year/:month/:day/:title.html
 # highlighter:  rouge (on my Mac, need to set this to rouge or flas with Jekyll 3.0)
 author: Coding Club UC3M
 
-baseurl: "https://codingclubuc3m.github.io/" # the sub-path of your proejct site, e.g. /myProject/
+baseurl: "/" # the sub-path of your proejct site, e.g. /myProject/
              # or "/" for user site
 
 # limit posts on Home page to this number:
@@ -29,22 +29,7 @@ facebook:         true # add a facebook share button to each post
 
 # rendering engine
 markdown: kramdown
-kramdown:
-  input:          GFM
-  # https://github.com/jekyll/jekyll/pull/4090
-  syntax_highlighter: rouge
 
-  # Rouge Highlighter in Kramdown › http://kramdown.gettalong.org/syntax_highlighter/rouge.html
-  # span, block element options fall back to global
-  syntax_highlighter_opts:
-    # Rouge Options › https://github.com/jneen/rouge#full-options
-    css_class: 'highlight'
-    #line_numbers: true # bad idea, spans don't need linenos and would inherit this option
-    span:
-      line_numbers: false
-    block:
-      line_numbers: true
-      start_line: 1
 
 author:
   name:           'Coding Club UC3M'

@@ -37,13 +37,18 @@ border: 1px solid black;
 
 td
 {
-padding:15px;
+padding:0px;
 }
 
 table, td, th
 {
 border:0px solid green;
 }
+
+table td:first-child {
+  padding:0px;
+}
+
 th
 {
 background-color: rgb(48,49,138);
@@ -53,7 +58,7 @@ color:white;
 table {
     margin-left:auto;
     margin-right:auto;
-    margin-bottom:  30px;
+    margin-bottom:  0px;
   }
 
 
