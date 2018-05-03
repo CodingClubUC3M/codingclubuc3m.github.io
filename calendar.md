@@ -9,7 +9,7 @@ title: Calendar
 {% endcomment %}
 
 <div class="highlighter-red"> Title : Useful one-function R packages, big data solutions, and a message from Yoda </div>
-<div class="highlighter-black"> Time: 10.05.2018 - 12.00am 
+<div class="highlighter-black"> Time: 10.05.2018 - 15.00pm 
 	<a href="https://calendar.google.com/calendar/r/eventedit?
 	text=CodingClubUc3m
 	&dates=20180508T100000Z/20180508T110000Z
