@@ -8,7 +8,7 @@ title: Calendar
 - Day : Title - Presenter - Location
 {% endcomment %}
 
-<div class="highlighter-red"> Title : Useful one-function R packages, big data solutions, and a message from Yoda </div>
+<div class="highlighter-red"> Title: Useful one-function R packages, big data solutions, and a message from Yoda </div>
 <div class="highlighter-black"> Time: 10.05.2018, 15.00 - 16:00
 	<a href="https://calendar.google.com/calendar/r/eventedit?
 	text=CodingClubUc3m
