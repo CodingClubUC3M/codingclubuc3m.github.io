@@ -18,7 +18,7 @@ images:
     description: Hoang is on his final year of the PhD program in Statistics at Carlos III University of Madrid. He enjoys Bayesian inference and statistical computation. He contributes to several <code class="highlighter-rouge">R</code> packages in his <a href="https://github.com/hoanguc3m/">repositories</a>. 
 
   - name: David García Heredia
-    image_path: /public/contributor/person.png
+    image_path: /public/contributor/david.png
     link: null
     description: PhD student at the Department of Statistics at Carlos III University of Madrid, his research interests have led him to have programming as an essential part of his daily work. Although most of his code is made in <code class="highlighter-rouge">C++</code>, he is also fan of other languages as <code class="highlighter-rouge">Julia</code>, <code class="highlighter-rouge">R</code> or <code class="highlighter-rouge">MATLAB</code>.
 ---
