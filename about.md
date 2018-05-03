@@ -37,11 +37,11 @@ Sessions to be held in a room equipped with a projector and spots for laptops. T
 
 ## Session duration
 
-Initially, the sessions are scheduled for **60 minutes**, with a strong compromise to keep the duration of the session at this limit.
+The sessions are scheduled for **60 minutes**, with a strong compromise to keep the duration of the session at this limit.
 
 ## Session structure
 
-One speaker presents a topic he/she may think it is of interest using materials with reproducible code. Attendees follow the materials and may ask questions or doubts on the go. The presentation is informal and the speaker's goal is to deliver the key insights behind the code, useful tricks and common errors.
+One speaker presents a topic he/she may think it is of interest using materials with reproducible code. Attendees follow the materials and may ask questions or doubts on the go. The presentation is informal and the speaker's goal is to deliver the key insights behind the code, useful tricks and patches to common errors.
 
 <!--
 A possible one is:
@@ -63,9 +63,9 @@ We are looking for speakers that are willing to contribute a main topic presenta
 
 ## Topics suggestions
 
-If you want to contribute a talk and are looking for inspiration, you may want to take a look into some suggestions (~~strikeout~~ text means the topic was already covered) of topics that could be of interest to the participants. Feel free to suggest topics in which you are interested that are not listed here.
+If you want to contribute a talk and are looking for inspiration, you may want to consider some suggestions (~~strikeout~~ text means the topic was already covered) of topics that could be of interest to the participants. Also, feel free to suggest topics in which you are interested that are not listed here!
 
-1. `R` packages:
+1. About `R` packages:
     
     - [animation](https://cran.r-project.org/web/packages/animation)
     - [dplyr](https://cran.r-project.org/web/packages/dplyr)
@@ -90,7 +90,7 @@ If you want to contribute a talk and are looking for inspiration, you may want t
     - [tidyr](https://cran.r-project.org/web/packages/tidyr)
     - ~~[txtplot](https://cran.r-project.org/web/packages/txtplot)~~
 
-2. More general topics:
+2. About more general topics:
 
     - ~~Introduction to [Julia](http://julialang.org/)~~
     - Introduction to [Mathematica](https://www.wolfram.com/mathematica/)
