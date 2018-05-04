@@ -9,7 +9,7 @@ url: "https://codingclubuc3m.github.io" # The base hostname & protocol for your 
 github_username: codingclubuc3m
 permalink: /:year-:month-:day-:title.html
 author: Coding Club UC3M
-baseurl: "https://codingclubuc3m.github.io/"
+baseurl: "/"
 url: 'https://codingclubuc3m.github.io/'
 
 # Limit posts on Home page to this number
