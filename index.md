@@ -22,7 +22,7 @@ SimpleJekyllSearch({
 
 <section id="archive">
   <h3>This year's posts</h3>
-  {% for post in site.posts %}
+  {% for post in site.posts reversed %}
     {% unless post.next %}
       <ul class="this">
     {% else %}
