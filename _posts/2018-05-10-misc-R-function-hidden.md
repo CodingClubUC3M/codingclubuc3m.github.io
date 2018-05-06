@@ -3,7 +3,7 @@ layout: post
 comments:  true
 title: "Useful one-function R packages, big data solutions, and a message from Yoda - Hidden"
 author: Eduardo García-Portugués
-abstract: As the title reads, in this heterogeneous talk we will see three topics of different interest. The first is a collection of three simple and useful one-function R packages that I use regularly in my coding workflow. The second collects some approaches to handling and performing linear regression with big data. The third brings in the freaky component: it presents tools to display graphical information in plain ASCII, from bivariate contours to messages from Yoda!
+abstract:
 date: 2018-05-10 20:30:00
 published: true
 visible: false
@@ -16,7 +16,7 @@ output:
     mathjax:  default
 ---
 
-**Abstract:** 
+**Abstract:** As the title reads, in this heterogeneous talk we will see three topics of different interest. The first is a collection of three simple and useful one-function R packages that I use regularly in my coding workflow. The second collects some approaches to handling and performing linear regression with big data. The third brings in the freaky component: it presents tools to display graphical information in plain ASCII, from bivariate contours to messages from Yoda!
 
 ## Required packages {-}
 
