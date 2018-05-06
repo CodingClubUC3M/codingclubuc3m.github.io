@@ -6,11 +6,10 @@ date: "May 1, 2018"
 categories: [Rmarkdown, jekyll, Knitr]
 published: true
 visible: false
+excerpt_seperator: ""
 output:
   html_document:
     mathjax:  default
-fontsize: 12pt 
-linestretch: 1.5
 ---
 
 
@@ -30,7 +29,7 @@ date: 2016-10-01 20:30:00
 published: true
 visible: false
 categories: [R, tag name]
-excerpt_seperator: <!--more-->
+excerpt_seperator: ""
 output:
   html_document:
     mathjax:  default
@@ -65,7 +64,7 @@ b. Then compile the Rmd file that you created, for example
 KnitPost("2016-10-1-Blogging-with-Rmarkdown-and-knitr.Rmd")
 {% endhighlight %}
 c. For making md nicely in the post, edit the  ```md``` file
-- Line count: You can find and replace `{% highlight r %}` with `{% highlight r linenos %}`
+- Line count: You can find and replace ```{% highlight r %}``` with ```{% highlight r linenos %}```
 
 
 d. Copy the output figure folder to ```codingclubuc3m``` main folder and the ```md``` file to ```post``` folder. 
