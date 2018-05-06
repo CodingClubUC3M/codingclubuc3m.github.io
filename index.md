@@ -23,6 +23,7 @@ SimpleJekyllSearch({
 <section id="archive">
   <h3>This year's posts</h3>
   {% for post in site.posts reversed %}
+    {% if post.visible != false  %}
     {% unless post.next %}
 
     {% else %}
@@ -35,5 +36,6 @@ SimpleJekyllSearch({
       {% endif %}
     {% endunless %}
       <li><time>{{ post.date | date:"%d %b" }}: </time><a class = "post-title" href="{{ site.baseurl }}{{ post.url | remove_first: '/' }}">{{ post.title }}</a></li>
+     {% endif %}   
   {% endfor %}
 </section>
