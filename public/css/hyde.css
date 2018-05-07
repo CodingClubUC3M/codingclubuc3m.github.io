@@ -29,16 +29,18 @@
  * Global resets
  *
  * Update the foundational and global aspects of the page.
+ * There are 2 threshold for page size, media (min-width: 48em) - font 16px
+ *  media (min-width: 63em) - font 20px
  */
 
 html {
    font-family: 'Lora', serif;
 }
-@media (min-width: 48em) {
+/*@media (min-width: 48em) {
   html {
     font-size: 16px;
   }
-}
+}*/
 @media (min-width: 63em) {
   html {
     font-size: 20px;
@@ -58,7 +60,7 @@ html {
   color: rgba(255,255,255,.5);
   background-color: #202020;
 }
-@media (min-width: 48em) {
+@media (min-width: 64em) {
   .sidebar {
     position: fixed;
     top: 0;
@@ -114,7 +116,7 @@ a.sidebar-nav-item:focus {
  * contents to the bottom of the sidebar in tablets and up.
  */
 
-@media (min-width: 48em) {
+@media (min-width: 64em) {
   .sidebar-sticky {
     position: absolute;
     right:  1rem;
@@ -123,6 +125,11 @@ a.sidebar-nav-item:focus {
   }
 }
 
+/*@media (max-width: 48em) {
+  .sidebar-sticky {
+    display: none;
+  }
+}*/
 
 /* Container
  *
@@ -137,14 +144,15 @@ a.sidebar-nav-item:focus {
 
 @media (min-width: 48em) {
   .content {
-    max-width: 45rem;
-    margin-left: 20rem;
-    margin-right: 2rem;
+    max-width: 48rem;
+    margin-left: 0rem;
+    margin-right: 0rem;
   }
 }
 
 @media (min-width: 64em) {
   .content {
+    max-width: 45rem;
     margin-left: 20rem;
     margin-right: 1rem;
   }
