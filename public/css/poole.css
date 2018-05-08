@@ -260,8 +260,9 @@ tbody tr:nth-child(odd) th {
  */
 
 .lead {gutter
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   text-align: justify;
+  line-height: 1.1em;
 }
 
 
