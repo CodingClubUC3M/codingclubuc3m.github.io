@@ -81,7 +81,7 @@ html {
   color: #fff;
   margin-top: 0;
   font-family: 'Inconsolata', monospace;
-  font-size: 3.25rem;
+  font-size: 3.00rem;
 }
 
 /* Sidebar nav */
@@ -102,6 +102,7 @@ font-size: 1.3rem;
   display: inline;
   margin-right:  1rem;
   line-height: 1.5;
+  font-size: 0.9em;
 }
 a.sidebar-nav-item:hover,
 a.sidebar-nav-item:focus {

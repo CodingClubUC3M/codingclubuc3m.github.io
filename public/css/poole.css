@@ -260,11 +260,13 @@ tbody tr:nth-child(odd) th {
  */
 
 .lead {gutter
-  font-size: 0.7rem;
+  font-size: 0.7em;
   text-align: justify;
   line-height: 1.1em;
 }
-
+.lead {
+  font-size: 0.8em;
+}
 
 /*
  * Messages
