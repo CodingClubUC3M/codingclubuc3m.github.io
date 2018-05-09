@@ -1,29 +1,17 @@
 ---
-layout: post
-comments:  true
-title: "Useful one-function R packages, big data solutions, and a message from Yoda - Hidden"
+title: "Useful one-function `R` packages, big data solutions, and a message from Yoda"
 author: Eduardo García-Portugués
-abstract:
-date: 2018-05-10 20:30:00
-published: true
-visible: false
-categories: [R, big data, visualization, benchmark]
-excerpt_seperator: <!--more-->
-output:
-  html_document:
-    number_sections: yes
-    mathjax:  default
+output: html_document
 ---
 
-#### Abstract
 
-As the title reads, in this heterogeneous talk we will see three topics of different interest. The first is a collection of three simple and useful one-function R packages that I use regularly in my coding workflow. The second collects some approaches to handling and performing linear regression with big data. The third brings in the freaky component: it presents tools to display graphical information in plain ASCII, from bivariate contours to messages from Yoda!
 
-#### Required packages
+## Required packages
 
 We will need these packages for today's session:
 
-{% highlight r linenos %}
+
+{% highlight r %}
 install.packages(c("viridis", "microbenchmark", "multcomp", "manipulate", 
                    "Rmpfr", "ffbase", "biglm", "leaps", "txtplot", 
                    "NostalgiR", "cowsay"), 
@@ -37,7 +25,7 @@ install.packages(c("viridis", "microbenchmark", "multcomp", "manipulate",
 Built-in color palettes in base `R` are somehow limited. We have `rainbow`, `topo.colors`, `terrain.colors`, `heat.colors`, and `cm.colors`. We also have flexibility to create our own palettes, e.g. by using `colorRamp`. These palettes look like:
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # MATLAB's color palette
 jet.colors <- colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan",
                                  "#7FFF7F", "yellow", "#FF7F00", "red", 
@@ -71,13 +59,27 @@ More details can be found in this great talk by one of the authors:
 
 
 {% highlight text %}
-## Error in loadNamespace(name): there is no package called 'webshot'
+## Warning in normalizePath(f2): path[1]="./webshot669c320036ee.png": No such
+## file or directory
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Warning in file(con, "rb"): cannot open file './webshot669c320036ee.png':
+## No such file or directory
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in file(con, "rb"): cannot open the connection
 {% endhighlight %}
 
 There are several palettes in the package. All of them have the same properties as `viridis` (*i.e.*, perceptually-uniform, black-and-white-ready, and colorblind-friendly). The `cividis` is specifically aimed to people with color vision deficiency. Let's see them in action:
 
 
-{% highlight r linenos %}
+{% highlight r %}
 library(viridisLite)
 # Color palettes comparison
 par(mfrow = c(2, 3))
@@ -90,7 +92,7 @@ res <- sapply(c("viridis", "magma", "inferno", "plasma", "cividis"),
 Some useful options for any of the palettes are:
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Reverse palette
 par(mfrow = c(1, 2))
 testPalette("viridis", direction = 1)
@@ -99,7 +101,7 @@ testPalette("viridis", direction = -1)
 
 ![center](/figure/source/2018-05-10-misc-R-function/viridis-4-1.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 # Truncate
 par(mfrow = c(1, 2))
 testPalette("viridis", begin = 0, end = 1)
@@ -108,7 +110,7 @@ testPalette("viridis", begin = 0.25, end = 0.75)
 
 ![center](/figure/source/2018-05-10-misc-R-function/viridis-4-2.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 # Transparency
 par(mfrow = c(1, 2))
 testPalette("viridis", alpha = 1)
@@ -120,7 +122,7 @@ testPalette("viridis", alpha = 0.5)
 In the extended [`viridis`](https://cran.r-project.org/web/packages/viridis/index.html) package there are color palettes functions for `ggplot2` fans: `scale_colour_viridis` (or `scale_color_viridis`) and `scale_fill_viridis`. Some examples of their use:
 
 
-{% highlight r linenos %}
+{% highlight r %}
 library(viridis)
 library(ggplot2)
 
@@ -133,7 +135,7 @@ ggplot(mtcars, aes(wt, mpg)) +
 
 ![center](/figure/source/2018-05-10-misc-R-function/viridis-5-1.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 # scale_fill_viridis
 dat <- data.frame(x = rnorm(1e4), y = rnorm(1e4))
 ggplot(dat, aes(x = x, y = y)) +
@@ -143,7 +145,7 @@ ggplot(dat, aes(x = x, y = y)) +
 
 ![center](/figure/source/2018-05-10-misc-R-function/viridis-5-2.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 # scale_fill_gradientn with viridis
 ggplot(dat, aes(x = x, y = y)) +
   geom_hex() + coord_fixed() +
@@ -159,7 +161,7 @@ Measuring the code performance is a day-to-day routine for many developers. It i
 We can measure computing times in base `R` using `proc.time` or `system.time`:
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Using proc.time
 time <- proc.time()
 for (i in 1:100) rnorm(100)
@@ -171,12 +173,12 @@ time # elapsed is the 'real' elapsed time since the process was started
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.004   0.000   0.005
+##   0.004   0.000   0.004
 {% endhighlight %}
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Using system.time - a wrapped for the above code
 system.time({for (i in 1:100) rnorm(100)})
 {% endhighlight %}
@@ -185,7 +187,7 @@ system.time({for (i in 1:100) rnorm(100)})
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.004   0.000   0.003
+##   0.004   0.000   0.002
 {% endhighlight %}
 
 However, this very basic approach presents several inconveniences to be aware:
@@ -199,7 +201,7 @@ However, this very basic approach presents several inconveniences to be aware:
 Hopefully, the [`microbenchmark`](https://cran.r-project.org/package=microbenchmark) package fills in these gaps. Let's see an example of its usage on approaching a common problem in `R`: how to **recentre a matrix by columns**, *i.e.*, how to make each column to have zero mean. There are several possibilities to do so, with different efficiencies.
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Data and mean
 n <- 3
 m <- 10
@@ -238,7 +240,7 @@ c(max(abs(Y1 - Y2)), max(abs(Y1 - Y3)),
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # With microbenchmark
 library(microbenchmark)
 bench <- microbenchmark(
@@ -258,22 +260,22 @@ bench
 {% highlight text %}
 ## Unit: microseconds
 ##                                                     expr      min
-##          sweep(x = X, MARGIN = 2, STATS = mu, FUN = "-")   33.676
-##                       t(apply(X, 1, function(x) x - mu))   27.618
-##                     scale(X, center = mu, scale = FALSE)   39.876
-##  {     for (j in 1:m) Y4[, j] <- X[, j] - mu[j]     Y4 } 2024.901
-##                                             t(t(X) - mu)    4.624
+##          sweep(x = X, MARGIN = 2, STATS = mu, FUN = "-")   30.553
+##                       t(apply(X, 1, function(x) x - mu))   26.270
+##                     scale(X, center = mu, scale = FALSE)   35.366
+##  {     for (j in 1:m) Y4[, j] <- X[, j] - mu[j]     Y4 } 1878.531
+##                                             t(t(X) - mu)    4.440
 ##         lq       mean    median        uq      max neval cld
-##    51.6185   64.39349   58.9395   71.6055  162.440   100  a 
-##    44.8820   68.20103   55.9700   73.4285 1055.247   100  a 
-##    59.3545   97.65434   69.4460   84.8210 2393.015   100  a 
-##  2913.2465 3082.84117 3173.4515 3340.3345 5900.946   100   b
-##     8.1505   12.10247   10.4380   14.9845   27.384   100  a
+##    35.4650   42.45237   40.0390   47.0505  135.211   100  a 
+##    33.4665   50.46742   40.1205   45.8210 1103.788   100  a 
+##    40.3455   48.25372   45.9145   54.9170   83.547   100  a 
+##  1993.8025 2143.66889 2069.8855 2122.7725 4370.595   100   b
+##     6.4820    8.42726    7.9640    9.9700   25.058   100  a
 {% endhighlight %}
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Notice the last column. It is only present if the package multcomp is present.
 # It provides a statistical ranking (accounts for which method is significantly 
 # slower or faster) using multcomp::cld
@@ -287,22 +289,22 @@ print(bench, unit = "ms", signif = 2)
 {% highlight text %}
 ## Unit: milliseconds
 ##                                                     expr    min     lq
-##          sweep(x = X, MARGIN = 2, STATS = mu, FUN = "-") 0.0340 0.0520
-##                       t(apply(X, 1, function(x) x - mu)) 0.0280 0.0450
-##                     scale(X, center = mu, scale = FALSE) 0.0400 0.0590
-##  {     for (j in 1:m) Y4[, j] <- X[, j] - mu[j]     Y4 } 2.0000 2.9000
-##                                             t(t(X) - mu) 0.0046 0.0082
-##   mean median    uq   max neval cld
-##  0.064  0.059 0.072 0.160   100  a 
-##  0.068  0.056 0.073 1.100   100  a 
-##  0.098  0.069 0.085 2.400   100  a 
-##  3.100  3.200 3.300 5.900   100   b
-##  0.012  0.010 0.015 0.027   100  a
+##          sweep(x = X, MARGIN = 2, STATS = mu, FUN = "-") 0.0310 0.0350
+##                       t(apply(X, 1, function(x) x - mu)) 0.0260 0.0330
+##                     scale(X, center = mu, scale = FALSE) 0.0350 0.0400
+##  {     for (j in 1:m) Y4[, j] <- X[, j] - mu[j]     Y4 } 1.9000 2.0000
+##                                             t(t(X) - mu) 0.0044 0.0065
+##    mean median    uq   max neval cld
+##  0.0420  0.040 0.047 0.140   100  a 
+##  0.0500  0.040 0.046 1.100   100  a 
+##  0.0480  0.046 0.055 0.084   100  a 
+##  2.1000  2.100 2.100 4.400   100   b
+##  0.0084  0.008 0.010 0.025   100  a
 {% endhighlight %}
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # unit = "ns" (nanosecs), "us" ("microsecs"), "ms" (millisecs), "s" (secs)
 
 # Graphical methods for the microbenchmark object
@@ -312,21 +314,21 @@ plot(bench, names = c("sweep", "apply", "scale", "for", "recycling"))
 
 ![center](/figure/source/2018-05-10-misc-R-function/bench-2-1.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 # Employs time logarithms
 boxplot(bench, names = c("sweep", "apply", "scale", "for", "recycling")) 
 {% endhighlight %}
 
 ![center](/figure/source/2018-05-10-misc-R-function/bench-2-2.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 # Violin plots
 autoplot(bench)
 {% endhighlight %}
 
 ![center](/figure/source/2018-05-10-misc-R-function/bench-2-3.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 # microbenchmark uses 100 evaluations and 2 warmup evaluations (these are not 
 # measured) by default. Here is how to change these dafaults:
 bench2 <- microbenchmark(
@@ -345,22 +347,22 @@ bench2
 {% highlight text %}
 ## Unit: microseconds
 ##                                                     expr      min
-##          sweep(x = X, MARGIN = 2, STATS = mu, FUN = "-")   29.942
-##                       t(apply(X, 1, function(x) x - mu))   25.675
-##                     scale(X, center = mu, scale = FALSE)   33.773
-##  {     for (j in 1:m) Y4[, j] <- X[, j] - mu[j]     Y4 } 1890.059
-##                                             t(t(X) - mu)    4.259
-##         lq       mean    median        uq      max neval cld
-##    37.7850   48.13055   47.3860   54.2105  110.666  1000 ab 
-##    35.7895   47.10295   44.5530   52.2885 1116.165  1000 ab 
-##    44.6395   61.96133   54.6885   62.7740 2980.853  1000  b 
-##  2018.6440 2453.39351 2101.2185 2894.7785 6819.791  1000   c
-##     7.2975    9.59163    9.4335   11.1680   66.835  1000 a
+##          sweep(x = X, MARGIN = 2, STATS = mu, FUN = "-")   30.206
+##                       t(apply(X, 1, function(x) x - mu))   25.961
+##                     scale(X, center = mu, scale = FALSE)   33.924
+##  {     for (j in 1:m) Y4[, j] <- X[, j] - mu[j]     Y4 } 1899.856
+##                                             t(t(X) - mu)    4.251
+##         lq       mean   median        uq      max neval cld
+##    36.2015   42.98821   40.312   48.2875  142.764  1000  b 
+##    34.4945   42.58392   40.537   46.3310 1052.524  1000  b 
+##    41.9750   50.48093   47.301   55.4965  148.003  1000  b 
+##  1982.1685 2157.31317 2085.557 2162.1745 5998.576  1000   c
+##     6.5105   10.52498    7.981   10.1980 1978.604  1000 a
 {% endhighlight %}
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Let's check the accuracy of the methods as well as their timings. For that 
 # we need to define a check function that takes as input a LIST with each slot
 # representing the output of each method. The check must return TRUE or FALSE
@@ -386,18 +388,18 @@ bench3
 
 {% highlight text %}
 ## Unit: microseconds
-##                                                     expr      min       lq
-##          sweep(x = X, MARGIN = 2, STATS = mu, FUN = "-")   32.674   47.261
-##                       t(apply(X, 1, function(x) x - mu))   31.310   46.614
-##                     scale(X, center = mu, scale = FALSE)   38.124   56.867
-##  {     for (j in 1:m) Y4[, j] <- X[, j] - mu[j]     Y4 } 2031.521 2148.141
-##                                             t(t(X) - mu)    4.263    8.678
-##        mean    median        uq      max neval cld
-##    58.18408   55.1075   66.6825  191.149   100  a 
-##    56.00189   53.7235   64.0190  108.812   100  a 
-##    68.87438   64.4450   74.3405  374.339   100  a 
-##  2797.97590 2988.4680 3124.3430 6647.236   100   b
-##    11.69104   10.9580   14.7735   26.678   100  a
+##                                                     expr      min
+##          sweep(x = X, MARGIN = 2, STATS = mu, FUN = "-")   29.347
+##                       t(apply(X, 1, function(x) x - mu))   27.622
+##                     scale(X, center = mu, scale = FALSE)   35.390
+##  {     for (j in 1:m) Y4[, j] <- X[, j] - mu[j]     Y4 } 1914.064
+##                                             t(t(X) - mu)    4.522
+##         lq       mean    median        uq      max neval cld
+##    35.4770   41.00056   39.1790   47.4440   90.938   100  a 
+##    33.1675   39.94491   37.9345   43.0265  131.313   100  a 
+##    39.4015   47.62286   45.1750   53.7645  102.430   100  a 
+##  1953.9190 2069.89371 1982.1965 2043.6425 4830.788   100   b
+##     6.4650    8.37461    7.7510   10.0865   19.395   100  a
 {% endhighlight %}
 
 ### Quick animations with `manipulate`
@@ -405,7 +407,7 @@ bench3
 The [`manipulate`](https://cran.r-project.org/package=manipulate) package (works only within `RStudio`!) allows to easily create simple animations. It is a simpler, local, alternative to `Shiny` applications.
 
 
-{% highlight r linenos %}
+{% highlight r %}
 library(manipulate)
 
 # A simple example
@@ -417,7 +419,7 @@ manipulate({
 {% endhighlight %}
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Illustrating several types of controls using the kernel density estimator
 manipulate({
   
@@ -457,7 +459,7 @@ manipulate({
 {% endhighlight %}
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Another example: rotating 3D graphs without using rgl
 
 # Mexican hat
@@ -495,7 +497,7 @@ The package `ff` lacks some standard statistical methods for operating with `ff`
 Let's see some examples.
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Not really "big data", but for the sake of illustration
 set.seed(12345)
 n <- 1e6
@@ -526,7 +528,7 @@ print(object.size(bigData1), units = "Mb")
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 print(object.size(bigData2), units = "Mb")
 {% endhighlight %}
 
@@ -538,7 +540,7 @@ print(object.size(bigData2), units = "Mb")
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Save files to disk to emulate the situation with big data
 write.csv(x = bigData1, file = "bigData1.csv", row.names = FALSE)
 write.csv(x = bigData2, file = "bigData2.csv", row.names = FALSE)
@@ -560,7 +562,7 @@ print(object.size(bigData1ff), units = "Kb")
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 print(object.size(bigData2ff), units = "Kb")
 {% endhighlight %}
 
@@ -572,7 +574,7 @@ print(object.size(bigData2ff), units = "Kb")
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Delete the csv files in disk
 file.remove(c("bigData1.csv", "bigData2.csv"))
 {% endhighlight %}
@@ -585,7 +587,7 @@ file.remove(c("bigData1.csv", "bigData2.csv"))
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Operations on ff objects "almost" as with regular data.frames
 class(bigData1ff)
 {% endhighlight %}
@@ -598,7 +600,7 @@ class(bigData1ff)
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 class(bigData1ff[, 1])
 {% endhighlight %}
 
@@ -610,7 +612,7 @@ class(bigData1ff[, 1])
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 bigData1ff[1:5, 1] <- rnorm(5)
 # See ?ffdf for more allowed operations
 
@@ -640,7 +642,7 @@ Linear regression with big data is done iteratively, an approach that is possibl
 Let's see how `biglm` works for the first case. Then we will use `ffdf` for the case of generalized linear models.
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # biglm has a very similar syntaxis to lm - but the formula interface does not
 # work always as expected
 library(biglm)
@@ -667,7 +669,7 @@ print(object.size(biglmMod), units = "Kb")
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 print(object.size(lmMod), units = "Mb")
 {% endhighlight %}
 
@@ -679,7 +681,7 @@ print(object.size(lmMod), units = "Mb")
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Summaries
 s1 <- summary(biglmMod)
 s2 <- summary(lmMod)
@@ -707,7 +709,7 @@ s1
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 s2
 {% endhighlight %}
 
@@ -745,7 +747,7 @@ s2
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # The summary of a biglm object yields slightly different significances for the
 # coefficients than for lm. The reason is that biglm employs N(0, 1) 
 # approximations for the distributions of the t-tests instead of the exact 
@@ -768,7 +770,7 @@ coef(biglmMod)
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # AIC and BIC
 AIC(biglmMod, k = 2)
 {% endhighlight %}
@@ -781,7 +783,7 @@ AIC(biglmMod, k = 2)
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 AIC(biglmMod, k = log(n))
 {% endhighlight %}
 
@@ -793,7 +795,7 @@ AIC(biglmMod, k = log(n))
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Prediction works as usual
 predict(biglmMod, newdata = bigData1[1:5, ])
 {% endhighlight %}
@@ -811,7 +813,7 @@ predict(biglmMod, newdata = bigData1[1:5, ])
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Must contain a column for the response
 # predict(biglmMod, newdata = bigData2[1:5, -1]) # Error
 
@@ -828,7 +830,7 @@ update(biglmMod, moredata = bigData1[1:100, ])
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Features not immediately available for biglm objects: stepwise selection by 
 # stepAIC, residuals, variance of the error, model diagnostics, and vifs
 {% endhighlight %}
@@ -836,7 +838,7 @@ update(biglmMod, moredata = bigData1[1:100, ])
 Model selection of `biglm` models can be done with the [`leaps`](https://cran.r-project.org/web/packages/leaps/index.html) package. This is achieved by the `regsubsets` function, which returns the *best subset* of up to (by default) `nvmax = 8` predictors. The function requires the *full* `biglm` model to begin the "exhaustive" search, in which is crucial the linear structure of the estimator. 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Model selection adapted to big data models
 library(leaps)
 reg <- regsubsets(biglmMod, nvmax = p, method = "exhaustive")
@@ -845,7 +847,7 @@ plot(reg) # Plot best model (top row) to worst model (bottom row)
 
 ![center](/figure/source/2018-05-10-misc-R-function/biglm-2-1.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 # Summarize (otherwise regsubsets's outptut is hard to decypher)
 subs <- summary(reg)
 subs
@@ -893,7 +895,7 @@ subs
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Lots of useful information
 str(subs, 1)
 {% endhighlight %}
@@ -918,7 +920,7 @@ str(subs, 1)
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Get the model with lowest BIC
 subs$which
 {% endhighlight %}
@@ -950,7 +952,7 @@ subs$which
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 subs$bic
 {% endhighlight %}
 
@@ -963,7 +965,7 @@ subs$bic
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 subs$which[which.min(subs$bic), ]
 {% endhighlight %}
 
@@ -978,7 +980,7 @@ subs$which[which.min(subs$bic), ]
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # It also works with ordinary linear models and it is much faster and 
 # informative than stepAIC
 reg <- regsubsets(resp ~ ., data = bigData1, nvmax = p, 
@@ -995,7 +997,7 @@ subs$bic
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 subs$which[which.min(subs$bic), ]
 {% endhighlight %}
 
@@ -1010,7 +1012,7 @@ subs$which[which.min(subs$bic), ]
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Compare it with stepAIC
 library(MASS)
 stepAIC(lm(resp ~ ., data = bigData1), trace = 0, 
@@ -1035,7 +1037,7 @@ stepAIC(lm(resp ~ ., data = bigData1), trace = 0,
 Let's see an example on how to fit a linear model to a large dataset that does not fit in RAM. A possible approach is to split the dataset and perform updates of the model in chunks of reasonable size. The next code provides a template for such approach using `biglm` and `update`.
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Linear regression with N = 10^8 and p = 10
 N <- 10^8
 p <- 10
@@ -1099,7 +1101,7 @@ summary(bigMod)
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 print(object.size(bigMod), units = "Kb")
 {% endhighlight %}
 
@@ -1121,7 +1123,7 @@ This means that `biglm`'s fitting function for generalized linear models, `biggl
 Let's see an example for logistic regression.
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Logistic regression
 # Same comments for the formula framework - this is the hack for automatic
 # inclusion of all the predictors
@@ -1143,7 +1145,7 @@ print(object.size(bigglmMod), units = "Kb")
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 print(object.size(glmMod), units = "Mb")
 {% endhighlight %}
 
@@ -1155,7 +1157,7 @@ print(object.size(glmMod), units = "Mb")
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Summaries
 s1 <- summary(bigglmMod)
 s2 <- summary(glmMod)
@@ -1183,7 +1185,7 @@ s1
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 s2
 {% endhighlight %}
 
@@ -1225,7 +1227,7 @@ s2
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Further information
 s1$mat # Coefficients and their inferences
 {% endhighlight %}
@@ -1261,7 +1263,7 @@ s1$mat # Coefficients and their inferences
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 s1$rsq # R^2
 {% endhighlight %}
 
@@ -1273,7 +1275,7 @@ s1$rsq # R^2
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 s1$nullrss # Null deviance
 {% endhighlight %}
 
@@ -1285,7 +1287,7 @@ s1$nullrss # Null deviance
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Extract coefficients
 coef(bigglmMod)
 {% endhighlight %}
@@ -1303,7 +1305,7 @@ coef(bigglmMod)
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # AIC and BIC
 AIC(bigglmMod, k = 2)
 {% endhighlight %}
@@ -1316,7 +1318,7 @@ AIC(bigglmMod, k = 2)
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 AIC(bigglmMod, k = log(n))
 {% endhighlight %}
 
@@ -1328,7 +1330,7 @@ AIC(bigglmMod, k = log(n))
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Prediction works as usual
 predict(bigglmMod, newdata = bigData2[1:5, ], type = "response")
 {% endhighlight %}
@@ -1346,7 +1348,7 @@ predict(bigglmMod, newdata = bigData2[1:5, ], type = "response")
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # predict(bigglmMod, newdata = bigData2[1:5, -1]) # Error
 
 # Update the model with training data
@@ -1363,7 +1365,7 @@ update(bigglmMod, moredata = bigData2[1:100, ])
 Note that this is also a perfectly valid approach for linear models, we just need to specify `family = gaussian()` in the call to `bigglm.ffdf`.
 
 
-{% highlight r linenos %}
+{% highlight r %}
 f <- formula(paste("resp ~", paste(names(bigData1ff)[-1], collapse = " + ")))
 bigglmMod <- bigglm.ffdf(formula = f, data = bigData1ff, family = gaussian())
 
@@ -1392,7 +1394,7 @@ summary(bigglmMod)
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 summary(lmMod)
 {% endhighlight %}
 
@@ -1431,7 +1433,7 @@ summary(lmMod)
 Model selection of `bigglm` is not so straightforward. The trick that `regsubsets` employs for simplifying the model search in linear models does not apply for generalized linear models. However, there is a hack. We can do best subset selection in the *linear model associated to the last iteration of the IRLS algorithm* and then refine the search by computing the exact BIC/AIC from a set of candidate models. If we do so, we translate the model selection problem back to the linear case, plus the extra overhead of fitting several generalized linear models. Keep in mind that, albeit useful, this approach is an *approximation*.
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Model selection adapted to big data generalized linear models
 library(leaps)
 f <- formula(paste("resp ~", paste(names(bigData2ff)[-1], collapse = " + ")))
@@ -1448,7 +1450,7 @@ plot(reg)
 
 ![center](/figure/source/2018-05-10-misc-R-function/bigglm-3-1.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 subs <- summary(reg)
 subs$which
 {% endhighlight %}
@@ -1482,7 +1484,7 @@ subs$which
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 subs$bic
 {% endhighlight %}
 
@@ -1495,7 +1497,7 @@ subs$bic
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 subs$which[which.min(subs$bic), ]
 {% endhighlight %}
 
@@ -1510,7 +1512,7 @@ subs$which[which.min(subs$bic), ]
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Let's compute the true BICs for the p models. This implies fitting p bigglm's
 bestModels <- list()
 for (i in 1:nrow(subs$which)) {
@@ -1527,7 +1529,7 @@ plot(subs$bic, exactBICs, type = "o", xlab = "Exact", ylab = "Approximate")
 
 ![center](/figure/source/2018-05-10-misc-R-function/bigglm-3-2.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 cor(subs$bic, exactBICs, method = "pearson") # Correlation
 {% endhighlight %}
 
@@ -1539,7 +1541,7 @@ cor(subs$bic, exactBICs, method = "pearson") # Correlation
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # Both give the same model selection and same order
 subs$which[which.min(subs$bic), ] # Approximate
 {% endhighlight %}
@@ -1555,7 +1557,7 @@ subs$which[which.min(subs$bic), ] # Approximate
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 subs$which[which.min(exactBICs), ] # Exact
 {% endhighlight %}
 
@@ -1570,7 +1572,7 @@ subs$which[which.min(exactBICs), ] # Exact
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 cor(subs$bic, exactBICs, method = "spearman") # Order correlation
 {% endhighlight %}
 
@@ -1604,7 +1606,7 @@ When evaluating `R` in a terminal with no possible graphical outputs (e.g. in a 
 Let's see some examples.
 
 
-{% highlight r linenos %}
+{% highlight r %}
 library(txtplot) # txt* functions
 
 # Generate common data
@@ -1618,7 +1620,7 @@ plot(x, y)
 
 ![center](/figure/source/2018-05-10-misc-R-function/ascii-1-1.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 txtplot(x, y)
 {% endhighlight %}
 
@@ -1644,14 +1646,14 @@ txtplot(x, y)
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # txtboxplot
 boxplot(x, horizontal = TRUE)
 {% endhighlight %}
 
 ![center](/figure/source/2018-05-10-misc-R-function/ascii-1-2.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 txtboxplot(x)
 {% endhighlight %}
 
@@ -1667,14 +1669,14 @@ txtboxplot(x)
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # txtbarchart
 barplot(table(let))
 {% endhighlight %}
 
 ![center](/figure/source/2018-05-10-misc-R-function/ascii-1-3.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 txtbarchart(x = let)
 {% endhighlight %}
 
@@ -1703,14 +1705,14 @@ txtbarchart(x = let)
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # txtcurve
 curve(expr = sin(x), from = 0, to = 2 * pi)
 {% endhighlight %}
 
 ![center](/figure/source/2018-05-10-misc-R-function/ascii-1-4.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 txtcurve(expr = sin(x), from = 0, to = 2 * pi)
 {% endhighlight %}
 
@@ -1736,14 +1738,14 @@ txtcurve(expr = sin(x), from = 0, to = 2 * pi)
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # txtacf
 acf(x)
 {% endhighlight %}
 
 ![center](/figure/source/2018-05-10-misc-R-function/ascii-1-5.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 txtacf(x)
 {% endhighlight %}
 
@@ -1768,7 +1770,7 @@ txtacf(x)
 {% endhighlight %}
 
 
-{% highlight r linenos %}
+{% highlight r %}
 library(NostalgiR) # nos.* functions
 
 # Mexican hat
@@ -1783,7 +1785,7 @@ plot(density(x))
 
 ![center](/figure/source/2018-05-10-misc-R-function/ascii-2-1.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 nos.density(x)
 {% endhighlight %}
 
@@ -1809,14 +1811,14 @@ nos.density(x)
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # nos.hist
 hist(x)
 {% endhighlight %}
 
 ![center](/figure/source/2018-05-10-misc-R-function/ascii-2-2.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 nos.hist(x)
 {% endhighlight %}
 
@@ -1842,14 +1844,14 @@ nos.hist(x)
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # nos.ecdf
 plot(ecdf(x))
 {% endhighlight %}
 
 ![center](/figure/source/2018-05-10-misc-R-function/ascii-2-3.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 nos.ecdf(x)
 {% endhighlight %}
 
@@ -1875,14 +1877,14 @@ nos.ecdf(x)
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # nos.qqnorm
 qqnorm(x); qqline(x)
 {% endhighlight %}
 
 ![center](/figure/source/2018-05-10-misc-R-function/ascii-2-4.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 nos.qqnorm(x)
 {% endhighlight %}
 
@@ -1908,14 +1910,14 @@ nos.qqnorm(x)
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # nos.qqplot
 qqplot(x, y)
 {% endhighlight %}
 
 ![center](/figure/source/2018-05-10-misc-R-function/ascii-2-5.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 nos.qqplot(x, y)
 {% endhighlight %}
 
@@ -1941,14 +1943,14 @@ nos.qqplot(x, y)
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # nos.contour
 contour(xx, yy, zz)
 {% endhighlight %}
 
 ![center](/figure/source/2018-05-10-misc-R-function/ascii-2-6.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 nos.contour(data = zz, xmin = min(xx), xmax = max(xx), 
             ymin = min(yy), ymax = max(yy))
 {% endhighlight %}
@@ -1982,14 +1984,14 @@ nos.contour(data = zz, xmin = min(xx), xmax = max(xx),
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # nos.image
 image(zz)
 {% endhighlight %}
 
 ![center](/figure/source/2018-05-10-misc-R-function/ascii-2-7.png)
 
-{% highlight r linenos %}
+{% highlight r %}
 nos.image(data = zz, xmin = min(xx), xmax = max(xx), 
           ymin = min(yy), ymax = max(yy))
 {% endhighlight %}
@@ -2028,7 +2030,7 @@ nos.image(data = zz, xmin = min(xx), xmax = max(xx),
 [`cowsay`](https://cran.r-project.org/web/packages/cowsay/index.html) is a package for printing messages with ASCII animals. Although it has little practical use, it is way fun! There is only one function,`say`, that produces an animal with a speech bubble.
 
 
-{% highlight r linenos %}
+{% highlight r %}
 library(cowsay)
 
 # Random fortunes
@@ -2057,7 +2059,7 @@ say("fortune", by = "random")
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 
 # All animals
 # sapply(names(animals), function(x) say(x, by = x))
@@ -2089,7 +2091,7 @@ say(what = "It looks like you\'re writing a letter!",
 
 
 
-{% highlight r linenos %}
+{% highlight r %}
 
 # A message from Yoda
 say("Contribute to the Coding Club UC3M you must!", by = "yoda")
