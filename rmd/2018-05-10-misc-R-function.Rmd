@@ -1,7 +1,16 @@
 ---
-title: "Useful one-function `R` packages, big data solutions, and a message from Yoda"
+layout: post
+comments:  true
+title: "Useful one-function R packages, big data solutions, and a message from Yoda"
 author: Eduardo García-Portugués
-output: html_document
+date: 2018-05-10 20:30:00
+published: true
+visible: false
+categories: [R, big data, visualization, benchmark]
+excerpt_seperator: <!--more-->
+output:
+  html_document:
+    mathjax:  default
 ---
 
 ```{r, setup, include = FALSE}
@@ -56,7 +65,9 @@ The package [`viridisLite`](https://cran.r-project.org/web/packages/viridisLite/
 More details can be found in this great talk by one of the authors:
 
 ```{r, viridis-2, echo = FALSE, screenshot.opts = list(delay = 10), dev = 'png', message = FALSE, cache = TRUE}
-knitr::include_url("https://www.youtube.com/watch?v=xAoljeRJ3lU")
+library("htmltools")
+library("vembedr")
+embed_url("https://www.youtube.com/watch?v=xAoljeRJ3lU")
 ```
 
 There are several palettes in the package. All of them have the same properties as `viridis` (*i.e.*, perceptually-uniform, black-and-white-ready, and colorblind-friendly). The `cividis` is specifically aimed to people with color vision deficiency. Let's see them in action:
