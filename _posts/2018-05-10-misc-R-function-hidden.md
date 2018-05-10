@@ -1,7 +1,7 @@
 ---
 layout: post
 comments:  true
-title: "Useful one-function `R` packages, big data solutions, and a message from Yoda"
+title: "Useful one-function R packages, big data solutions, and a message from Yoda"
 author: Eduardo García-Portugués
 date: 2018-05-10
 published: true
@@ -21,13 +21,13 @@ output:
 
 
 
-### Abstract {-}
+### Abstract
 
 As the title reads, in this heterogeneous session we will see three topics of different interest. The first is a collection of three simple and useful one-function R packages that I use regularly in my coding workflow. The second collects some approaches to handling and performing linear regression with big data. The third brings in the freaky component: it presents tools to display graphical information in plain ASCII, from bivariate contours to messages from Yoda!
 
-You can download the script with the `R` code alone [here](https://raw.githubusercontent.com/CodingClubUC3M/codingclubuc3m.github.io/master/scripts/.R) (right click and "Save as...").
+You can download the script with the `R` code alone [here](https://raw.githubusercontent.com/CodingClubUC3M/codingclubuc3m.github.io/master/scripts/misc.R) (right click and "Save as...").
 
-### Required packages {-}
+### Required packages
 
 We will need the following packages:
 
