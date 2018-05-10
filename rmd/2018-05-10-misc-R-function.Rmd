@@ -165,10 +165,10 @@ mu <- colMeans(X)
 # We assume mu is given in the time comparisons
 ```
 
-**Time to think by yourself on the competing approaches!** Do not cheat and hide the next chunk of code!
+**Time to think by yourself on the competing approaches!** Do not cheat and do not look into the next chunk of code!
 
 ```{r, bench-3, message = FALSE, cache = TRUE, fig.asp = 1}
-# SPOILER ALERT! HIDE THIS CHUNK OF CODE!
+# SPOILER ALERT!
 #
 #
 #
@@ -202,24 +202,9 @@ for (j in 1:m) Y4[, j] <- X[, j] - mu[j]
 Y5 <- t(t(X) - mu)
 ```
 
-Which one do you think is faster? Do not cheat and answer before seeing the next chunk of code!
+Which one do you think is faster? Do not cheat and answer before seeing the output of the next chunk of code!
 
 ```{r, bench-4, message = FALSE, cache = TRUE, fig.asp = 1}
-# SPOILER ALERT!
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-
 # Test speed
 library(microbenchmark)
 bench <- microbenchmark(
@@ -365,7 +350,7 @@ manipulate(
 
 ## The `ff` and `ffbase` packages
 
-`R` stores all the data in RAM, which is where all the processing takes place. But when the data does not fit into RAM (e.g., vectors of size $2\times10^9$), alternatives are needed. [`ff`](https://cran.r-project.org/web/packages/ff/index.html) is an `R` package for working with data that does not fit in RAM. From `ff`'s description:
+`R` stores all the data in RAM, which is where all the processing takes place. But when the data does not fit into RAM (e.g., vectors of size $2\times 10^9$), alternatives are needed. [`ff`](https://cran.r-project.org/web/packages/ff/index.html) is an `R` package for working with data that does not fit in RAM. From `ff`'s description:
 
 > The `ff` package provides data structures that are stored on disk but behave (almost) as if they were in RAM by transparently mapping only a section (pagesize) in main memory - the effective virtual memory consumption per `ff` object.
 
