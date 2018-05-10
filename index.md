@@ -4,7 +4,7 @@ title: Home
 image_sliders:
   - slider1
 ---
-<h1>Welcome to Coding Club Uc3m!</h1>
+<h1>Welcome to Coding Club UC3M!</h1>
 
 {% include slider.html selector="slider1" %}
 
