@@ -1,0 +1,22 @@
+- selector: slider1
+  bullets: false
+  captions: true
+  images:
+    - src: /public/pics/2018-05-10-1.jpg
+      alt: Participants in Coding Club Meeting
+    - data-src: /public/pics/2018-05-10-2.jpg
+      alt: Speaker introduced the topic
+    - data-src: /public/pics/2018-05-10-3.jpg
+      alt: Participants in Coding Club Meeting
+  settings:
+    height: 400
+    initialHeight:
+    maxHeight:
+    interval:
+    transitionDuration:
+    effect:
+    disableNav:
+    keyboardNav:
+    previousNavSelector:
+    nextNavSelector:
+

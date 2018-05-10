@@ -1,7 +1,13 @@
 ---
 layout: default
 title: Home
+image_sliders:
+  - slider1
 ---
+<h1>Welcome to Coding Club Uc3m!</h1>
+
+{% include slider.html selector="slider1" %}
+
 <!-- Html Elements for Search -->
 <div id="search-container">
 <input type="text" id="search-input" placeholder="search...">
