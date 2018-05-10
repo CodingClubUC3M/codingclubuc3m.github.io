@@ -205,11 +205,11 @@ mu <- colMeans(X)
 # We assume mu is given in the time comparisons
 {% endhighlight %}
 
-**Time to think by yourself on the competing approaches!** Do not cheat and hide the next chunk of code!
+**Time to think by yourself on the competing approaches!** Do not cheat and do not look into the next chunk of code!
 
 
 {% highlight r linenos %}
-# SPOILER ALERT! HIDE THIS CHUNK OF CODE!
+# SPOILER ALERT!
 #
 #
 #
@@ -243,25 +243,10 @@ for (j in 1:m) Y4[, j] <- X[, j] - mu[j]
 Y5 <- t(t(X) - mu)
 {% endhighlight %}
 
-Which one do you think is faster? Do not cheat and answer before seeing the next chunk of code!
+Which one do you think is faster? Do not cheat and answer before seeing the output of the next chunk of code!
 
 
 {% highlight r linenos %}
-# SPOILER ALERT!
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-
 # Test speed
 library(microbenchmark)
 bench <- microbenchmark(
