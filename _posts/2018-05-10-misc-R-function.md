@@ -5,7 +5,7 @@ title: "Useful one-function R packages, big data solutions, and a message from Y
 author: Eduardo García-Portugués
 date: 2018-05-10
 published: true
-visible: false
+visible: true
 categories: [R, big data, visualization, benchmark]
 excerpt_seperator: ""
 output:
