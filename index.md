@@ -17,6 +17,11 @@ image_sliders:
 <!-- Script pointing to search-script.js -->
 <script src="/public/js/simple-jekyll-search.js" type="text/javascript"></script>
 
+
+
+<section id="archive">
+  <h3>Sessionss</h3>
+
 <!-- Configuration -->
 <script>
 SimpleJekyllSearch({
@@ -26,8 +31,6 @@ SimpleJekyllSearch({
 })
 </script>
 
-<section id="archive">
-  <h3>This year's posts</h3>
   {% for post in site.posts reversed %}
     {% if post.visible != false  %}
     {% unless post.next %}
