@@ -14,13 +14,13 @@ image_sliders:
 <ul id="results-container"></ul>
 </div>
 
+
+<section id="archive">
+  <h3>Sessions</h3>
+
 <!-- Script pointing to search-script.js -->
 <script src="/public/js/simple-jekyll-search.js" type="text/javascript"></script>
 
-
-
-<section id="archive">
-  <h3>Sessionss</h3>
 
 <!-- Configuration -->
 <script>
