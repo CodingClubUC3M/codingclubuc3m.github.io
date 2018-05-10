@@ -32,7 +32,7 @@ You can download the script with the `R` code alone [here](https://raw.githubuse
 We will need the following packages:
 
 
-{% highlight r linenos %}
+{% highlight r %}
 install.packages(c("viridis", "microbenchmark", "multcomp", "manipulate", 
                    "ffbase", "biglm", "leaps", "txtplot", "NostalgiR",
                    "cowsay"), 
@@ -46,7 +46,7 @@ install.packages(c("viridis", "microbenchmark", "multcomp", "manipulate",
 Built-in color palettes in base `R` are somehow limited. We have `rainbow`, `topo.colors`, `terrain.colors`, `heat.colors`, and `cm.colors`. We also have flexibility to create our own palettes, e.g. by using `colorRamp`. These palettes look like:
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # MATLAB's color palette
 jet.colors <- colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan",
                                  "#7FFF7F", "yellow", "#FF7F00", "red", 
