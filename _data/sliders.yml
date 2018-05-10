@@ -3,11 +3,11 @@
   captions: true
   images:
     - src: /public/pics/2018-05-10-1.jpg
-      alt: Participants in Coding Club Meeting
+      alt: Participants in the first session
     - data-src: /public/pics/2018-05-10-2.jpg
       alt: Speaker introduced the topic
     - data-src: /public/pics/2018-05-10-3.jpg
-      alt: Participants in Coding Club Meeting
+      alt: Participants in the first session
   settings:
     height: 400
     initialHeight:
