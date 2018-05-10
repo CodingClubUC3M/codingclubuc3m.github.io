@@ -19,6 +19,7 @@ When you click the **Knit** button a document will be generated that includes bo
 library("htmltools")
 library("vembedr")
 embed_url("https://www.youtube.com/watch?v=uV4UpCq2azs")
+embed_youtube("xAoljeRJ3lU")
 summary(cars)
 ```
 
