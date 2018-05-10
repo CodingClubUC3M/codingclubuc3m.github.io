@@ -1,52 +1,31 @@
----
-layout: post
-comments:  true
-title: "Useful one-function `R` packages, big data solutions, and a message from Yoda"
-author: Eduardo García-Portugués
-date: 2018-05-10
-published: true
-visible: false
-categories: [R, big data, visualization, benchmark]
-excerpt_seperator: ""
-output:
-  html_document:
-    mathjax:  default
-    number_sections: yes
-    toc: yes
-    toc_float:
-      collapsed: no
-      smooth_scroll: no
-    code_folding: show
----
+# ---
+# "Useful one-function R packages, big data solutions, and a message from Yoda"
+# Eduardo García-Portugués
+# ---
 
-```{r, setup, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+### Abstract
 
-### Abstract {-}
+# As the title reads, in this heterogeneous session we will see three topics of 
+# different interest. The first is a collection of three simple and useful 
+# one-function R packages that I use regularly in my coding workflow. The 
+# second collects some approaches to handling and performing linear regression 
+# with big data. The third brings in the freaky component: it presents tools to 
+# display graphical information in plain ASCII, from bivariate contours to 
+# messages from Yoda!
 
-As the title reads, in this heterogeneous session we will see three topics of different interest. The first is a collection of three simple and useful one-function R packages that I use regularly in my coding workflow. The second collects some approaches to handling and performing linear regression with big data. The third brings in the freaky component: it presents tools to display graphical information in plain ASCII, from bivariate contours to messages from Yoda!
+### Required packages
 
-You can download the script with the `R` code alone [here](https://raw.githubusercontent.com/CodingClubUC3M/codingclubuc3m.github.io/master/scripts/.R) (right click and "Save as...").
-
-### Required packages {-}
-
-We will need the following packages:
-
-```{r, eval = FALSE}
 install.packages(c("viridis", "microbenchmark", "multcomp", "manipulate", 
                    "ffbase", "biglm", "leaps", "txtplot", "NostalgiR",
                    "cowsay"), 
                  dependencies = TRUE)
-```
 
-# Some simple and useful `R` packages
+# 1. Some simple and useful R packages
 
-## Color palettes with `viridis`
+## 1.2 Color palettes with viridis
 
-Built-in color palettes in base `R` are somehow limited. We have `rainbow`, `topo.colors`, `terrain.colors`, `heat.colors`, and `cm.colors`. We also have flexibility to create our own palettes, e.g. by using `colorRamp`. These palettes look like:
+### Chunk 1
 
-```{r, viridis-1, message = FALSE, cache = TRUE, fig.asp = 2/3}
 # MATLAB's color palette
 jet.colors <- colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan",
                                  "#7FFF7F", "yellow", "#FF7F00", "red", 
@@ -61,39 +40,18 @@ testPalette <- function(col, n = 200, ...) {
 par(mfrow = c(2, 3))
 res <- sapply(c("rainbow", "topo.colors", "terrain.colors", 
                 "heat.colors", "cm.colors", "jet.colors"), testPalette)
-```
 
-Notice that some palettes clearly show **non-uniformity in the color gradient**. This potentially leads to an **interpretation bias** when inspecting heatmaps colored by these scales: some features are (unfairly) weakened and others are (unfairly) strengthen. This distortion on the representation of the data can be quite misleading.
 
-In addition to these problems, some problematic points that are not usually thought when choosing a color scale are:
+### Chunk 2
 
-- How does your pretty color image look like when you print it in **black-and-white**?
-- How do **colorblind** people read the images?
-
-The package [`viridisLite`](https://cran.r-project.org/web/packages/viridisLite/index.html) (a port from `Python`'s [`Matplotlib`](http://matplotlib.org/)) comes to solve these three issues. It provides the *viridis* color palette, which uses notions from color theory to be **as much uniform as possible**, **black-and-white-ready**, and **colorblind-friendly**. From `viridisLite`'s help:
-
-> This color map is designed in such a way that it will analytically be perfectly perceptually-uniform, both in regular form and also when converted to black-and-white. It is also designed to be perceived by readers with the most common form of color blindness.
-
-More details can be found in this great talk by one of the authors:
-
-```{r, viridis-2, echo = FALSE, message = FALSE, cache = TRUE, fig.asp = 1}
-library("vembedr")
-embed_youtube(id = "xAoljeRJ3lU", width = 600)
-```
-
-There are several palettes in the package. All of them have the same properties as `viridis` (*i.e.*, perceptually-uniform, black-and-white-ready, and colorblind-friendly). The `cividis` is specifically aimed to people with color vision deficiency. Let's see them in action:
-
-```{r, viridis-3, message = FALSE, cache = TRUE, fig.asp = 2/3}
 library(viridisLite)
 # Color palettes comparison
 par(mfrow = c(2, 3))
 res <- sapply(c("viridis", "magma", "inferno", "plasma", "cividis"), 
               testPalette)
-```
 
-Some useful options for any of the palettes are:
+### Chunk 3
 
-```{r, viridis-4, message = FALSE, cache = TRUE, fig.asp = 1/2}
 # Reverse palette
 par(mfrow = c(1, 2))
 testPalette("viridis", direction = 1)
@@ -108,11 +66,9 @@ testPalette("viridis", begin = 0.25, end = 0.75)
 par(mfrow = c(1, 2))
 testPalette("viridis", alpha = 1)
 testPalette("viridis", alpha = 0.5)
-```
 
-In the extended [`viridis`](https://cran.r-project.org/web/packages/viridis/index.html) package there are color palettes functions for `ggplot2` fans: `scale_color_viridis` and `scale_fill_viridis`. Some examples of their use:
+### Chunk 4
 
-```{r, viridis-5, message = FALSE, cache = TRUE, fig.asp = 1}
 library(viridis)
 library(ggplot2)
 
@@ -127,15 +83,11 @@ dat <- data.frame(x = rnorm(1e4), y = rnorm(1e4))
 ggplot(dat, aes(x = x, y = y)) +
   geom_hex() + coord_fixed() +
   scale_fill_viridis() + theme_bw()
-```
 
-## Benchmarking with `microbenchmark`
+## 1.2 Benchmarking with microbenchmark
 
-Measuring the **code performance** is a **day-to-day routine** for many developers. It is also a requirement for regular users that want to choose the most efficient coding strategy for implementing a method.
+### Chunk 1
 
-As we know, we can measure running times in base `R` using `proc.time` or `system.time`:
-
-```{r, bench-1, message = FALSE, cache = TRUE, fig.asp = 1}
 # Using proc.time
 time <- proc.time()
 for (i in 1:100) rnorm(100)
@@ -144,44 +96,17 @@ time # elapsed is the 'real' elapsed time since the process was started
 
 # Using system.time - a wrapper for the above code
 system.time({for (i in 1:100) rnorm(100)})
-```
 
-However, this very basic approach presents several inconveniences to be aware of:
+### Chunk 2
 
-- The **precision** of `proc.time` is within the millisecond. This means that evaluating `1:1000000` (usually) takes `0` seconds at the sight of `proc.time`.
-- Each time measurement of a procedure is subjected to **variability** (depends on the processor usage at that time, processor warm-up, memory status, etc). So, one single call is not enough to assess the time performance, several must be made (conveniently) and averaged.
-- It is **cumbersome** to check the times for different expressions. We will need several lines of code for each and creating auxiliary variables.
-- There is **no summary** of the timings. We have to code it by ourselves.
-- There is **no checking on the equality** of the results outputted from different approaches (accuracy is also important, not only speed!). Again, we have to code it by ourselves.
-
-Hopefully, the [`microbenchmark`](https://cran.r-project.org/package=microbenchmark) package fills in these gaps. Let's see an example of its usage on approaching a common problem in `R`: how to **recentre a matrix by columns**, *i.e.*, how to make each column to have zero mean. There are several possibilities to do so, with different efficiencies.
-
-```{r, bench-2, message = FALSE, cache = TRUE, fig.asp = 1}
 # Data and mean
 n <- 3
 m <- 10
 X <- matrix(1:(n * m), nrow = n, ncol = m)
 mu <- colMeans(X)
 # We assume mu is given in the time comparisons
-```
 
-**Time to think by yourself on the competing approaches!** Do not cheat and hide the next chunk of code!
-
-```{r, bench-3, message = FALSE, cache = TRUE, fig.asp = 1}
-# SPOILER ALERT! HIDE THIS CHUNK OF CODE!
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
+### Chunk 3
 
 # Some approaches:
 
@@ -200,25 +125,8 @@ for (j in 1:m) Y4[, j] <- X[, j] - mu[j]
   
 # 5) magic (my favourite!)
 Y5 <- t(t(X) - mu)
-```
 
-Which one do you think is faster? Do not cheat and answer before seeing the next chunk of code!
-
-```{r, bench-4, message = FALSE, cache = TRUE, fig.asp = 1}
-# SPOILER ALERT!
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
+### Chunk 4
 
 # Test speed
 library(microbenchmark)
@@ -280,13 +188,11 @@ bench3 <- microbenchmark(
   check = check1
 )
 bench3
-```
 
-## Quick animations with `manipulate`
+## 1.3 Quick animations with manipulate
 
-The [`manipulate`](https://cran.r-project.org/package=manipulate) package (works only within `RStudio`!) allows to easily create simple animations. It is a simpler, local, alternative to `Shiny` applications.
+### Chunk 1
 
-```{r, manipulate-1, eval = FALSE, message = FALSE, cache = TRUE, fig.asp = 1}
 library(manipulate)
 
 # A simple example
@@ -295,9 +201,9 @@ manipulate({
        type = "o", xlab = "x", ylab = "y")
   lines(1:100, sin(2 * pi * 1:100 / 100), col = 2)
 }, n = slider(min = 1, max = 100, step = 1, ticks = TRUE))
-```
 
-```{r, manipulate-2, eval = FALSE, message = FALSE, cache = TRUE, fig.asp = 1}
+### Chunk 2
+
 # Illustrating several types of controls using the kernel density estimator
 manipulate({
   
@@ -333,10 +239,10 @@ manipulate({
   rugSamp = checkbox(TRUE, "Show rug"),
   realDensity = checkbox(TRUE, "Draw real density"),
   newSample = button("New sample!")
-  )
-```
+)
 
-```{r, manipulate-3, eval = FALSE, message = FALSE, cache = TRUE, fig.asp = 1}
+### Chunk 3
+
 # Another example: rotating 3D graphs without using rgl
 
 # Mexican hat
@@ -359,21 +265,13 @@ manipulate(
         ticktype = "detailed", xlab = "X", ylab = "Y", zlab = "Sinc(r)"),
   theta = slider(-180, 180, initial = 30, step = 5),
   phi = slider(-90, 90, initial = 30, step = 5))
-```
 
-# Handling big data in `R`
+# 2. Handling big data in R
 
-## The `ff` and `ffbase` packages
+## 2.1 The ff and ffbase packages
 
-`R` stores all the data in RAM, which is where all the processing takes place. But when the data does not fit into RAM (e.g., vectors of size $2\times10^9$), alternatives are needed. [`ff`](https://cran.r-project.org/web/packages/ff/index.html) is an `R` package for working with data that does not fit in RAM. From `ff`'s description:
+### Chunk 1
 
-> The `ff` package provides data structures that are stored on disk but behave (almost) as if they were in RAM by transparently mapping only a section (pagesize) in main memory - the effective virtual memory consumption per `ff` object.
-
-The package `ff` lacks some standard statistical methods for operating with `ff` objects. These are provided by [`ffbase`](https://cran.r-project.org/web/packages/ffbase/index.html).
-
-Let's see an example.
-
-```{r, ffbase-1, cache = TRUE, message = FALSE, fig.asp = 1}
 # Not really "big data", but for the sake of illustration
 set.seed(12345)
 n <- 1e6
@@ -411,10 +309,9 @@ print(object.size(bigData2ff), units = "Kb")
 
 # Delete the csv files in disk
 file.remove(c("bigData1.csv", "bigData2.csv"))
-```
 
-Operations on `ff` objects are carried out similarly as with regular `data.frames`:
-```{r, ffbase-2, cache = TRUE, message = FALSE, fig.asp = 1}
+### Chunk 2
+
 # Operations on ff objects "almost" as with regular data.frames
 class(bigData1ff)
 class(bigData1ff[, 1])
@@ -423,26 +320,11 @@ bigData1ff[1:5, 1] <- rnorm(5)
 
 # Filter of data frames
 ffwhich(bigData1ff, bigData1ff$resp > 5)
-```
 
-## Regression using `biglm` and friends
+## 2.2 Regression using biglm and friends
 
-The richness of information returned by `R`'s `lm` has immediate drawbacks when working with big data (large $n$, $n>p$). An example is the following. If $n=10^8$ and $p=10$, simply storing the response and the predictors takes up to $8.2$ Gb in RAM. This is in the edge of feasibility for many regular laptops. However, calling `lm` will consume, at the very least, $16.5$ Gb merely storing the `residuals`, `effects`, `fitted.values`, and `qr` decomposition. Although there are more efficient ways of performing linear regression in base `R` (e.g., with `.lm.fit`), we still need to rethink the least squares estimates computation (takes $\mathcal{O}(np+p^2)$ in memory) to do not overflow the RAM.
+### Chunk 1
 
-A handy solution is given by the [`biglm`](https://CRAN.R-project.org/package=biglm ) package, which allows to fit a generalized linear model (glm) in `R` consuming much less RAM. Essentially, we have two possible approaches for fitting a glm:
-
-1. Use a regular `data.frame` object to store the data, then use `biglm` to fit the model. This assumes that:
-
-    * We are able to **store the dataset in RAM** or, alternatively, that we can **split it into chunks** that are fed into the model iteratively, **updating the fit** via `udpate` for each new data chunk. 
-    * The **updating must rely only in the new chunk** of data, not in the full dataset (otherwise, there is no point in chunking the data). This is possible with linear models, but not possible (at least exaclty) for generalized linear models.
-    
-2. Use a `ffdf` object to store the data, then use `ffbase`'s `bigglm.ffdf` to fit the model.
-
-We will focus on the **second approach** due to its simplicity. For an example of the use of the first approach with a linear model, see [here](https://bookdown.org/egarpor/PM-UC3M/lm-iii-bigdata.html).
-
-Let's see first an example of **linear regression**.
-
-```{r, bigglm-1, message = FALSE, cache = TRUE}
 library(biglm)
 # bigglm.ffdf has a very similar syntax to glm - but the formula interface does 
 # not work always as expected:
@@ -487,11 +369,9 @@ predict(biglmMod, newdata = bigData1[1:5, ])
 
 # Update the model with more training data - this is key for chunking the data
 update(biglmMod, moredata = bigData1[1:100, ])
-```
 
-Model selection of `biglm` models can be done with the [`leaps`](https://cran.r-project.org/web/packages/leaps/index.html) package. This is achieved by the `regsubsets` function, which returns the *best subset* of up to (by default) `nvmax = 8` predictors. The function requires the *full* `biglm` model to begin the "exhaustive" search, in which is crucial the linear structure of the estimator. 
+### Chunk 2
 
-```{r, bigglm-2, message = FALSE, cache = TRUE}
 # Model selection adapted to big data models
 library(leaps)
 reg <- regsubsets(biglmMod, nvmax = p, method = "exhaustive")
@@ -503,11 +383,9 @@ subs <- summary(reg)
 subs$which
 subs$bic
 subs$which[which.min(subs$bic), ]
-```
 
-An example of **logistic regression**:
+### Chunk 3
 
-```{r, bigglm-3, message = FALSE, cache = TRUE}
 # Same comments for the formula framework - this is the hack for automatic
 # inclusion of all the predictors
 f <- formula(paste("resp ~", paste(names(bigData2ff)[-1], collapse = " + ")))
@@ -534,32 +412,13 @@ AIC(bigglmMod, k = 2)
 # Prediction works "as usual"
 predict(bigglmMod, newdata = bigData2[1:5, ], type = "response")
 # predict(bigglmMod, newdata = bigData2[1:5, -1]) # Error
-```
 
-# ASCII fun in `R`
+# 3. ASCII fun in R
 
-## Text-based graphs with `txtplot`
+## 3.1 Text-based graphs with txtplot
 
-When evaluating `R` in a terminal with no possible graphical outputs (e.g. in a supercomputing cluster), it may be of usefulness to, at least, visualize some simple plots in a rudimentary way. This is what the [`txtplot`](https://cran.r-project.org/web/packages/txtplot/index.html) and the [`NostalgiR`](https://cran.r-project.org/web/packages/NostalgiR/index.html) package do, by means of ASCII graphics that are equivalent to some `R` functions.
+### Chunk 1
 
-| `R` graph | ASCII analogue |
-|:--------------|:-------------------|
-| `plot` | `txtplot` |
-| `boxplot` | `txtboxplot` |
-| `barplot(table())` | `txtbarchart` |
-| `curve` | `txtcurve` |
-| `acf` | `txtacf` |
-| `plot(density())` | `nos.density` |
-| `hist` | `nos.hist` |
-| `plot(ecdf())` | `nos.ecdf` |
-| `qqnorm(); qqline()` | `nos.qqnorm` |
-| `qqplot` | `nos.qqplot` |
-| `contour` | `nos.contour` |
-| `image` | `nos.image` |
-
-Let's see some examples.
-
-```{r, ascii-1, message = FALSE, cache = TRUE, fig.asp = 1}
 library(txtplot) # txt* functions
 
 # Generate common data
@@ -586,9 +445,9 @@ txtcurve(expr = sin(x), from = 0, to = 2 * pi)
 # txtacf
 acf(x)
 txtacf(x)
-```
 
-```{r, ascii-2, message = FALSE, cache = TRUE, fig.asp = 1}
+### Chunk 2
+
 library(NostalgiR) # nos.* functions
 
 # Mexican hat
@@ -626,13 +485,11 @@ nos.contour(data = zz, xmin = min(xx), xmax = max(xx),
 image(zz, col = viridis(50))
 nos.image(data = zz, xmin = min(xx), xmax = max(xx), 
           ymin = min(yy), ymax = max(yy))
-```
 
-## Cute animals with `cowsay`
+## 3.2 Cute animals with cowsay
 
-[`cowsay`](https://cran.r-project.org/web/packages/cowsay/index.html) is a package for printing messages with ASCII animals. Although it has little practical use, it is way fun! There is only one function, `say`, that produces an animal with a speech bubble.
+### Chunk 1
 
-```{r, ascii-3, message = TRUE, cache = TRUE, collapse = TRUE, fig.asp = 1}
 library(cowsay)
 
 # Random fortune
@@ -648,4 +505,4 @@ say(what = "It looks like you\'re writing a letter!",
 
 # A message from Yoda
 say("Participating in the Coding Club UC3M you must. Yes, hmmm.", by = "yoda")
-```
+
