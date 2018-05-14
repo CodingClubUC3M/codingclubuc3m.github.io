@@ -5,8 +5,8 @@ title: Calendar
 
 ## Next events
 
-<div class="highlighter-black"> Title: An introduction to the Julia language </div>
-<div class="highlighter-black"> Time: 23.05.2018, 15.00 - 16:00
+<div class="highlighter-black"> Title: <div class="highlighter-red"> An introduction to the Julia language </div> </div>
+<div class="highlighter-black"> Time: <div class="highlighter-red">23.05.2018, 15.00 - 16:00 </div>
 	<a href="https://calendar.google.com/calendar/r/eventedit?
 	text=CodingClubUc3m
 	&dates=20180523T100000Z/20180523T110000Z
