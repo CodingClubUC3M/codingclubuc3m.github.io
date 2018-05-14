@@ -53,6 +53,6 @@ SimpleJekyllSearch({
 
 ### How to join?
 
-Just show up. But it would be nice if you let us know in advance to adapt the logistics with [this form](https://goo.gl/forms/aWvWbuBdGbNrICPV2).
+Just show up. But it would be nice if you let us know in advance to adapt the logistics by filling the confirmation form (if you have received it) or by dropping us a line at <coding.club.uc3m@gmail.com>.
 
 If you want to contribute a session, then please fill in [this form](https://goo.gl/forms/CIj7hxkAeEA4VjZR2). 
