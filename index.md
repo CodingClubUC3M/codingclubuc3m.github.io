@@ -50,3 +50,9 @@ SimpleJekyllSearch({
      {% endif %}   
   {% endfor %}
 </section>
+
+### How to join?
+
+Just show up. But it would be nice if you let us know in advance to adapt the logistics with [this form](https://goo.gl/forms/aWvWbuBdGbNrICPV2).
+
+If you want to contribute a session, then please fill in [this form](https://goo.gl/forms/CIj7hxkAeEA4VjZR2). 
