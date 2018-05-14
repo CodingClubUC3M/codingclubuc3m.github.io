@@ -4,9 +4,6 @@ title: Calendar
 ---
 
 ## Next events
-{% comment %} 
-- Day : Title - Presenter - Location
-{% endcomment %}
 
 <div class="highlighter-black"> Title: An introduction to the Julia language </div>
 <div class="highlighter-black"> Time: 23.05.2018, 15.00 - 16:00
@@ -20,12 +17,15 @@ title: Calendar
 	target="_blank" rel="nofollow">(Add to my calendar)</a> 
 </div> 
 <div class="highlighter-black"> Presenter: <a href="" class="highlighter-red"> David García Heredia </a></div> 
-<div class="highlighter-black"> Location <a href="https://www.google.com/maps/place/Juan+Benet+Building/@40.3340949,-3.7665842,18z/data=!3m1!4b1!4m5!3m4!1s0xd41898b6414e047:0x8f09ae494530ed2d!8m2!3d40.3340949!4d-3.7654872"> Leganes campus, Juan Benet Building, 7.3.J06 </a> </div>
+<div class="highlighter-black"> Location: <a href="https://www.google.com/maps/place/Juan+Benet+Building/@40.3340949,-3.7665842,18z/data=!3m1!4b1!4m5!3m4!1s0xd41898b6414e047:0x8f09ae494530ed2d!8m2!3d40.3340949!4d-3.7654872"> Leganes campus, Juan Benet Building, 7.3.J06 </a> </div>
+
+### Map
 
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1520.685959107762!2d-3.766581541822838!3d40.33409489484368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd41898b6414e047%3A0x8f09ae494530ed2d!2sJuan+Benet+Building!5e0!3m2!1sen!2ses!4v1525163029106" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe> 
 
-<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;hl=en_GB&amp;bgcolor=%23FFFFFF&amp;src=coding.club.uc3m%40gmail.com&amp;color=%23125A12&amp;src=uc3m.es_rf416kf90mttgqjks6vj4kfdbo%40group.calendar.google.com&amp;color=%23333333&amp;ctz=Europe%2FMadrid" style="border-width:0" width="100%" height="700" frameborder="0" scrolling="no"></iframe>
+### Calendar
 
+<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;hl=en_GB&amp;bgcolor=%23FFFFFF&amp;src=coding.club.uc3m%40gmail.com&amp;color=%23125A12&amp;src=uc3m.es_rf416kf90mttgqjks6vj4kfdbo%40group.calendar.google.com&amp;color=%23333333&amp;ctz=Europe%2FMadrid" style="border-width:0" width="100%" height="700" frameborder="0" scrolling="no"></iframe>
 
 ## How to join?
 
