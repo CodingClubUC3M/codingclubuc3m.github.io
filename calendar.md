@@ -6,10 +6,10 @@ title: Calendar
 ## Next events
 
 <div class="highlighter-black"> Title: <span style="color:red;"> An introduction to the Julia language </span> </div>
-<div class="highlighter-black"> Time:  <span style="color:red;"> 23.05.2018, 14.30 - 15:30 </span>
+<div class="highlighter-black"> Time:  <span style="color:red;"> 23.05.2018, 15.00 - 16:00 </span>
 	<a href="https://calendar.google.com/calendar/r/eventedit?
 	text=CodingClubUC3M
-	&dates=20180523T123000Z/20180523T133000Z
+	&dates=20180523T140000Z/20180523T150000Z
 	&details=For+details,+link+here:+https://codingclubuc3m.github.io/calendar.html
 	&location=Juan+Benet+Building+7.3.J08
 	&sf=true
