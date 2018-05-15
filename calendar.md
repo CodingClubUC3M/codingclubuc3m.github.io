@@ -11,7 +11,7 @@ title: Calendar
 	text=CodingClubUC3M
 	&dates=20180523T123000Z/20180523T133000Z
 	&details=For+details,+link+here:+https://codingclubuc3m.github.io/calendar.html
-	&location=Juan+Benet+Building+7.3.J06
+	&location=Juan+Benet+Building+7.3.J08
 	&sf=true
 	&output=xml"
 	target="_blank" rel="nofollow">(Add to my calendar)</a> 
