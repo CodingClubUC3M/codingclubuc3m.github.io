@@ -6,10 +6,10 @@ title: Calendar
 ## Next events
 
 <div class="highlighter-black"> Title: <span style="color:red;"> An introduction to the Julia language </span> </div>
-<div class="highlighter-black"> Time:  <span style="color:red;"> 23.05.2018, 15.00 - 16:00 </span>
+<div class="highlighter-black"> Time:  <span style="color:red;"> 23.05.2018, 14.30 - 15:30 </span>
 	<a href="https://calendar.google.com/calendar/r/eventedit?
 	text=CodingClubUC3M
-	&dates=20180523T100000Z/20180523T110000Z
+	&dates=20180523T123000Z/20180523T133000Z
 	&details=For+details,+link+here:+https://codingclubuc3m.github.io/calendar.html
 	&location=Juan+Benet+Building+7.3.J06
 	&sf=true
@@ -17,7 +17,7 @@ title: Calendar
 	target="_blank" rel="nofollow">(Add to my calendar)</a> 
 </div> 
 <div class="highlighter-black"> Presenter: <a href="" class="highlighter-red"> David García Heredia </a></div> 
-<div class="highlighter-black"> Location: <a href="https://www.google.com/maps/place/Juan+Benet+Building/@40.3340949,-3.7665842,18z/data=!3m1!4b1!4m5!3m4!1s0xd41898b6414e047:0x8f09ae494530ed2d!8m2!3d40.3340949!4d-3.7654872"> Leganes campus, Juan Benet Building, 7.3.J06 </a> </div>
+<div class="highlighter-black"> Location: <a href="https://www.google.com/maps/place/Juan+Benet+Building/@40.3340949,-3.7665842,18z/data=!3m1!4b1!4m5!3m4!1s0xd41898b6414e047:0x8f09ae494530ed2d!8m2!3d40.3340949!4d-3.7654872"> Leganes campus, Juan Benet Building, 7.3.J08 </a> </div>
 
 ### Map
 
