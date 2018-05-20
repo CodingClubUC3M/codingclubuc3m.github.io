@@ -3,7 +3,7 @@ layout: post
 comments:  true
 title: "An Introduction to the Julia Language"
 author: "David García-Heredia"
-date: 2016-05-23 20:30:00
+date: 2018-05-23 20:30:00
 published: true
 visible: true
 categories: [Julia]
