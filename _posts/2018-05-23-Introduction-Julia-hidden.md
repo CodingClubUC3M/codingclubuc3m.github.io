@@ -41,8 +41,8 @@ Another important feature, specially when working with input and output files, i
 
 ```julia
 # Print text in console
-print("Hello"),   print("Goodbye")     # to print without a line break.
-println("Hello"), println("Goodbye")   # to print with line break.
+print("Hello"),   print("Goodbye")	# to print without a line break.
+println("Hello"), println("Goodbye")	# to print with line break.
 println("a") # it prints character 'a'
 println(a)   # it prints the value of the variable 'a'.
 ```
