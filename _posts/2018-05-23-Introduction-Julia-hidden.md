@@ -180,10 +180,10 @@ There are other choices (no so used, but interesting) for defining an array such
 
 ```julia
 v = [1,2,3];
-repeat(v,inner=[2]) 		  # It repeats 2 times each element from 'v'
-repeat(v,outer=[3]) 		  # It repeats 3 times vector 'v'
-repeat(v,inner=[3],outer=[2]) 	  # It repeats each element from v 3 times and then,
-                                  # it repeats that result 2 times.
+repeat(v,inner=[2]) 	       # It repeats 2 times each element from 'v'
+repeat(v,outer=[3]) 	       # It repeats 3 times vector 'v'
+repeat(v,inner=[3],outer=[2])  # It repeats each element from v 3 times and then,
+                               # it repeats that result 2 times.
 ```
 
 When working with vectors, `Julia` creates references (pointer to a part of the memory), so we must be cautious to avoid errors as the one shown below:
@@ -232,7 +232,7 @@ a        # Now the original vector has been modified!!!
 push!(a,3)     # It sets a 3 at the end of vector a.
 append!(a,b)   # It combines a and b in vector a.
 pop!(b)        # It deletes the last element from b.
-shift!(a) 	   # It deletes the first element from a.
+shift!(a)      # It deletes the first element from a.
 unshift!(a,7)  # It adds a 7 at the beginning of vector a.
 splice!(a,2)   # It deletes the 2nd element of a.
 in(1, a)       # It checks if number 1 is in vector a.
@@ -391,12 +391,12 @@ There are different ways of working with a for loop in `Julia`. First, we introd
 # Classic form 1: using a range
 x = 0;
 for i = 1:500  
-	x+=1;
+  x+=1;
 end
 
 # Classic form 2: using a vector
 for i in [1,4,6]
-	println(i)
+  println(i)
 end
 ```
 
@@ -405,14 +405,14 @@ Another interesting way of using a for loop is with strings, because it allows u
 ```julia
 # Classic form 3: using a vector of strings
 for s in ["madrid","valencia","bilbao"]
-	println(s, " is a city")
+  println(s, " is a city")
 end
 ```
 A more sophisticated way of using for loops is related with the creation of arrays. As can be seen in the next code, we are creating a 2-dimensional array in which each entry is the sum of the indexes.
 
 ```julia
 [i+j for i=1:2, j=1:3] # Obviously, we can add more dimensions
-					   # e.g.: i=1:2, j=1:3, k=1:6, d=1:4,....
+		       # e.g.: i=1:2, j=1:3, k=1:6, d=1:4,....
 ```
 
 Instead of using the sum, we can also employ our own functions as it shown below (we will see later on how to create functions).
@@ -429,14 +429,14 @@ To conclude the part of using for loops, we show an interesting feature of the `
 A = zeros(5,7)
 
 for i=1:5
-	for j=1:7
-		A[i,j] = i+j; # Notice that this is equal to [i+j for i=1:5, j=1:7]
-	end
+  for j=1:7
+    A[i,j] = i+j; # Notice that this is equal to [i+j for i=1:5, j=1:7]
+  end
 end
 
 # The previous operation is equivalent to:
 B = zeros(5,7)
-for i=1:5, j=1:7 # notice that we are writing all the loops in one line.
+for i=1:5, j=1:7 # We are writing all the loops in one line.
 	B[i,j] = i+j;
 end
 ```
@@ -446,8 +446,8 @@ end
 ```julia
 i=1
 while i<=5
-	println(i)
-	i+=1
+  println(i)
+  i+=1
 end
 ```
 
@@ -458,18 +458,18 @@ Also related with for and while loops, there are the sentences *continue* and *b
 ```julia
 totalOddsNum = 0;
 for i=1:10
-	if i%2 == 0   # the number is even
-		continue; # I do not continue the rest of the loop and jump to the next step.
-	end
-	totalOddsNum +=1;
+  if i%2 == 0   # the number is even
+    continue;   # I do not continue the rest of the loop and jump to the next step.
+  end
+  totalOddsNum +=1;
 end
 
 totalSum = 0;
 for i=1:1000
-	if totalSum == 1275 # A condition in which we want to scape from the for loop
-		break;
-	end
-	totalSum += i;
+  if totalSum == 1275 # A condition in which we want to scape from the for loop
+    break;
+  end
+  totalSum += i;
 end
 ```
 
@@ -478,34 +478,34 @@ end
 Opposite to other languages, in Julia for loops are not discouraged. To measure the time employed in an operation and the number of allocations done, we write '@time' before the code.
 
 ```julia
-@time sum(1:2000) # @time serve us to measure time.
+@time sum(1:2000) 
 
 a = 0;
 @time for i=1:2000
-				a+=i;
-	  end
+  a+=i;
+end
 ```
 
 ### 3.2 Functions
 
-Now let's see how we define functions in `Julia`. We will learn how to make the return of elements, how to evaluate several arguments for different scenarios at once, and how to import functions from other files.
+Now let's see how we define functions in `Julia`. We will learn how to make the return of elements, how to evaluate several arguments for different scenarios at once and how to import functions from other files.
 
 The syntax of a function is shown in the next code, where 'function' is a keyword, 'fsum' how we name our function, and '(x,y)' the arguments that has our function.
 
 ```julia
 function fsum(x,y)
-	return x+y # we return the sum of the two elements
+  return x+y # we return the sum of the two elements
 end
 
 # We test our function
 fsum(2,3)
 ```
 
-Sometimes it might be interesting using the following idea of establishing default values:
+Sometimes it might be interesting to use the following idea of establishing default values:
 
 ```julia
 function fsum2(x, y = 1)
-	return x+y
+  return x+y
 end
 
 fsum2(2)  # When we do not provide a second argument, it just add y = 1.
@@ -516,7 +516,7 @@ fsum2(2,8)
 
 ```julia
 function f_several_returns(x,y)
-	return x+y, x*y # Notice the comma to separate returns.
+  return x+y, x*y # Notice the comma to separate returns.
 end
 
 f_several_returns(2,4)
@@ -525,11 +525,11 @@ s
 p
 ```
 
-An interesting idea is to evaluate different cases in a function using 'map'.
+Another interesting idea is the used of the function 'map', a predefine function which allows to evaluate any function 'f' in several arguments simultaneously.
 
 ```julia
 function f(x)
-	x^2
+  x^2
 end
 map(f, [1,2,3]) # we evaluate 3 different inputs in 'f'.
 
@@ -538,17 +538,17 @@ map((x) -> x^2, [1,2,3,7])
 
 # Another example, but with several arguments
 function f2(x,y)
-	2(x+y)
+  2(x+y)
 end
 map(f2, [1,2,3], [10,11,12])
 ```
 
-Notice that `Julia`, as far as the code is coherent, does not ask to specify if the argument is a number, a vector or other element.
+Notice that `Julia`, as far as the code is coherent, does not ask to specify if the argument is a number, a vector or another element.
 
 ```julia
 function fvect(v) # I can pass a vector or a Matrix
-	v +=1;
-	return v
+  v +=1;
+  return v
 end
 
 v1 = [1,2,3,4]
@@ -558,14 +558,14 @@ A = ones(3,3)
 fvect(A)
 ```
 
-A feature to pay attention is to know when the variable that we pass as an argument is going to be modified. For instance, in the previous code, we saw that the variable 'v1' remained equal after the operation. An example in which this does not happen is the next one:
+We must pay attention when the variable that we pass as an argument is going to be modified. For instance, in the previous code, we saw that the variable 'v1' remained equal after the operation. An example in which this does not happen is the next one:
 
 ```julia
 function fmatriz!(X)
-	dimF, dimC = size(X)
-	for i=1:dimF, j=1:dimC
-		X[i,j] = i+j;
-	end
+  dimF, dimC = size(X)
+  for i=1:dimF, j=1:dimC
+    X[i,j] = i+j;
+  end
 end
 
 A = zeros(2,3)
@@ -575,7 +575,7 @@ A
 
 The exclamation symbol in the name of the function is for us to remember (in the future) that this code modify the variable.
 
-Finally, to to conclude this section of functions, we are going to learn how to import a file in which we have several functions that we want to use in a program.
+Finally, to to conclude this section about functions, we are going to learn how to import a file in which we have several functions that we want to use in a program.
 
 ```julia
 include("FileWithFunctions.jl")
@@ -599,7 +599,7 @@ months = Dict("January" => 31, "February" => 28, "March" => 31)
 
 
 # To check the existence of elements in the dictionary, we use:
-haskey(months, "March") 	  # To see if the dictionary contains a key
+haskey(months, "March")       # To see if the dictionary contains a key
 in(("January"  => 55),months) # To check for the existence of a key/value pair:
 in(("February" => 28),months) # To check for the existence of a key/value pair:
 
@@ -628,15 +628,15 @@ values(months)
 keys(months)
 
 for i in keys(months)
-    println(months[i])
+  println(months[i])
 end
 
 for i in months
-    println(i)
+  println(i)
 end
 ```
 
-Dictionaries are applied in different situations, for example, when modeling an optimization problem. An intelligent way of working with constraints is:
+Dictionaries can be applied in different situations, for example, when modeling an optimization problem. An intelligent way of working with constraints is:
 
 ```julia
 # constraints = Dict("NameConst1" => equation1, "NameConst2" => equation2, ...)
@@ -650,15 +650,15 @@ Now we show how can you define your own types in Julia.
 
 ```julia
 type Person
-	age::Int
-	name::AbstractString
+  age::Int
+  name::AbstractString
   Salary::Float64
 end
 s = 2550.58
 p1 = Person(32, "Julian", s)
 p1.name
 
-vectorPeople = Person[]; 			           # We can create an array of that type.
+vectorPeople = Person[]; # We can create an array of that type.
 push!(vectorPeople, Person(21, "Pedro", 554)); # and add elements
 push!(vectorPeople, Person(25, "Maria", 1554));
 vectorPeople
@@ -674,8 +674,8 @@ Besides the default functions that are available in Julia, the user can download
 
 ```julia
 Pkg.add("NameOfPackage") # This command downloads the package.
-Pkg.update() 		     # It updates the packages installed
-Pkg.installed() 	     # It lists the packages installed
+Pkg.update() 		 # It updates the packages installed
+Pkg.installed() 	 # It lists the packages installed
 using NombreDelPaquete 	 # We load the package we want to use.
 ```
 
@@ -691,8 +691,8 @@ tail(iris)
 
 names(iris)
 
-iris[3] 	   # It give us the 3rd column.
-iris[1,3] 	   # It give us the first element of the 3rd column.
+iris[3]        # It give us the 3rd column.
+iris[1,3]      # It give us the first element of the 3rd column.
 iris[:Species] # It gives me the column named 'Species'
 
 
@@ -707,8 +707,9 @@ df = DataFrame(a = repeat([1, 2, 3, 4], outer=[2]),
                b = repeat([2, 1], outer=[4]),
                c = randn(8))
 colwise(sum, df) # It applies the function to each column.
-				 # Be aware of applying a function to all columns when having
-				 # heterogeneous data (e.g.: strings, integers, NA...)
+		 # Be aware of applying a function to all columns when having
+		 # heterogeneous data (e.g.: strings, integers, NA...)
+		 
 colwise([sum, length], df)
 colwise([minimum, maximum], df)
 
@@ -722,7 +723,7 @@ A = Array(iris);
 A[1:5,:]
 
 Datos = readtable("NameOfFile.csv"); # Read the data.
-writetable("NameOfFile.csv", df)   	 # Export the data.
+writetable("NameOfFile.csv", df)     # Export the data.
 
 ```
 
@@ -740,8 +741,8 @@ gc() 	  # You update the system to actually make the transformation.
 
 
 # These are some commands about the working directory:
-homedir() 		# the default working directory
-pwd() 			# the current working directory
+homedir() 	# the default working directory
+pwd() 		# the current working directory
 readdir(pwd()) 	# to see the files of the current working directory
 
 # This is how we change the working directory
