@@ -56,8 +56,8 @@ s[2] # An string is an array of characters, so we can access to each element.
 # Concatenating strings
 intro = "Hello, my name is"
 name  = "David"
-s 		= "$intro $name" # we use $ symbol to concatenate the value of a variable
-                   		 # inside an string.
+s = "$intro $name" # we use $ symbol to concatenate the value of a variable
+	 	   # inside an string.
 ```
 
 ```julia
@@ -67,14 +67,14 @@ search("Goodbye",  "dby") # it give us the range of string "dby" in the word Goo
 contains("Goodbye", "oo") # it returns true because the string "oo" is in Goodbye
 ```
 
-Another common task when using strings is to convert them into numbers as it is exemplified in the next code.
+In case we want to convert an string into numbers, we have the following function:
 ```julia
 # Convert an string to number.
 a = parse(Int, "1234") # we first indicate the type (e.g.: integer), and then the number.
 a = parse(Float64, "1234.35")
 ```
 
-Question: which are the output of this code?
+Question: which are the outputs of this code?
 
 ```julia
 search("Goodbye", 'i') 	
@@ -93,7 +93,7 @@ In any language, specially in the interpreted ones like `R`, `Matlab` or `Julia`
 
 As can be appreciated in the code below, the operations in `Julia` are as in other languages. However, we highly two important features:
 
-* The multiplication of a number by a variable does not require symbol $*$.
+* The multiplication of a number by a variable does not require symbol $ * $.
 * Operators with direct assignation are defined and should be preferred due to efficiency reasons.
 
 ```julia
