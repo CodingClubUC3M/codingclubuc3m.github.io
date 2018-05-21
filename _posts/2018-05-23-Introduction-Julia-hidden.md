@@ -67,7 +67,7 @@ search("Goodbye",  "dby") # it gives us the range of string "dby" in the word Go
 contains("Goodbye", "oo") # it returns true because the string "oo" is in Goodbye
 ```
 
-In case we want to convert a string into numbers, we have the following function:
+In case we want to convert a string into a number, we have the following function:
 ```julia
 # Convert a string to a number.
 a = parse(Int, "1234") # we first indicate the type (e.g.: integer), and then the number.
@@ -94,7 +94,7 @@ In any language, particularly in the interpreted ones like `R`, `Matlab` or `Jul
 As can be appreciated in the code below, the operations in `Julia` are like in other languages. However, we highly two important features:
 
 * The multiplication of a number by a variable does not require the multiplication symbol.
-* Operators with direct assignation are defined and should be preferred due to efficiency reasons.
+* Operators with direct assignation are defined and should be preferred due to efficiency reasons (see in the code).
 
 ```julia
 # Basics
@@ -132,7 +132,7 @@ dem(2//3)   # we obtain the denominator.
 
 #### 2.1.3 Infinite precision.
 
-`Julia`, as other languages, has the possibility of working with infinite precision. However, the use of this feature, unless it is completely necessary, is highly discouraged due to efficiency reasons. Nevertheless, here is an example to show its use:
+`Julia`, as other languages, has the possibility of working with infinite precision. However, the use of this feature, unless it is completely necessary, is highly discouraged due to efficiency reasons. Nevertheless, here is a block of code showing its use:
 
 ```julia
 # We check the type of the number 34
@@ -140,7 +140,7 @@ typeof(34)
 # Now we see which is the largest number to be held by that type.
 typemax(Int)
 # If we try to save a larger number, we obtain a result without any sense.
-b = typemax(Int)*2
+b = 2*typemax(Int)
 
 # To overcome this difficulty, we could declare 'b' as a Float.
 # However, here is how we will work with infinite precision.
@@ -155,9 +155,9 @@ factorial(big(45))
 
 ### 2.2 Working with vectors.
 
-#### 2.2.1 Creating one dimensional arrays.
+#### 2.2.1 Creating one-dimensional arrays.
 
-Here there are a few examples of how to create arrays. In the code you can see that in `Julia`, opposite to other languages like `C++`, the first element that you can access in any array is 1 and not 0.
+Here there are some examples of how to create arrays. In the code you can see that in `Julia`, opposite to other languages like `C++`, the first position in any array is 1 and not 0.
 
 ```julia
 a = [1,47,7,4,55] # Use the comma separator to create a column vector!
@@ -176,7 +176,7 @@ b = rand(1:5,3)   # 3 numbers from a discrete uniform [1,5]
 v = [a; b] 	  # Concatenating two vectors. Notice that we use ';' no ','.
 ```
 
-There are other choices (no so used, but interesting) for defining an array such as:
+There are other possibilities (no so used, but interesting) for creating an array such as:
 
 ```julia
 v = [1,2,3];
@@ -186,7 +186,7 @@ repeat(v,inner=[3],outer=[2])  # It repeats each element from v 3 times and then
                                # it repeats that result 2 times.
 ```
 
-When working with vectors, `Julia` creates references (pointer to a part of the memory), so we must be cautious to avoid errors as the one shown below:
+When working with vectors, `Julia` creates references (a pointer to a part of the memory), so we must be cautious to avoid errors as the one shown below:
 
 ```julia
 original = [1,2,3,4,5,6]
@@ -245,7 +245,7 @@ Not all the functions have a version with '!'. This implies that if a function f
 
 #### 2.2.3 A range is not a vector!
 
-A really important characteristic from `Julia` language is that there exists a distinction between a range and an array. It is pretty common to create vectors in `Matlab` or `R` using the notation *a:b*, where 'a' is the beginning point of the array and 'b' the end one. Julia does not consider this an array, but a range, i.e.: a type in which we only have two parameters 'a' and 'b'. This is really useful because it saves a lot of memory (if there is no necessity of creating the array, as happens in for loops, Julia does not create it).
+A really important characteristic in the `Julia` language is that there exists a distinction between a range and an array. It is pretty common to create vectors in `Matlab` or `R` using the notation *a:b*, where 'a' is the beginning point of the array and 'b' the end one. Julia does not consider this an array, but a range, i.e.: a type in which we only have two parameters 'a' and 'b'. This is really useful because it saves a lot of memory (if there is no necessity of creating the array, as happens in for loops, Julia does not create it).
 
 ```julia
 range1 = 1:1000
@@ -357,7 +357,7 @@ s = svdfact(A) # Again it provides an struct.
 
 ### 3.1 Conditionals and loops.
 
-Apart from algebra, other of the most important things when programming is the use of conditional as well as for and while loops. The code presented in this section shows how this works in `Julia`.
+Apart from algebra, other of the most important things when programming is the use of conditionals as well as for and while loops. The code presented in this section shows how this works in `Julia`.
 
 #### 3.1.1 Conditionals.
 
@@ -453,7 +453,7 @@ end
 
 #### 3.1.4 Sentences break and continue.
 
-Also related with for and while loops, there are the sentences *continue* and *break*. Now we show a couple of example about how to use them.
+Also related to for and while loops, there are the sentences *continue* and *break*. Now we show a couple of example about how to use them.
 
 ```julia
 totalOddsNum = 0;
