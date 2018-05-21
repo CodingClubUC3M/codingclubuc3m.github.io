@@ -14,7 +14,7 @@ output:
 ---
 
 ## Intro
-In this occasion we will be learning some of the basic stuff to begin programming in [`Julia`](https://julialang.org/), a programming language developed by people at MIT. This language is getting more and more notorious among the scientific community because, besides being a free language orientated to scientific computation (like `R` or `Octave`), its developers claim to have speed performances similar to `C`, but without its "language complexity".
+In this occasion we will be learning some of the basic stuff to begin programming in [`Julia`](https://julialang.org/), a programming language developed at MIT. This language is getting more and more notorious among the scientific community because, besides being a free language orientated to scientific computation (like `R` or `Octave`), its developers claim to have speed performances similar to `C`, but without its "language complexity".
 
 Nevertheless, when starting with this language, sometimes there might arise errors in the code that are difficult to read/solve, so the task of programming can become quite annoying. To avoid them and, more important, to learn how to solve them, it is why we make this introduction to the `Julia` language.
 
@@ -41,7 +41,7 @@ Another important feature, specially when working with input and output files, i
 
 ```julia
 # Print text in console
-print("Hello"),   print("Goodbye") 	   # to print without a line break.
+print("Hello"),   print("Goodbye")     # to print without a line break.
 println("Hello"), println("Goodbye")   # to print with line break.
 println("a") # it prints character 'a'
 println(a)   # it prints the value of the variable 'a'.
