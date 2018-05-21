@@ -93,7 +93,7 @@ In any language, specially in the interpreted ones like `R`, `Matlab` or `Julia`
 
 As can be appreciated in the code below, the operations in `Julia` are as in other languages. However, we highly two important features:
 
-* The multiplication of a number by a variable does not require symbol $$ * $$.
+* The multiplication of a number by a variable does not require the multiplication symbol.
 * Operators with direct assignation are defined and should be preferred due to efficiency reasons.
 
 ```julia
@@ -157,7 +157,7 @@ factorial(big(45))
 
 #### 2.2.1 Creating one dimensional arrays.
 
-Here there are a few examples about how to create arrays. In the code you can see that in `Julia`, opposite to other languages like `C++`, the first element that you can access in any array is $$ 1 $$ and not $$ 0 $$.
+Here there are a few examples about how to create arrays. In the code you can see that in `Julia`, opposite to other languages like `C++`, the first element that you can access in any array is 1 and not 0.
 
 ```julia
 a = [1,47,7,4,55] # Use the comma separator to create a column vector!
@@ -182,8 +182,8 @@ There are other choices (no so used, but interesting) for defining an array such
 v = [1,2,3];
 repeat(v,inner=[2]) 		  # It repeats 2 times each element from 'v'
 repeat(v,outer=[3]) 		  # It repeats 3 times vector 'v'
-repeat(v,inner=[3],outer=[2]) # It repeats each element from v 3 times and then,
-                              # it repeats that result 2 times.
+repeat(v,inner=[3],outer=[2]) 	  # It repeats each element from v 3 times and then,
+                                  # it repeats that result 2 times.
 ```
 
 When working with vectors, `Julia` creates references (pointer to a part of the memory), so we must be cautious to avoid errors as the one shown below:
@@ -203,18 +203,16 @@ original # Now the original vector remains unchanged.
 
 #### 2.2.2 Basic operations.
 
-Now we list some code that is used when working with arrays.
-
-The next block is algebra-wise:
+Now we list some code that is used when working with arrays. For instance, the next block is algebra-wise:
 
 ```julia
 v = [1,4,7]
 rand(v,6)   # Sampling from a vector
 
-a' 		  	# transpose vector
-norm(a,2) 	# norm p = 2
+a' 	    # transpose vector
+norm(a,2)   # norm p = 2
 b = 2a
-a.*b 	  	# multiplication of the i-th element from 'a'  with the i-th element from b
+a.*b 	    # multiplication of the i-th element from 'a'  with the i-th element from b
 vecdot(a,b) # dot product.
 
 maximum(a)
@@ -237,7 +235,7 @@ pop!(b)        # It deletes the last element from b.
 shift!(a) 	   # It deletes the first element from a.
 unshift!(a,7)  # It adds a 7 at the beginning of vector a.
 splice!(a,2)   # It deletes the 2nd element of a.
-in(1, a) 	   # It checks if number 1 is in vector a.
+in(1, a)       # It checks if number 1 is in vector a.
 
 pos = find(a .== 2) # It shows all the positions where 'a' has a 2.  
                     # Notice the '.' before the operator ==
@@ -247,7 +245,7 @@ Not all the functions have a version with '!'. This implies that if a function f
 
 #### 2.2.3 A range is not a vector!
 
-A really important characteristic from `Julia` language is that there exists a distinction between a range and an array. It is pretty common to create vectors in `Matlab` or `R` using the notation *a:b*, where 'a' is the beginning point of the array and 'b' the end one. Julia does not consider this an array, but a range, i.e.: a type in which we have only two parameters 'a' and 'b'. This is really useful because it saves a lot of memory (if there is no necessity of creating the array, as happens in for loops, Julia does not create it).
+A really important characteristic from `Julia` language is that there exists a distinction between a range and an array. It is pretty common to create vectors in `Matlab` or `R` using the notation *a:b*, where 'a' is the beginning point of the array and 'b' the end one. Julia does not consider this an array, but a range, i.e.: a type in which we only have two parameters 'a' and 'b'. This is really useful because it saves a lot of memory (if there is no necessity of creating the array, as happens in for loops, Julia does not create it).
 
 ```julia
 range1 = 1:1000
@@ -259,7 +257,7 @@ An example of this is when creating *N* points equally spaced.
 
 ```julia
 v = linspace(1,20,15) # v is a range not a vector. 15 is the number of points
-collect(v) 					  # Again, we can transform it.
+collect(v) 	      # Again, we can transform it.
 ```
 
 
@@ -272,8 +270,8 @@ There exist different ways to create multi-dimensional arrays. Now we list some 
 
 ```julia
 A = [1 2 3 4;
-	   5 6 7 8;
-	   9 4 5 9]
+     5 6 7 8;
+     9 4 5 9]
 
 A = rand(3,3)
 B = rand(2,3)
@@ -296,6 +294,7 @@ x = 7.0;
 convert(Int8, x) # If we had, for example, 7.2, it would produce an error.
                  # When we have real numbers, we first need to round them
                  # if we want to create integers (see next code)
+		 
 x = round(rand(6)*10);
 convert(Array{Int8,1}, x) # we write 1 because we have one-dimensional array.
 
@@ -316,10 +315,10 @@ typeof(M2)
 
 #### 2.3.2 Basic operations.
 
-We now go through some of the basic operations when working with matrices.
+Let's now go over some of the basic operations when working with matrices.
 
 ```julia
-B*A		     # Matrix product
+B*A	     # Matrix product
 m = diag(A) 	
 A*m 	     # Product of a matrix by a vector
 norm(A,2)    # Matrix norm (in this case Frobenius norm).
@@ -327,7 +326,7 @@ det(A)       # Determinant of the matrix.
 
 numRows, numCols = size(A) # getting the dimensions of the matrix.
 
-x = A\y 	 # solving a linear system of equations.
+x = A\y      # solving a linear system of equations.
 
 d = eig(A)   # It saves in 'd' the eigenvalues and eigenvectors of A
 d[1]	     # We access to the first element (eigenvalues)
@@ -367,18 +366,18 @@ Notice that brackets are not required, so do not use them (it is more efficient)
 ```julia
 x = 7;
 if x < 0
-	println("negative")
+  println("negative")
 elseif x > 0
-	println("positive")
+  println("positive")
 else
-	println("zero")
+  println("zero")
 end
 
 a = -2;
-if x < 0 && a < 0 		# an AND condition
-	println("both are negative")
+if x < 0 && a < 0       # an AND condition
+  println("both are negative")
 elseif x > 0 || a > 0   # an OR condition
-	println("at least one is positive")
+  println("at least one is positive")
 end
 
 ```
