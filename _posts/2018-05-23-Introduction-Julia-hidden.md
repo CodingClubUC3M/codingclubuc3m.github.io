@@ -93,7 +93,7 @@ In any language, specially in the interpreted ones like `R`, `Matlab` or `Julia`
 
 As can be appreciated in the code below, the operations in `Julia` are as in other languages. However, we highly two important features:
 
-* The multiplication of a number by a variable does not require symbol $$*$$.
+* The multiplication of a number by a variable does not require symbol $$ * $$.
 * Operators with direct assignation are defined and should be preferred due to efficiency reasons.
 
 ```julia
@@ -157,7 +157,7 @@ factorial(big(45))
 
 #### 2.2.1 Creating one dimensional arrays.
 
-Here there are a few examples about how to create arrays. In the code you can see that in `Julia`, opposite to other languages like `C++`, the first element that you can access in any array is $$1$$ and not $$0$$.
+Here there are a few examples about how to create arrays. In the code you can see that in `Julia`, opposite to other languages like `C++`, the first element that you can access in any array is $$ 1 $$ and not $$ 0 $$.
 
 ```julia
 a = [1,47,7,4,55] # Use the comma separator to create a column vector!
