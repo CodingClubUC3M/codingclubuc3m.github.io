@@ -93,7 +93,7 @@ In any language, specially in the interpreted ones like `R`, `Matlab` or `Julia`
 
 As can be appreciated in the code below, the operations in `Julia` are as in other languages. However, we highly two important features:
 
-* The multiplication of a number by a variable does not require symbol $ * $.
+* The multiplication of a number by a variable does not require symbol $$*$$.
 * Operators with direct assignation are defined and should be preferred due to efficiency reasons.
 
 ```julia
@@ -132,7 +132,7 @@ dem(2//3)   # we obtain the denominator.
 
 #### 2.1.3 Infinite precision
 
-`Julia`, as other languages, has the possibility of working with infinite precision. However, the use of this feature, unless it is completely necessary, is highly discouraged due to efficiency reasons. Nevertheless, here is an example to exemplify its use:
+`Julia`, as other languages, has the possibility of working with infinite precision. However, the use of this feature, unless it is completely necessary, is highly discouraged due to efficiency reasons. Nevertheless, here is an example to show its use:
 
 ```julia
 # We check the type of the number 34
@@ -157,12 +157,12 @@ factorial(big(45))
 
 #### 2.2.1 Creating one dimensional arrays.
 
-Here there are a few examples about how to create arrays. In the code you can see that in `Julia`, opposite to other languages like `C++`, the first element that you can access in any array is $1$ and not $0$.
+Here there are a few examples about how to create arrays. In the code you can see that in `Julia`, opposite to other languages like `C++`, the first element that you can access in any array is $$1$$ and not $$0$$.
 
 ```julia
-a = [1,47,7,4,55] # It is important to use the comma separator to create a column vector.
+a = [1,47,7,4,55] # Use the comma separator to create a column vector!
 
-a[1] 		      # We can access to each of the elements as in other languages.
+a[1] 		  # We can access to each of the elements as in other languages.
 a[3]
 a[end]
 a[2:4]
@@ -170,10 +170,10 @@ a[2:4]
 a = ones(4) 	  # vector of 1's
 a = zeros(5)	  # vector of 0's
 
-a = rand(3) 	   # 3 numbers from a uniform (0,1)
-b = rand(1:5,3)    # 3 numbers from a discrete uniform [1,5]
+a = rand(3) 	  # 3 numbers from a uniform (0,1)
+b = rand(1:5,3)   # 3 numbers from a discrete uniform [1,5]
 
-v = [a; b] 		   # Concatenating two vectors. Notice that we use ';' no ','.
+v = [a; b] 	  # Concatenating two vectors. Notice that we use ';' no ','.
 ```
 
 There are other choices (no so used, but interesting) for defining an array such as:
