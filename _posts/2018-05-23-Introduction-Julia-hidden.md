@@ -20,7 +20,7 @@ Nevertheless, when starting with this language, sometimes there might arise erro
 
 But first things first. Before starting programming, we need where to run our code. For that we have two possibilities: 1) Run it online in JuliaBox, or 2) Execute it on the interpreter that can be download from the official website (<https://julialang.org/>). When using this second option, it is also recommended to install the IDE extension (<http://junolab.org/>).
 
-Now that this is clear, let's start!
+Now that this is clear, let's [start](https://github.com/CodingClubUC3M/codingclubuc3m.github.io/blob/master/scripts/JuliaIntro.ipynb)!
 
 ## 1 Comments & Strings.
 
