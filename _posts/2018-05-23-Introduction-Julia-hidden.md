@@ -159,15 +159,9 @@ factorial(big(45))
 Here there are some examples of how to create arrays. In the code you can see that in `Julia`, opposite to other languages like `C++`, the first position in any array is 1 and not 0.
 
 ```julia
-<<<<<<< HEAD
 a = [1,47,7,4,55]   # It is important to use the comma separator to create a column vector.
 
-a[1]                # We can access to each of the elements as in other languages.
-=======
-a = [1,47,7,4,55] # Use the comma separator to create a column vector!
-
-a[1] 		  # We can access each of the elements as in other languages.
->>>>>>> 5a37e4bfe3be71095f6062843ef7507079fa0b6b
+a[1]              # We can access to each of the elements as in other languages.
 a[3]
 a[end]
 a[2:4]
@@ -416,13 +410,8 @@ end
 A more sophisticated way of using for loops is related to the creation of arrays. As can be seen in the next code, we are creating a 2-dimensional array in which each entry is the sum of the indexes.
 
 ```julia
-<<<<<<< HEAD
 [i+j for i=1:2, j=1:3]  # Obviously, we can add more dimensions
                         # e.g.: i=1:2, j=1:3, k=1:6, d=1:4,....
-=======
-[i+j for i=1:2, j=1:3] # Obviously, we can add more dimensions
-		       # e.g.: i=1:2, j=1:3, k=1:6, d=1:4,....
->>>>>>> 5a37e4bfe3be71095f6062843ef7507079fa0b6b
 ```
 
 Instead of using the sum, we can also employ our own functions as it shown below (we will see later on how to create functions).
