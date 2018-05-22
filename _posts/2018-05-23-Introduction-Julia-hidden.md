@@ -24,7 +24,7 @@ Now that this is clear, let's start!
 
 ## 1 Comments & Strings.
 
-One of the most important things when programming is to add comments to the code we write. In `Julia` comments work as follows:
+One of the most important things when programming is to add comments to the code we write. In `Julia`, comments work as follows:
 
 ```julia
 # The comments in Julia are like in R language.
@@ -142,8 +142,7 @@ typemax(Int)
 # If we try to save a larger number, we obtain a result without any sense.
 b = 2*typemax(Int)
 
-# To overcome this difficulty, we could declare 'b' as a Float.
-# However, here is how we will work with infinite precision.
+# Using infinite precision...
 b = parse(BigInt, "80");
 b *= typemax(Int) # Now we do not obtain any error.
 
@@ -219,7 +218,7 @@ maximum(a)
 minimum(b)    	
 ```
 
-The block of code listed below is programming-oriented, i.e.: it shows functions to manipulate the elements of an array. It is important to notice that if we use a function in `Julia` which has the exclamation symbol (e.g.: function!(argument)), the argument is modified. This notation is the way that Julia uses to indicate that the argument is passed by reference.
+The block of code listed below is programming-oriented, i.e.: it shows functions to manipulate the elements of an array. It is important to notice that if we use a function in `Julia` which has the exclamation symbol (e.g.: function!(argument)), the argument is modified. This notation is the way that `Julia` uses to indicate that the argument is passed by reference.
 
 ```julia
 a = rand(1:9,10);
@@ -773,6 +772,6 @@ rm(nm)
 ## 4 References.
 An important part of the content/ideas of this document come from:
 
-* The official [`documentation`](https://docs.julialang.org/en/release-0.6/index.html).
-* Examples from [`JuliaBox`](https://auth.juliacomputing.io/dex/auth?response_type=code&client_id=dev-juliabox&state=5c5584f238e4938173139328a01adce8&redirect_uri=https%3A%2F%2Fwww.juliabox.com%2Fauth%2Flogin&nonce=a01cca2216badb2d2a43940cead5a59f&scope=openid%20email%20profile%20offline_access).
-* The website [`LearnXinYminutes`](https://learnxinyminutes.com/docs/julia/).
+* The official [documentation](https://docs.julialang.org/en/release-0.6/index.html).
+* Examples from [JuliaBox](https://auth.juliacomputing.io/dex/auth?response_type=code&client_id=dev-juliabox&state=5c5584f238e4938173139328a01adce8&redirect_uri=https%3A%2F%2Fwww.juliabox.com%2Fauth%2Flogin&nonce=a01cca2216badb2d2a43940cead5a59f&scope=openid%20email%20profile%20offline_access).
+* The website [LearnXinYminutes](https://learnxinyminutes.com/docs/julia/).
