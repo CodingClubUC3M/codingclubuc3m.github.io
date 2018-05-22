@@ -9,7 +9,7 @@ title: Calendar
 <div class="highlighter-black"> Time:  <span style="color:red;"> 23.05.2018, 15.00 - 16:00 </span>
 	<a href="https://calendar.google.com/calendar/r/eventedit?
 	text=CodingClubUC3M
-	&dates=20180523T140000Z/20180523T150000Z
+	&dates=20180523T130000Z/20180523T140000Z
 	&details=For+details,+link+here:+https://codingclubuc3m.github.io/calendar.html
 	&location=Juan+Benet+Building+7.3.J08
 	&sf=true
