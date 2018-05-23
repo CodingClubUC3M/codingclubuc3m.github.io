@@ -22,9 +22,9 @@ Nevertheless, when starting with this language, sometimes there might arise erro
 
 But first things first. Before starting programming, we need where to run our code. For that we have two possibilities: 
 
-1. Run it online in JuliaBox.
+1. Run it online in [JuliaBox](https://auth.juliacomputing.io/dex/auth?response_type=code&client_id=dev-juliabox&state=5c5584f238e4938173139328a01adce8&redirect_uri=https%3A%2F%2Fwww.juliabox.com%2Fauth%2Flogin&nonce=a01cca2216badb2d2a43940cead5a59f&scope=openid%20email%20profile%20offline_access).
 
-2. Execute it on the interpreter that can be download from the official website (<https://julialang.org/>). When using this second option, it is also recommended to install the IDE extension (<http://junolab.org/>).
+2. Execute it on the interpreter that can be download from the official [website](<https://julialang.org/>). When using this second option, it is also recommended to install the IDE [extension](<http://junolab.org/>).
 
 Now that this is clear, let's [start](https://github.com/CodingClubUC3M/codingclubuc3m.github.io/blob/master/scripts/JuliaIntro.ipynb)!
 
@@ -85,7 +85,7 @@ Question: which are the outputs of this code?
 ```julia
 search("Goodbye", 'i') 	
 search("Goodbye", "dbh")
-a = parse(Int, "1234.35") # here the error is because we are saying that we have
+a = parse(Int, "1234.35") # Here the error is because we are saying that we have
                           # an integer when it is not.
 ```
 
