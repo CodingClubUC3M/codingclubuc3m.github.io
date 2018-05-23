@@ -15,7 +15,7 @@ output:
 
 **Abstract:** The first time you read about the ```Julia``` language, the idea that sticks in your mind is "A speed **similar** to ```C```, with a simplicity **similar** to ```MATLAB``` or ```R```". And in that sentence, the key point is the word "similar", because the differences in the language with ```MATLAB``` or ```R``` might be quite stressful when things do not work as expected. This talk is just a summary of ideas and code with which I would have wished to be introduced into this language to avoid some headaches and scary error messages.
 
-## Intro.
+## Intro
 In this occasion we will be learning some of the basic stuff to begin programming in [`Julia`](https://julialang.org/), a programming language developed at MIT. This language is getting more and more notorious among the scientific community because, besides being a free language orientated to scientific computation (like `R` or `Octave`), its developers claim to have speed performances similar to `C`, but without its "language complexity".
 
 Nevertheless, when starting with this language, sometimes there might arise errors in the code that are difficult to read/solve, so the task of programming can become quite annoying. To avoid them and, more important, to learn how to solve them, it is why we make this introduction to the `Julia` language.
