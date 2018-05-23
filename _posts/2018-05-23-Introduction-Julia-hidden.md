@@ -22,7 +22,7 @@ Nevertheless, when starting with this language, sometimes there might arise erro
 
 But first things first. Before starting programming, we need where to run our code. For that we have two possibilities: 
 
-1. Run it online in JuliaBox 
+1. Run it online in JuliaBox.
 
 2. Execute it on the interpreter that can be download from the official website (<https://julialang.org/>). When using this second option, it is also recommended to install the IDE extension (<http://junolab.org/>).
 
@@ -108,8 +108,8 @@ a = 3;        # ';' does not print the result in the console.
 b = 8a + a/3; # pay attention to the multiplication.
 c = sqrt(b);
 d = 5^4;
-max(a,d)
-min(a,d) # when working with vectors the syntax changes to maximum y minimum!!!
+max(a, d)
+min(a, d)     # when working with vectors the syntax changes to maximum y minimum!!!
 
 # Operators with direct assignation: really important!!!
 a = 9;
