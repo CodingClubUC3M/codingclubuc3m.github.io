@@ -127,7 +127,7 @@ In some occasions we might be interested in computing the remainder of a divisio
 ```julia
 # Division:
 5/2 	   # common division.
-div(5,2)   # quotient of the division.
+div(5, 2)  # quotient of the division.
 5%2 	   # remainder of the division.
 
 # Rational numbers
@@ -165,7 +165,7 @@ factorial(big(45))
 Here there are some examples of how to create arrays. In the code you can see that in `Julia`, opposite to other languages like `C++`, the first position in any array is 1 and not 0.
 
 ```julia
-a = [1, 47, 7, 4, 55] # It is important to use the comma separator to create a column vector.
+a = [1, 47, 7, 4, 55] # It is important the comma separator to create a column vector.
 
 a[1]  # We can access to each of the elements as in other languages.
 a[3]
@@ -184,7 +184,7 @@ v = [a; b] 	  # Concatenating two vectors. Notice that we use ';' no ','.
 There are other possibilities (no so used, but interesting) for creating an array such as:
 
 ```julia
-v = [1,2,3];
+v = [1, 2, 3];
 repeat(v,inner = [2]) 	           # It repeats 2 times each element from 'v'
 repeat(v,outer = [3]) 	           # It repeats 3 times vector 'v'
 repeat(v,inner = [3], outer = [2]) # It repeats each element from v 3 times and then,
@@ -396,11 +396,11 @@ There are different ways of working with a for loop in `Julia`. First, we introd
 # Classic form 1: using a range
 x = 0;
 for i = 1:500  
-  x+=1;
+  x += 1;
 end
 
 # Classic form 2: using a vector
-for i in [1,4,6]
+for i in [1, 4, 6]
   println(i)
 end
 ```
@@ -409,7 +409,7 @@ Another interesting way of using a for loop is with strings, because it allows u
 
 ```julia
 # Classic form 3: using a vector of strings
-for s in ["madrid","valencia","bilbao"]
+for s in ["madrid", "valencia", "bilbao"]
   println(s, " is a city")
 end
 ```
@@ -417,7 +417,7 @@ A more sophisticated way of using for loops is related to the creation of arrays
 
 ```julia
 [i+j for i = 1:2, j = 1:3]  # Obviously, we can add more dimensions
-                            # e.g.: i=1:2, j=1:3, k=1:6, d=1:4,....
+                            # e.g.: i = 1:2, j = 1:3, k = 1:6, ...
 ```
 
 Instead of using the sum, we can also employ our own functions as it shown below (we will see later on how to create functions).
@@ -442,7 +442,7 @@ end
 # The previous operation is equivalent to:
 B = zeros(5, 7)
 for i = 1:5, j = 1:7 # We are writing all the loops in one line.
-	B[i,j] = i+j;
+	B[i, j] = i+j;
 end
 ```
 
@@ -452,7 +452,7 @@ end
 i=1
 while i <= 5
   println(i)
-  i+=1
+  i += 1
 end
 ```
 
@@ -470,7 +470,7 @@ for i = 1:10
 end
 
 totalSum = 0;
-for i=1:1000
+for i = 1:1000
   if totalSum == 1275 # A condition in which we want to scape from the for loop
     break;
   end
@@ -568,7 +568,7 @@ We must pay attention when the variable that we pass as an argument is going to 
 ```julia
 function fmatriz!(X)
   dimF, dimC = size(X)
-  for i=1:dimF, j=1:dimC
+  for i = 1:dimF, j = 1:dimC
     X[i, j] = i+j;
   end
 end
@@ -702,8 +702,8 @@ iris[:Species] # It gives me the column named 'Species'
 
 
 sort!(iris, cols = [:SepalWidth, :SepalLength]);
-sort!(iris, cols = (:Species, :SepalLength, :SepalWidth),
-                    rev = (true, false, false)); # rev = true -> from Z to A.
+sort!(iris, cols = [:Species, :SepalLength, :SepalWidth],
+                    rev = [true, false, false]); # rev = true -> from Z to A.
 
 unique(iris[:Species])
 
