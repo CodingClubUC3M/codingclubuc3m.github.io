@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: post 
 comments:  true
 title: "An Introduction to the Julia Language"
 author: "David García-Heredia"
