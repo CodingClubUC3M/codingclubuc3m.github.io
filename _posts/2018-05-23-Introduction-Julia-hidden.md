@@ -20,11 +20,15 @@ In this occasion we will be learning some of the basic stuff to begin programmin
 
 Nevertheless, when starting with this language, sometimes there might arise errors in the code that are difficult to read/solve, so the task of programming can become quite annoying. To avoid them and, more important, to learn how to solve them, it is why we make this introduction to the `Julia` language.
 
-But first things first. Before starting programming, we need where to run our code. For that we have two possibilities: 1) Run it online in JuliaBox, or 2) Execute it on the interpreter that can be download from the official website (<https://julialang.org/>). When using this second option, it is also recommended to install the IDE extension (<http://junolab.org/>).
+But first things first. Before starting programming, we need where to run our code. For that we have two possibilities: 
+
+1. Run it online in JuliaBox 
+
+2. Execute it on the interpreter that can be download from the official website (<https://julialang.org/>). When using this second option, it is also recommended to install the IDE extension (<http://junolab.org/>).
 
 Now that this is clear, let's [start](https://github.com/CodingClubUC3M/codingclubuc3m.github.io/blob/master/scripts/JuliaIntro.ipynb)!
 
-## 1 Comments & Strings
+## 1 Comments & strings
 
 One of the most important things when programming is to add comments to the code we write. In `Julia`, comments work as follows:
 
@@ -161,9 +165,9 @@ factorial(big(45))
 Here there are some examples of how to create arrays. In the code you can see that in `Julia`, opposite to other languages like `C++`, the first position in any array is 1 and not 0.
 
 ```julia
-a = [1,47,7,4,55]   # It is important to use the comma separator to create a column vector.
+a = [1, 47, 7, 4, 55] # It is important to use the comma separator to create a column vector.
 
-a[1]              # We can access to each of the elements as in other languages.
+a[1]  # We can access to each of the elements as in other languages.
 a[3]
 a[end]
 a[2:4]
@@ -172,7 +176,7 @@ a = ones(4) 	  # vector of 1's
 a = zeros(5)	  # vector of 0's
 
 a = rand(3) 	  # 3 numbers from a uniform (0,1)
-b = rand(1:5,3)   # 3 numbers from a discrete uniform [1,5]
+b = rand(1:5, 3)  # 3 numbers from a discrete uniform [1,5]
 
 v = [a; b] 	  # Concatenating two vectors. Notice that we use ';' no ','.
 ```
@@ -181,24 +185,24 @@ There are other possibilities (no so used, but interesting) for creating an arra
 
 ```julia
 v = [1,2,3];
-repeat(v,inner=[2]) 	       # It repeats 2 times each element from 'v'
-repeat(v,outer=[3]) 	       # It repeats 3 times vector 'v'
-repeat(v,inner=[3],outer=[2])  # It repeats each element from v 3 times and then,
-                               # it repeats that result 2 times.
+repeat(v,inner = [2]) 	           # It repeats 2 times each element from 'v'
+repeat(v,outer = [3]) 	           # It repeats 3 times vector 'v'
+repeat(v,inner = [3], outer = [2]) # It repeats each element from v 3 times and then,
+                                   # it repeats that result 2 times.
 ```
 
 When working with vectors, `Julia` creates references (a pointer to a part of the memory), so we must be cautious to avoid errors as the one shown below:
 
 ```julia
-original = [1,2,3,4,5,6]
+original = [1, 2, 3, 4, 5, 6]
 v = original # We are creating a reference no copying it!
 v[1] = 22    # So, if we modify the first element in any reference...
 original     # all the references notice it!
 
 # To copy an array we have to use an specific function.
-original = [1,2,3,4,5,6]
+original = [1, 2, 3, 4, 5, 6]
 v = copy(original)
-v [1] = 22
+v[1] = 22
 original # Now the original vector remains unchanged.
 ```
 
@@ -207,14 +211,14 @@ original # Now the original vector remains unchanged.
 Now we list some code that is used when working with arrays. For instance, the next block is algebra-wise:
 
 ```julia
-v = [1,4,7]
-rand(v,6)   # Sampling from a vector
+v = [1, 4, 7]
+rand(v, 6)   # Sampling from a vector
 
-a' 	    # transpose vector
-norm(a,2)   # norm p = 2
+a' 	     # transpose vector
+norm(a, 2)   # norm p = 2
 b = 2a
-a.*b 	    # multiplication of the i-th element from 'a'  with the i-th element from b
-vecdot(a,b) # dot product.
+a.*b 	     # multiplication of the i-th element from 'a'  with the i-th element from b
+vecdot(a, b) # dot product.
 
 maximum(a)
 minimum(b)    	
@@ -223,19 +227,19 @@ minimum(b)
 The block of code listed below is programming-oriented, i.e.: it shows functions to manipulate the elements of an array. It is important to notice that if we use a function in `Julia` which has the exclamation symbol (e.g.: function!(argument)), the argument is modified. This notation is the way that `Julia` uses to indicate that the argument is passed by reference.
 
 ```julia
-a = rand(1:9,10);
+a = rand(1:9, 10);
 
 sort(a)  # We sort the elements of a vector.
 a        # However, the vector remains unchanged.
 sort!(a) # If we used the function defined with '!'...
 a        # Now the original vector has been modified!!!
 
-push!(a,3)     # It sets a 3 at the end of vector a.
-append!(a,b)   # It combines a and b in vector a.
+push!(a, 3)    # It sets a 3 at the end of vector a.
+append!(a, b)  # It combines a and b in vector a.
 pop!(b)        # It deletes the last element from b.
 shift!(a)      # It deletes the first element from a.
-unshift!(a,7)  # It adds a 7 at the beginning of vector a.
-splice!(a,2)   # It deletes the 2nd element of a.
+unshift!(a, 7) # It adds a 7 at the beginning of vector a.
+splice!(a, 2)  # It deletes the 2nd element of a.
 in(1, a)       # It checks if number 1 is in vector a.
 
 pos = find(a .== 2) # It shows all the positions where 'a' has a 2.  
@@ -257,8 +261,8 @@ array1 = collect(rango1); # Now we have an array as in R or Matlab.
 An example of this is when creating *N* points equally spaced.
 
 ```julia
-v = linspace(1,20,15) # v is a range not a vector. 15 is the number of points
-collect(v) 	      # Again, we can transform it.
+v = linspace(1, 20, 15) # v is a range not a vector. 15 is the number of points
+collect(v) 	        # Again, we can transform it.
 ```
 
 
@@ -274,21 +278,21 @@ A = [1 2 3 4;
      5 6 7 8;
      9 4 5 9]
 
-A = rand(3,3)
-B = rand(2,3)
+A = rand(3, 3)
+B = rand(2, 3)
 
 eye(4)
-ones(2,3)
-zeros(4,4) # zeros(Int8, 4, 4); Specifying a particular type (e.g.: Int8)
-           # we can save a lot of memory when the default type (Float64)
-           # is not needed.
+ones(2, 3)
+zeros(4, 4) # zeros(Int8, 4, 4); Specifying a particular type (e.g.: Int8)
+            # we can save a lot of memory when the default type (Float64)
+            # is not needed.
 ```
 
 Related to the last comment in the code, we can also transform types to save memory once the matrix is already created (check the code below). However, it is recommended to avoid the transformation if possible and create the matrix directly with the type we want.
 
 ```julia
-K = zeros(5,5)                # We create a matrix in Float64
-K = convert(Array{Int8,2},K)  # Using the function 'convert' we transform it.
+K = zeros(5, 5)                 # We create a matrix in Float64
+K = convert(Array{Int8, 2}, K)  # Using the function 'convert' we transform it.
 
 # Here there are some example using the function convert:
 x = 7.0;
@@ -297,7 +301,7 @@ convert(Int8, x) # If we had, for example, 7.2, it would produce an error.
                  # if we want to create integers (see next code)
 		 
 x = round(rand(6)*10);
-convert(Array{Int8,1}, x) # we write 1 because we have one-dimensional array.
+convert(Array{Int8, 1}, x) # we write 1 because we have one-dimensional array.
 
 # With function 'round' we can also make transformations:
 K = round(Int8, K)
@@ -322,7 +326,7 @@ Let's now go over some of the basic operations when working with matrices.
 B*A	     # Matrix product
 m = diag(A) 	
 A*m 	     # Product of a matrix by a vector
-norm(A,2)    # Matrix norm (in this case Frobenius norm).
+norm(A, 2)   # Matrix norm (in this case Frobenius norm).
 det(A)       # Determinant of the matrix.
 
 numRows, numCols = size(A) # getting the dimensions of the matrix.
@@ -412,32 +416,32 @@ end
 A more sophisticated way of using for loops is related to the creation of arrays. As can be seen in the next code, we are creating a 2-dimensional array in which each entry is the sum of the indexes.
 
 ```julia
-[i+j for i=1:2, j=1:3]  # Obviously, we can add more dimensions
-                        # e.g.: i=1:2, j=1:3, k=1:6, d=1:4,....
+[i+j for i = 1:2, j = 1:3]  # Obviously, we can add more dimensions
+                            # e.g.: i=1:2, j=1:3, k=1:6, d=1:4,....
 ```
 
 Instead of using the sum, we can also employ our own functions as it shown below (we will see later on how to create functions).
 
 ```julia
-function f(x,y) return x*y end
+function f(x, y) return x*y end
 
-[f(i,j) for i=1:2, j=1:3] # we use our own function.
+[f(i, j) for i = 1:2, j = 1:3] # we use our own function.
 ```
 
 To conclude the part of using for loops, we show an interesting feature of the `Julia` language that allows us to write code in a more compact way.
 
 ```julia
-A = zeros(5,7)
+A = zeros(5, 7)
 
-for i=1:5
-  for j=1:7
-    A[i,j] = i+j; # Notice that this is equal to [i+j for i=1:5, j=1:7]
+for i = 1:5
+  for j = 1:7
+    A[i, j] = i+j; # Notice that this is equal to [i+j for i=1:5, j=1:7]
   end
 end
 
 # The previous operation is equivalent to:
-B = zeros(5,7)
-for i=1:5, j=1:7 # We are writing all the loops in one line.
+B = zeros(5, 7)
+for i = 1:5, j = 1:7 # We are writing all the loops in one line.
 	B[i,j] = i+j;
 end
 ```
@@ -446,7 +450,7 @@ end
 
 ```julia
 i=1
-while i<=5
+while i <= 5
   println(i)
   i+=1
 end
@@ -458,11 +462,11 @@ Also related to for and while loops, there are the sentences *continue* and *bre
 
 ```julia
 totalOddsNum = 0;
-for i=1:10
+for i = 1:10
   if i%2 == 0   # the number is even
     continue;   # I do not continue the rest of the loop and jump to the next step.
   end
-  totalOddsNum +=1;
+  totalOddsNum += 1;
 end
 
 totalSum = 0;
@@ -482,8 +486,8 @@ Opposite to other languages, in Julia for loops are not discouraged. To measure 
 @time sum(1:2000) 
 
 a = 0;
-@time for i=1:2000
-  a+=i;
+@time for i = 1:2000
+  a += i;
 end
 ```
 
@@ -494,12 +498,12 @@ Now let's see how we define functions in `Julia`. We will learn how to make the 
 The syntax of a function is shown in the next code, where 'function' is a keyword, 'fsum' how we name our function, and '(x,y)' the arguments that have our function.
 
 ```julia
-function fsum(x,y)
+function fsum(x, y)
   return x+y # we return the sum of the two elements
 end
 
 # We test our function
-fsum(2,3)
+fsum(2, 3)
 ```
 
 Sometimes it might be interesting to use the following idea of establishing default values:
@@ -510,18 +514,18 @@ function fsum2(x, y = 1)
 end
 
 fsum2(2)  # When we do not provide a second argument, it just add y = 1.
-fsum2(2,8)
+fsum2(2, 8)
 ```
 
 `Julia`, as other languages, has the option of returning several results. Check the following code to see how this is done.
 
 ```julia
-function f_several_returns(x,y)
+function f_several_returns(x, y)
   return x+y, x*y # Notice the comma to separate returns.
 end
 
-f_several_returns(2,4)
-s,p = f_several_returns(3,5); # we save the sum in 's' and the product in 'p'
+f_several_returns(2, 4)
+s,p = f_several_returns(3, 5); # we save the sum in 's' and the product in 'p'
 s
 p
 ```
@@ -532,30 +536,30 @@ Another interesting idea is the used of the function 'map', a predefine function
 function f(x)
   x^2
 end
-map(f, [1,2,3]) # we evaluate 3 different inputs in 'f'.
+map(f, [1, 2, 3]) # we evaluate 3 different inputs in 'f'.
 
 # If the function is simple, there is no necessity of implementing it.
-map((x) -> x^2, [1,2,3,7])
+map((x) -> x^2, [1, 2, 3, 7])
 
 # Another example, but with several arguments
-function f2(x,y)
+function f2(x, y)
   2(x+y)
 end
-map(f2, [1,2,3], [10,11,12])
+map(f2, [1, 2, 3], [10, 11, 12])
 ```
 
 Notice that `Julia`, as far as the code is coherent, does not ask to specify if the argument is a number, a vector or another element.
 
 ```julia
 function fvect(v) # I can pass a vector or a Matrix
-  v +=1;
+  v += 1;
   return v
 end
 
-v1 = [1,2,3,4]
+v1 = [1, 2, 3, 4]
 fvect(v1)
 v1 # Notice that v1 remains unchanged. If we want it to be modified: v1 = fvect(v1)
-A = ones(3,3)
+A = ones(3, 3)
 fvect(A)
 ```
 
@@ -565,11 +569,11 @@ We must pay attention when the variable that we pass as an argument is going to 
 function fmatriz!(X)
   dimF, dimC = size(X)
   for i=1:dimF, j=1:dimC
-    X[i,j] = i+j;
+    X[i, j] = i+j;
   end
 end
 
-A = zeros(2,3)
+A = zeros(2, 3)
 fmatriz!(A);
 A
 ```
@@ -600,9 +604,9 @@ months = Dict("January" => 31, "February" => 28, "March" => 31)
 
 
 # To check the existence of elements in the dictionary, we use:
-haskey(months, "March")       # To see if the dictionary contains a key
-in(("January"  => 55),months) # To check for the existence of a key/value pair:
-in(("February" => 28),months) # To check for the existence of a key/value pair:
+haskey(months, "March")        # To see if the dictionary contains a key
+in(("January"  => 55), months) # To check for the existence of a key/value pair:
+in(("February" => 28), months) # To check for the existence of a key/value pair:
 
 # We access elements by the key.
 months["January"]
@@ -693,7 +697,7 @@ tail(iris)
 names(iris)
 
 iris[3]        # It gives us the 3rd column.
-iris[1,3]      # It gives us the first element of the 3rd column.
+iris[1, 3]     # It gives us the first element of the 3rd column.
 iris[:Species] # It gives me the column named 'Species'
 
 
@@ -704,8 +708,8 @@ sort!(iris, cols = (:Species, :SepalLength, :SepalWidth),
 unique(iris[:Species])
 
 
-df = DataFrame(a = repeat([1, 2, 3, 4], outer=[2]),
-               b = repeat([2, 1], outer=[4]),
+df = DataFrame(a = repeat([1, 2, 3, 4], outer = [2]),
+               b = repeat([2, 1], outer = [4]),
                c = randn(8))
 colwise(sum, df) # It applies the function to each column.
 		 # Be aware of applying a function to all columns when having
