@@ -2,6 +2,10 @@
   bullets: false
   captions: true
   images:
+    - src: /public/pics/2018-05-23-1.jpg
+      alt: Participants in the second session
+    - src: /public/pics/2018-05-23-1.jpg
+      alt: Participants in the second session
     - src: /public/pics/2018-05-10-1.jpg
       alt: Participants in the first session
     - data-src: /public/pics/2018-05-10-2.jpg
