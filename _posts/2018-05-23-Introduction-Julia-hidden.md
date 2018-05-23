@@ -13,6 +13,8 @@ output:
     mathjax:  default
 ---
 
+**Abstract:** The first time you read about the ```Julia``` language, the idea that sticks in your mind is "A speed **similar** to ```C```, with a simplicity **similar** to ```MATLAB``` or ```R```". And in that sentence, the key point is the word "similar", because the differences in the language with ```MATLAB``` or ```R``` might be quite stressful when things do not work as expected. This talk is just a summary of ideas and code with which I would have wished to be introduced into this language to avoid some headaches and scary error messages.
+
 ## Intro.
 In this occasion we will be learning some of the basic stuff to begin programming in [`Julia`](https://julialang.org/), a programming language developed at MIT. This language is getting more and more notorious among the scientific community because, besides being a free language orientated to scientific computation (like `R` or `Octave`), its developers claim to have speed performances similar to `C`, but without its "language complexity".
 
@@ -22,7 +24,7 @@ But first things first. Before starting programming, we need where to run our co
 
 Now that this is clear, let's [start](https://github.com/CodingClubUC3M/codingclubuc3m.github.io/blob/master/scripts/JuliaIntro.ipynb)!
 
-## 1 Comments & Strings.
+## 1 Comments & Strings
 
 One of the most important things when programming is to add comments to the code we write. In `Julia`, comments work as follows:
 
@@ -83,13 +85,13 @@ a = parse(Int, "1234.35") # here the error is because we are saying that we have
                           # an integer when it is not.
 ```
 
-## 2 Algebra.
+## 2 Algebra
 
 In any language, particularly in the interpreted ones like `R`, `Matlab` or `Julia`, algebra is one of the most used features. That is why we will start learning this part of the language.
 
-### 2.1 Working with numbers.
+### 2.1 Working with numbers
 
-#### 2.1.1 Basic operations.
+#### 2.1.1 Basic operations
 
 As can be appreciated in the code below, the operations in `Julia` are like in other languages. However, we highly two important features:
 
@@ -114,7 +116,7 @@ a *= b; # instead of a = a * b;
 a /= b; # instead of a = a/b;
 ```
 
-#### 2.1.2 Types of divisions and rational numbers.
+#### 2.1.2 Types of divisions and rational numbers
 
 In some occasions we might be interested in computing the remainder of a division or working with rational numbers. For that, we have the following commands in `Julia`:
 
@@ -130,7 +132,7 @@ num(2//3)   # we obtain the numerator.
 dem(2//3)   # we obtain the denominator.
 ```
 
-#### 2.1.3 Infinite precision.
+#### 2.1.3 Infinite precision
 
 `Julia`, as other languages, has the possibility of working with infinite precision. However, the use of this feature, unless it is completely necessary, is highly discouraged due to efficiency reasons. Nevertheless, here is a block of code showing its use:
 
@@ -152,9 +154,9 @@ factorial(big(45))
 ```
 
 
-### 2.2 Working with vectors.
+### 2.2 Working with vectors
 
-#### 2.2.1 Creating one-dimensional arrays.
+#### 2.2.1 Creating one-dimensional arrays
 
 Here there are some examples of how to create arrays. In the code you can see that in `Julia`, opposite to other languages like `C++`, the first position in any array is 1 and not 0.
 
@@ -200,7 +202,7 @@ v [1] = 22
 original # Now the original vector remains unchanged.
 ```
 
-#### 2.2.2 Basic operations.
+#### 2.2.2 Basic operations
 
 Now we list some code that is used when working with arrays. For instance, the next block is algebra-wise:
 
@@ -261,9 +263,9 @@ collect(v) 	      # Again, we can transform it.
 
 
 
-### 2.3 Working with matrices.
+### 2.3 Working with matrices
 
-#### 2.3.1 Creating two-dimensional arrays.
+#### 2.3.1 Creating two-dimensional arrays
 
 There exist different ways to create multi-dimensional arrays. Now we list some code to do it.
 
@@ -312,7 +314,7 @@ M2 = Tridiagonal(dl, d, du) # We create a tridiagonal matrix.
 typeof(M2)
 ```
 
-#### 2.3.2 Basic operations.
+#### 2.3.2 Basic operations
 
 Let's now go over some of the basic operations when working with matrices.
 
@@ -352,13 +354,13 @@ eigvecs(d)
 s = svdfact(A) # Again it provides an struct.
 ```
 
-## 3 Programming sentences.
+## 3 Programming sentences
 
-### 3.1 Conditionals and loops.
+### 3.1 Conditionals and loops
 
 Apart from algebra, other of the most important things when programming is the use of conditionals as well as for and while loops. The code presented in this section shows how this works in `Julia`.
 
-#### 3.1.1 Conditionals.
+#### 3.1.1 Conditionals
 
 Notice that brackets are not required, so do not use them (it is more efficient).
 
@@ -382,7 +384,7 @@ end
 ```
 
 
-#### 3.1.2 For loops.
+#### 3.1.2 For loops
 
 There are different ways of working with a for loop in `Julia`. First, we introduce some examples similar to other languages like `R` o `Matlab`.
 
@@ -440,7 +442,7 @@ for i=1:5, j=1:7 # We are writing all the loops in one line.
 end
 ```
 
-#### 3.1.3 While loops.
+#### 3.1.3 While loops
 
 ```julia
 i=1
@@ -450,7 +452,7 @@ while i<=5
 end
 ```
 
-#### 3.1.4 Sentences break and continue.
+#### 3.1.4 Sentences break and continue
 
 Also related to for and while loops, there are the sentences *continue* and *break*. Now we show a couple of example about how to use them.
 
@@ -472,7 +474,7 @@ for i=1:1000
 end
 ```
 
-#### 3.1.5 Speed using for loops.
+#### 3.1.5 Speed using for loops
 
 Opposite to other languages, in Julia for loops are not discouraged. To measure the time employed in an operation and the number of allocations done, we write '@time' before the code.
 
@@ -485,7 +487,7 @@ a = 0;
 end
 ```
 
-### 3.2 Functions.
+### 3.2 Functions
 
 Now let's see how we define functions in `Julia`. We will learn how to make the return of elements, how to evaluate several arguments for different scenarios at once and how to import functions from other files.
 
@@ -584,11 +586,11 @@ include("FileWithFunctions.jl")
 ```
 
 
-### 3.3 Other programming ideas.
+### 3.3 Other programming ideas
 
 In addition to the commands presented before, there are some other ideas that are good to know and that we introduce in this section.
 
-#### 3.3.1 Dictionaries.
+#### 3.3.1 Dictionaries
 
 In order to carry out searching operations, dictionaries provide a fast way to do it. Let see how we work with them in `Julia`.
 
@@ -643,7 +645,7 @@ Dictionaries can be applied in different situations, for example, when modeling 
 
 Where equation can be a type as it is shown in the subsection below.
 
-#### 3.3.2 Defining your own types.
+#### 3.3.2 Defining your own types
 
 Now we show how can you define your own types in Julia.
 
@@ -667,7 +669,7 @@ vectorPeople[end].Salary = newSalary;
 ```
 
 
-#### 3.3.3 Packages.
+#### 3.3.3 Packages
 
 Besides the default functions that are available in Julia, the user can download packages developed by the community as in R. Here we list some commands to install and work with packages.
 
@@ -727,7 +729,7 @@ writetable("NameOfFile.csv", df)     # Export the data.
 ```
 
 
-#### 3.3.4 Tips.
+#### 3.3.4 Tips
 
 To end this introduction, we expose some code that can be useful when programming in Julia.
 
@@ -769,7 +771,7 @@ df = readtable(nm)
 rm(nm)
 ```
 
-## 4 References.
+## 4 References
 An important part of the content/ideas of this document come from:
 
 * The official [documentation](https://docs.julialang.org/en/release-0.6/index.html).
