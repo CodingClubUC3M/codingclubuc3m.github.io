@@ -12,4 +12,4 @@ output:
     mathjax:  default
 ---
 
-**Abstract:** TBA! 
+**Abstract:**  In this session we will be learning how to parallelize code in ```Julia```. Through different examples, we will cover from the most basic ideas (e.g.: sending work to different processes), to more advaced ones (e.g.: automatically sequence tasks in parallel). The tutorial ends with a parallel implementation of the $k$-nearest neighbors algorithm.
