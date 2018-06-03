@@ -3,7 +3,7 @@ layout: post
 comments:  true
 title: "A brief introduction to parallel computing in Julia"
 author: "David García-Heredia"
-date: 2018-06-06 20:30:00
+date: 2018-06-06
 published: true
 visible: false
 categories: [Julia, parallel]
