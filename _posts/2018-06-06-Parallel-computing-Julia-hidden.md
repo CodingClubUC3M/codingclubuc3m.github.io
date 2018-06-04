@@ -22,7 +22,7 @@ All the code exposed here can be run either locally (downloading the Julia inter
 
 ## First approach
 
-The basic idea of parallel computing is: there are several tasks that, instead of being done sequentially, they could be carried out at the same time (improving performance) by different processes. The only restriction is that the tasks can not completly dependent (otherwise they could not be parallelized). Examples of tasks that can be parallelized are: generation of random numbers, matrix multiplication, the branch and bound algorithm, etc.
+The basic idea of parallel computing is: there are several tasks that, instead of being done sequentially, they could be carried out at the same time (improving performance) by different processes. Examples of tasks that can be parallelized are: generation of random numbers, matrix multiplication, the branch and bound algorithm, etc.
 
 When using parallel computing, there are some commands that we will need most of the time:
 
@@ -53,7 +53,7 @@ nworkers()
 workers()
 ```
 
-To carry out parallel operations, besides adding the required workers, we must learn how to communicate with them, i.e.: how to send them work to do. In our case, the communication flow will be established through *remote references* and *remote calls*. A remote reference is done for exchanging information between processes, while a remote call is used to make a request to execute a function. See more information about this topic at the [official documentation](https://docs.julialang.org/en/release-0.6/manual/parallel-computing/#Parallel-Computing-1). As for us, let's see these ideas with examples.
+To carry out parallel operations, besides adding the required workers, we must learn how to communicate with them, i.e.: how to send them work to do. In our case, the communication flow will be established through *remote references* and *remote calls*. A remote reference is done for exchanging information between processes, while a remote call is used to make a request to execute a function. You can check more information about this topic at the [official documentation](https://docs.julialang.org/en/release-0.6/manual/parallel-computing/#Parallel-Computing-1). As for us, let's see these ideas with examples.
 
 First, imagine that we want to generate two matrices formed by random numbers in worker number $2$. One of the matrices is comprised of real numbers, while the other one contains integers between $1$ and $8$.
 
@@ -72,6 +72,14 @@ fetch(r2)
 # Notice what happens once the value is fetched:
 r1
 r1[2, 2]
+
+# However, r1 is still a Future so some operations might not work:
+typeof(r1)
+sum(r1) # This does not work as expected.
+
+r3 = fetch(r1); # We save the result in another variable.
+typeof(r3)
+sum(r3)
 ```
 
 There are other ways, besides the function `remotecall()`, of sending work to the different processes. Check for instance the next code in which we create a random matrix and then we add $1$ to all its elements.
@@ -119,7 +127,7 @@ s2 = @spawnat 2 eig_sum(rand(2, 2))
 fetch(s2) # returns an error.
 ```
 
-The error in the last piece of code is because the 2nd process does not know about the function! It has only been declared at process $1$. To overcome this problem we have to use the macro `@everywhere`:
+The error in the last piece of code is because the $2$nd process does not know about the function! It has only been declared at process $1$. To overcome this problem we have to use the macro `@everywhere`:
 
 ```julia
 @everywhere function eig_sum(A) # Now all the processes know about the function.
