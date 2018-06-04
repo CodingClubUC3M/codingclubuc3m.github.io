@@ -382,7 +382,7 @@ Let's read the code:
 
 2. The macro `@schedule` is transforming the function to a task and executing it. If we had written `make_jobs(n)`, it would also have worked.
 
-3. In the `for` loop, we are launching $4$ tasks simultaneously. This implies that at the same moment, jobs $1$, $2$, $3$ and $4$ begin to be executed. Thanks to the macro `@schedule`, which is converting the function to a task (as `@async` does), we can keep track of the index in the `for` loop of the `do_work` function.
+3. In the `for` loop we are launching $4$ tasks simultaneously. This implies that at the same moment, jobs $1$, $2$, $3$ and $4$ begin to be executed. Thanks to the macro `@schedule`, which is converting the function to a task (as `@async` does), we can keep track of the index in the `for` loop of the `do_work` function.
 
 4. The last part of the code serves to see which job has *finished* before and which has been the time required for its execution. If you execute the code, you will notice that the total amount of time required by the jobs is larger than the time employed (because of parallelization). This is easy to see if you multiply by $5$ the rand time and run the code again.
 
@@ -435,7 +435,7 @@ As you can see, the code is exactly the same as before, except that in this case
 
 ## Shared arrays
 
-In the previous examples, the reader might have appreciated that the use of channels, though helpful, might not be proper for all the situation. Sometimes we might be interested in working with usual arrays, but in parallel (e.g.: for a matrix multiplication algorithm). For those situations there exists a type name `SharedArray`. This turns out to be just an array, but that can be accessed from any process. Furthermore, although the type `SharedArray` is different from `Array`, functions that ask for an `Array` they usually also work with `SharedArray`. And if not, there exists a function call `sdata()` that transform a `SharedArray` to an `Array`.
+In the previous examples, the reader might have appreciated that the use of channels, though helpful, might not be proper for all the situations. Sometimes we might be interested in working with usual arrays, but in parallel (e.g.: for a matrix multiplication algorithm). For those situations there exists a type name `SharedArray`. This turns out to be just an array, but that can be accessed from any process. Furthermore, although the type `SharedArray` is different from `Array`, functions that ask for an `Array` they usually also work with `SharedArray`. And if not, there exists a function call `sdata()` that transform a `SharedArray` to an `Array`.
 
 Let's see a quick example of how `SharedArray` works. More information and examples can be found in the [official documentation](https://docs.julialang.org/en/release-0.6/manual/parallel-computing/#man-shared-arrays-1).
 
@@ -471,11 +471,11 @@ output # We have been able to modify the array.
 
 Notice that for the dimension of the problem a parallel for does not make sense, but it is okay for teaching purposes.
 
-Besides `SharedArray`, there also exist `DistributedArray`. These arrays also allow to work in parallel, but contrary to `SharedArray`, they do not allow any worker to access to any part of the array. What this type does is to chunk the array so each process has access to a limited portion of it. The advantage of this division is that it avoids the potential error of accessing to the same cell of the array by different workers, so one modify what the previous did (supposing this is not desired). To work with distributed arrays it is necessary to install a package, so we will not work with them in this occasion. Nevertheless, on this [link](https://github.com/JuliaParallel/DistributedArrays.jl) can be found an extensive documentation about how to work with them.
+Besides `SharedArray`, there also exist `DistributedArray`. These arrays also allow to work in parallel, but contrary to `SharedArray`, they chunk the array so each process has access to a limited portion of it. The advantage of this division is that it avoids the potential error of accessing to the same cell of the array by different workers, so one modify what the previous did (supposing this is not desired). To work with distributed arrays it is necessary to install a package, so we will not work with them in this occasion. Nevertheless, on this [link](https://github.com/JuliaParallel/DistributedArrays.jl) can be found an extensive documentation about how to work with them.
 
 ## Last example
 
-To conclude this post dedicated to parallel computing, we provide a last example which is a parallel implementation of the $k$-nearest neighbors ($k$nn) algorithm. The performance of the algorithm will be tested using the famous Fisher's iris dataset, so we will need to install some packages to execute it (`DataFrames` and `RDatasets`). Recall that in this dataset there are $3$ groups of flowers: setosa, virginica and versicolor, and the goal will be to classify within a group a new one from which we just know its characteristics. Be aware that this is an example for teaching purposes, so it is probably not the most efficient implementation. Furthermore, due to these teaching purposes, at the end of the example we have formulated some questions to better understand all the details of the code.
+To conclude this post dedicated to parallel computing, we provide a last example which is a parallel implementation of the $k$-nearest neighbors ($k$nn) algorithm. The performance of the algorithm will be tested using the famous Fisher's iris dataset, so we will need to install some packages to execute it (`DataFrames` and `RDatasets`). Recall that in this dataset there are $3$ groups of flowers: setosa, virginica and versicolor, and the goal is to classify new observations (from which we just know their characteristics) within a group. Be aware that this is an example for teaching purposes, so it is probably not the most efficient implementation.
 
 With all these ideas in mind, let's start seeing the code we need. First, we will introduce everything related with the input employed in the functions.
 
@@ -503,7 +503,7 @@ Now, we are going to create a type `Point` so we can save all together informati
 
 1. To which group (setosa, virginica or versicolor) belongs a point `p` from `df_data` which is a candidate to be one of nearest neighbors.
 
-2. The distance from the point `p` to the point `x`, which belongs to `df_clas`, to classify.
+2. The distance from the point `p` to the point `x` (belonging to `df_clas`) to classify.
 
 ```julia
 @everywhere type Point
@@ -512,7 +512,7 @@ Now, we are going to create a type `Point` so we can save all together informati
 end
 ```
 
-Now, we create some functions that we will need in the algorithm.
+Now, we create some auxiliary functions that we will need.
 
 ```julia
 # We need this function to sort Points.
