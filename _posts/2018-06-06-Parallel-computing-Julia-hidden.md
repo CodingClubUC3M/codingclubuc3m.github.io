@@ -22,7 +22,7 @@ All the code exposed here can be run either locally (downloading the Julia inter
 
 ## First approach
 
-The basic idea of parallel computing is: there are several tasks that, instead of being done sequentially, they could be carried out at the same time (improving performance) by different processes. The only restriction in these tasks is that they can not completly dependent (meaning that for one to start the previous one had to be finished), because they could not be done sequentially. Examples of tasks that can be parallelized are: generation of random numbers, matrix multiplication, the branch and bound algorithm, etc.
+The basic idea of parallel computing is: there are several tasks that, instead of being done sequentially, they could be carried out at the same time (improving performance) by different processes. The only restriction is that the tasks can not completly dependent (meaning that for one to start the previous one had to be finished), because otherwise they could not be done sequentially. Examples of tasks that can be parallelized are: generation of random numbers, matrix multiplication, the branch and bound algorithm, etc.
 
 When using parallel computing, there are some commands that we will need most of the time:
 
@@ -37,7 +37,9 @@ rmprocs(2)    # Removes the specified workers, in this case the 2nd.
               # rmprocs(1) does not work because procs = 1 is not a worker.
 ```
 
-The previous code brings some new notation that must be explained. `Workers` is the name given to the processes used for parallel operations. Each worker has an identifier that we will employ to refer to it. For instance, in the code above we have removed the second worker using its id. It is important to know that the process providing the interactive `Julia` prompt always has an id equal to $1$. To clarify these commands let's run the next code:
+The previous code brings some new notation that must be explained. `Workers` is the name given to the processes used for parallel operations. Each worker has an identifier that we will employ to refer to it. For instance, in the code above we have removed the second worker using its id. It is important to know that the process providing the interactive `Julia` prompt always has an id equal to $1$. 
+
+To clarify these commands let's run the next code:
 
 ```julia
 # Before adding workers.
@@ -51,7 +53,7 @@ nworkers()
 workers()
 ```
 
-To carry out parallel operations, besides adding the required workers, we must learn how to communicate with them, i.e.: how to send them work to do. In our case, the communication flow will be established through *remote references* and *remote calls*. A remote reference is done for exchanging information between processes, while a remote call is used to make a request to execute a function. To get more information about how the communication is established, we encourage the reader to have a look at the [official documentation](https://docs.julialang.org/en/release-0.6/manual/parallel-computing/#Parallel-Computing-1). As for us, let's see these ideas with examples.
+To carry out parallel operations, besides adding the required workers, we must learn how to communicate with them, i.e.: how to send them work to do. In our case, the communication flow will be established through *remote references* and *remote calls*. A remote reference is done for exchanging information between processes, while a remote call is used to make a request to execute a function. See more information about this topic at the [official documentation](https://docs.julialang.org/en/release-0.6/manual/parallel-computing/#Parallel-Computing-1). As for us, let's see these ideas with examples.
 
 First, imagine that we want to generate two matrices formed by random numbers in worker number $2$. One of the matrices is comprised of real numbers, while the other one contains integers between $1$ and $8$.
 
