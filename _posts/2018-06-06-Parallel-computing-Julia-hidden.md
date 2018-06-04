@@ -167,12 +167,13 @@ whos()            # We see that A is created locally.
 
 s3 =  @spawnat 2 eig_sum(A) # We perform an operation in the second process.
 fetch(s3)
-@spawnat 2 whos() # Now A is also in the second process! What can be really memory-consuming.
+@spawnat 2 whos()           # Now A is also in the second process! 
+                            # What can be really memory-consuming.
 
 # Solution to the problem.
-X = rand(4, 4) # We create a new Matrix X.
-whos()         # We see how it is in the first process, but not in the second one.
-@spawnat 2 whos()
+X = rand(4, 4)    # We create a new Matrix X.
+whos()            # We see how it is in the first process,
+@spawnat 2 whos() # but not in the second one.
 
 # With this code, we will be able to use X in another process, but without duplicating it.
 let B = X
