@@ -22,7 +22,7 @@ All the code exposed here can be run either locally (downloading the Julia inter
 
 ## First approach
 
-The basic idea of parallel computing is: there are several tasks that, instead of being done sequentially, they could be carried out at the same time (improving performance) by different processes. The only restriction is that the tasks can not completly dependent (meaning that for one to start the previous one had to be finished), because otherwise they could not be done sequentially. Examples of tasks that can be parallelized are: generation of random numbers, matrix multiplication, the branch and bound algorithm, etc.
+The basic idea of parallel computing is: there are several tasks that, instead of being done sequentially, they could be carried out at the same time (improving performance) by different processes. The only restriction is that the tasks can not completly dependent (otherwise they could not be parallelized). Examples of tasks that can be parallelized are: generation of random numbers, matrix multiplication, the branch and bound algorithm, etc.
 
 When using parallel computing, there are some commands that we will need most of the time:
 
