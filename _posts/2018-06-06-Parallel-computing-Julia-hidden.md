@@ -186,7 +186,7 @@ end
 
 So far we have seen how to communicate with different processes and which are the things to pay attention when doing parallel computing. Now we are going to learn two common constructions employed in parallel computing: parallel `for` loops and parallel mapping (the use of the `map` function in parallel).
 
-We will be interesting in using a parallel `for` loop when we have a **really big** number of **easy** and **independent** tasks to do. Let us explain why we emphasized the previous words:
+We will be interested in using a parallel `for` loop when we have a **really big** number of **easy** and **independent** tasks to do. Let us explain why we emphasized the previous words:
 
 1. We need a big number of operations to do because parallel `for` loops require more data/messages movements than ordinary `for` loops, so the number of operations must be big enough to be worthwhile. 
 
@@ -237,8 +237,8 @@ n = 100000;
 x = rand(n);
 y = rand(n);
 
-# We will also use an external function to exemplify how to use them in
-# parallel for loops.
+# We will also use an external function to exemplify 
+# how to use them in parallel for loops.
 @everywhere function inside(x, y) return Int(x^2 + y^2 <= 1) end
 
 piAprox = 0.0;
@@ -292,9 +292,7 @@ Consider the previous situation with the `map` function, but now with the follow
 M = Matrix{Float64}[rand(800, 800), rand(600, 600), rand(800, 800), rand(600, 600)];
 ```
 
-It is clear that if we had two processes, it would not make any sense that one of them compute the Single Value Decomposition for the two big matrices ($800 \times 800$), and the other one for the two small ones. In this case the problem could be solved by "manually" assigning the matrices to the processes, but what would it happen if we did not know which matrices (the first one, the second one...) will be the big ones in advance?
-
-To see how to solve this problem, let's discuss the following "easy" implementation of a parallel `map` function that will also serve us to introduce new functions to work with parallel computing.
+It is clear that if we had two processes, it would not make any sense that one of them compute the Single Value Decomposition for the two big matrices ($800 \times 800$), and the other one for the two small ones. To see how to overcome this problem, let's discuss the following "easy" implementation of a parallel `map` function that will also serve us to introduce new functions to work with parallel computing.
 
 ```julia
 # The arguments are: 1) a function 'f' and 2) a list with the input.
@@ -329,7 +327,7 @@ The difficult and important part to understand in the function is the one with `
 
 1. The `@sync` block is saying "it is forbidden to skip this block and continue executing code until all the jobs are done". As we are parallelizing task that might need different times to be completed, we want to ensure that we do not continue running the program until everything is finished. You usually employ `@sync` when using an `@async` block.
 
-2. It is clear that we are using the `for` loop to go through all the processes, but what is the purpose of the `if` conditional? Well, it is establishing that the first process is only used if there are no other processes. This is because the function `myid()` is returning $1$: the number of the process in which we are executing the function. If the function were executed in worker number $4$ the process would return $4$.
+2. The `for` loop is going through all the processes and the `if` conditional is establishing that the first process is only used if there are no others available. This is because the function `myid()` is returning $1$: the number of the process in which we are executing the function. If the function were executed in worker number $4$ the process would return $4$.
 
 3. Once we are inside the condition, we start the `@async` block. The idea of this block is to launch several tasks at the same time, but not in a synchronous way, i.e.: we do not care which task starts or ends earlier, we just want to finish work as quick as we can. Thanks to the first block `@sync` we will achieve to synchronize everything at the end. Notice that `@async` is launching tasks, but **not** in different processes. We achieve to send work to each process $p$ through the use of the `remotecall_fetch()` function.
 
