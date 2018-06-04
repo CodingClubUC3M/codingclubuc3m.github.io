@@ -75,7 +75,7 @@ r1[2, 2]
 
 # However, r1 is still a Future so some operations might not work:
 typeof(r1)
-sum(r1) # This does not work as expected.
+sum(r1)         # This does not work as expected.
 
 r3 = fetch(r1); # We save the result in another variable.
 typeof(r3)
@@ -150,9 +150,10 @@ To better understand the idea of data movements, consider the following example:
 
 ```julia
 A = rand(10, 10);   # We construct the matrix locally.
-Bref1 = @spawn A^2; # We move the data to another process, where the operation is performed.
+Bref1 = @spawn A^2; # We move the data to another process to perform the operation.
 
-Bref2 = @spawn rand(10, 10)^2; # Less data movement since everything is done in the same process.
+Bref2 = @spawn rand(10, 10)^2; # Less data movement since everything 
+                               # is done in the same process.
 ```
 
 As it can be seen, the same operation can be done in two different ways. The use of one approach or another will depend on the necessities (e.g.: if the first process needs matrix `A`, the first approach might be better). We encourage the reader to check the [official documentation about this example](https://docs.julialang.org/en/release-0.6/manual/parallel-computing/#Data-Movement-1) for more information.
