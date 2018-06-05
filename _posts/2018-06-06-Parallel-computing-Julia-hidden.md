@@ -17,7 +17,7 @@ output:
 
 In this post we will learn how to take advantage of a multi-core PC through the use of parallel computing in `Julia`. It is worth to mention that several of the examples provided here come from `Julia`'s [website](<https://julialang.org/>), that is why we have decided to preserve the structure of the contents developed there. The reader may appreciate that when using the same examples, we have detailed a little bit more the explanation such that the ideas exposed can be easily understood. As a result, this post turns out to be a mix of examples: ones coming from the official documentation, and others coming from our own. 
 
-All the code exposed here can be run either locally (downloading the Julia interpreter) or online (through JuliaBox). The code that we will we use during the session can be download [here](https://raw.githubusercontent.com/CodingClubUC3M/codingclubuc3m.github.io/master/scripts/ParallelComputing.ipynb) (right click and “Save as…”), and the only requirement will be to be familiar with [the basics of `Julia`](https://codingclubuc3m.github.io/2018-05-23-Introduction-Julia.html).
+All the code exposed here can be run either locally (downloading the Julia interpreter) or online (through JuliaBox). The code that we will use during the session can be download [here](https://raw.githubusercontent.com/CodingClubUC3M/codingclubuc3m.github.io/master/scripts/ParallelComputing.ipynb) (right click and “Save as…”), and the only requirement will be to be familiar with [the basics of `Julia`](https://codingclubuc3m.github.io/2018-05-23-Introduction-Julia.html).
 
 
 ## First approach
