@@ -17,7 +17,7 @@ output:
 
 In this post we will learn how to take advantage of a multi-core PC through the use of parallel computing in `Julia`. It is worth to mention that several of the examples provided here come from `Julia`'s [website](<https://julialang.org/>), that is why we have decided to preserve the structure of the contents developed there. The reader may appreciate that when using the same examples, we have detailed a little bit more the explanation such that the ideas exposed can be easily understood. As a result, this post turns out to be a mix of examples: ones coming from the official documentation, and others coming from our own. 
 
-All the code exposed here can be run either locally (downloading the Julia interpreter) or online (through JuliaBox). The code that we will use during the session can be download [here](https://raw.githubusercontent.com/CodingClubUC3M/codingclubuc3m.github.io/master/scripts/ParallelComputing.ipynb) (right click and “Save as…”), and the only requirement will be to be familiar with [the basics of `Julia`](https://codingclubuc3m.github.io/2018-05-23-Introduction-Julia.html).
+All the code exposed here can be run either locally (downloading the Julia interpreter) or online (through JuliaBox). The code that we will use during the session can be download [here](https://raw.githubusercontent.com/CodingClubUC3M/codingclubuc3m.github.io/master/scripts/ParallelComputing.ipynb) in a Notebook file (right click and “Save as…”), and the only requirement will be to be familiar with [the basics of `Julia`](https://codingclubuc3m.github.io/2018-05-23-Introduction-Julia.html).
 
 
 ## First approach
@@ -75,7 +75,7 @@ r1[2, 2]
 
 # However, r1 is still a Future so some operations might not work:
 typeof(r1)
-sum(r1)         # This does not work as expected.
+sum(r1)         # This does not work because r1 is a Future, no an array.
 
 r3 = fetch(r1); # We save the result in another variable.
 typeof(r3)
@@ -97,7 +97,7 @@ fetch(s3) # The result changes because we are using random numbers.
 
 # Option 3: Letting Julia to select the process for us.
 s2 = @spawn rand(2, 2)     # Notice that there is no "at", so we do not specify the worker.
-s3 = @spawn 1 .+ fetch(s2) # It is Julia who select it.
+s3 = @spawn 1 .+ fetch(s2) # It is Julia that selects it.
 fetch(s3)
 ```
 
@@ -257,10 +257,12 @@ a = 0;
 @time for i = 1:20000
      a += Int(rand(Bool));
 end
+
 # Parallel for loop
 @time @parallel (+) for i = 1:20000
     Int(rand(Bool));
 end
+
 # Predefined function.
 @time sum(rand(0:1, 20000))
 
@@ -292,7 +294,7 @@ Consider the previous situation with the `map` function, but now with the follow
 M = Matrix{Float64}[rand(800, 800), rand(600, 600), rand(800, 800), rand(600, 600)];
 ```
 
-It is clear that if we had two processes, it would not make any sense that one of them compute the Single Value Decomposition for the two big matrices ($800 \times 800$), and the other one for the two small ones. To see how to overcome this problem, let's discuss the following "easy" implementation of a parallel `map` function that will also serve us to introduce new functions to work with parallel computing.
+It is clear that if we had two processes, it would not make any sense that one of them compute the Single Value Decomposition for the two big matrices ($800 \times 800$), and the other one for the two small ones. To see how to overcome this problem, let's discuss the following "easy" implementation of a parallel `map` function that will also serve us to introduce new functions employed in parallel computing.
 
 ```julia
 # The arguments are: 1) a function 'f' and 2) a list with the input.
@@ -393,7 +395,7 @@ To better understand this code we propose to the reader the following two exerci
 * Instead of using less than a second for the `sleep` function, use larger amount of time (e.g.: a mean of $2$ seconds) and analyze what happens in the `while` loop when the task has not been completed and we take the output from channel `results`.
 
 
-Notice that in the last example, all the tasks were running in the same process. However, we started motivating the use of channels saying that we might be interested in launching the tasks in different processes. To do that, we would need to communicate different processes in the reading/writing operations, so an especial type of channels is needed: `RemoteChannel`. Let's see an implementation of the previous code using them. The difference, in this case, is that the jobs will be executed in different processes and not in the first one as before.
+Notice that in the last example, all the tasks were running in the same process. However, we started motivating the use of channels saying that we might be interested in launching the tasks in different processes. To do that, we would need to communicate different processes in the reading/writing operations, so an especial type of channel is needed: `RemoteChannel`. Let's see an implementation of the previous code using them. The difference, in this case, is that the jobs will be executed in different processes and not in the first one as before.
 
 ```julia
 addprocs(4); # Add worker processes.
