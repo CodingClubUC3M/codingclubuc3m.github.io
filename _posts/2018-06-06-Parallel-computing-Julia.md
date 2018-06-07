@@ -266,7 +266,7 @@ end
 # Predefined function.
 @time sum(rand(0:1, 20000))
 
-# For no so small amount of work:
+# For a not so small amount of work:
 n = 200000000;
 @time @parallel (+) for i = 1:n
     Int(rand(Bool))
@@ -307,7 +307,7 @@ function f_pmap(f, lst)
     nextidx() = (idx = i; i += 1; idx) # Function to know which is the next work item.
                                        # In this case it is just an index.
     @sync begin # See below the discussion about all this part.
-        for p=1:np
+        for p = 1:np
             if p != myid() || np == 1
                 @async begin
                     while true
@@ -522,7 +522,7 @@ Now, we create some auxiliary functions that we will need.
     return x.d
 end
 
-# We CAN NOT use a dot product because we have DataFrames NO arrays!
+# We CAN NOT use a dot product because we have DataFrames NOT arrays!
 # In the function, 'n' is the number of the columns in the dataset.
 @everywhere function distance(df_data::DataFrame, df_clas::DataFrame, n::Int)
     d = 0.0;
@@ -642,7 +642,7 @@ The first time you run the parallel implementation the execution time is not rea
 
 2. Is it worth to use the parallel implementation to classify $10$ points?
 
-3. Can you modify the code so Channels are used instead of arrays?
+3. Can you modify the code so channels are used instead of arrays?
 
 4. Why the use of other functions as `remotecall` will provide faster running times than `remotecall_fetch`?
 
