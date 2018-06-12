@@ -6,10 +6,10 @@ title: Calendar
 ## Next events
 
 <div class="highlighter-black"> Title: <span style="color:red;"> An introduction to Shiny as a teaching resource </span> </div>
-<div class="highlighter-black"> Time:  <span style="color:red;"> 19.06.2018, 16.30 - 17:30 </span>
+<div class="highlighter-black"> Time:  <span style="color:red;"> 19.06.2018, 15.00 - 16:00 </span>
 	<a href="https://calendar.google.com/calendar/r/eventedit?
 	text=CodingClubUC3M
-	&dates=20180619T143000Z/20180619T153000Z
+	&dates=20180619T130000Z/20180619T140000Z
 	&details=For+details,+link+here:+https://codingclubuc3m.github.io/calendar.html
 	&location=Campomanes+Building+10.1.5
 	&sf=true
