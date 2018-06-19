@@ -396,6 +396,7 @@ for (epoch in 1:2000) {
 # cat("Coefficient: ", sess$run(A), "\n Intercept: ", sess$run(b), "\n")
 sess$close()
 tf$reset_default_graph()
+rm(list = ls()) 
 {% endhighlight %}
 
 
@@ -458,7 +459,7 @@ grad = tf$gradients(neg_log_likelihood,c(A, b, sigma))
 
 
 # optimizer
-optimizer = tf$train$AdamOptimizer(learning_rate=0.0001)
+optimizer = tf$train$AdamOptimizer(learning_rate=0.01)
 train_op = optimizer$minimize(loss=neg_log_likelihood)
 
 #############################################################
@@ -481,9 +482,9 @@ cat("Coefficient: ", sess$run(A), "\n Intercept: ", sess$run(b), "\n Sigma: ", s
 
 
 {% highlight text %}
-## Coefficient:  0.1379263 
-##  Intercept:  0.8474575 
-##  Sigma:  0.7824487
+## Coefficient:  0.4157555 
+##  Intercept:  -0.3630754 
+##  Sigma:  0.2051031
 {% endhighlight %}
 
 
@@ -495,9 +496,9 @@ cat("Gradient wrt: d.A ", result[[3]][[1]], "\n d.b: ", result[[3]][[2]], "\n d.
 
 
 {% highlight text %}
-## Gradient wrt: d.A  -57.50495 
-##  d.b:  40.762 
-##  d.sigma:  95.03106
+## Gradient wrt: d.A  -0.02883911 
+##  d.b:  -0.006343842 
+##  d.sigma:  0
 {% endhighlight %}
 
 

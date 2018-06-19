@@ -294,6 +294,7 @@ for (epoch in 1:2000) {
 # cat("Coefficient: ", sess$run(A), "\n Intercept: ", sess$run(b), "\n")
 sess$close()
 tf$reset_default_graph()
+rm(list = ls()) 
 ```
 
 ```{r, eval=F,warning=F}
@@ -354,7 +355,7 @@ grad = tf$gradients(neg_log_likelihood,c(A, b, sigma))
 
 
 # optimizer
-optimizer = tf$train$AdamOptimizer(learning_rate=0.0001)
+optimizer = tf$train$AdamOptimizer(learning_rate=0.01)
 train_op = optimizer$minimize(loss=neg_log_likelihood)
 
 #############################################################
