@@ -162,7 +162,7 @@ Among others, the most important and common argument in input functions is the `
 library('shiny')
 
 ui <- fluidPage(
-  numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000,  value = 10),
+  numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000, value = 10),
   sliderInput(inputId = 'p', "P( X = 1 )", min = 0, max = 1, value = 0.5),
   textInput(inputId = 'title', label = 'Write a label', value = 'Plot')
 )
@@ -174,7 +174,7 @@ shinyApp(ui = ui, server = server)
 
 ### Output Objects
 
-Once we have the input values, we can use them to *produce* an output with R for being *provided* to the user in the interface. This last sentence has two parts 1) to produce and 2) to provide in the same way we have to program our App by 1) `render*()` and 2)  `*Output()` functions. 
+Once we have the input values, we can use them to *produce* an output with R for being *provided* to the user in the interface. This last sentence has two parts 1) to produce and 2) to provide in the same way we have to program our App by 1) `render*()` and 2) `*Output()` functions. 
 
 These two functions work together and each output function has its own render function counterpart. The following image presents some of this functions,
 
@@ -234,7 +234,7 @@ Up to here, we have designed very simple reactive relationship; each input is li
 library('shiny')
 
 ui <- fluidPage(
-  numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000,  value = 10),
+  numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000, value = 10),
   sliderInput(inputId = 'p', "P( X = 1 )", min = 0, max = 1, value = 0.5),
   textInput(inputId = 'title', label = 'Write a label', value = 'Plot'),
   plotOutput(outputId = 'LLN'),
@@ -271,7 +271,7 @@ shinyApp(ui = ui, server = server)
 library('shiny')
 
 ui <- fluidPage(
-  numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000,  value = 10),
+  numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000, value = 10),
   sliderInput(inputId = 'p', "P( X = 1 )", min = 0, max = 1, value = 0.5),
   textInput(inputId = 'title', label = 'Write a label', value = 'Plot'),
   plotOutput(outputId = 'LLW'),
@@ -303,7 +303,7 @@ shinyApp(ui = ui, server = server)
 library('shiny')
 
 ui <- fluidPage(
-  numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000,  value = 10),
+  numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000, value = 10),
   sliderInput(inputId = 'p', "P( X = 1 )", min = 0, max = 1, value = 0.5),
   textInput(inputId = 'title', label = 'Write a label', value = 'Plot'),
   actionButton(inputId ='go', label='Go'),
@@ -342,7 +342,7 @@ shinyApp(ui = ui, server = server)
 library('shiny')
 
 ui <- fluidPage(
-  numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000,  value = 10),
+  numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000, value = 10),
   sliderInput(inputId = 'p', "P( X = 1 )", min = 0, max = 1, value = 0.5),
   plotOutput(outputId = 'LLN'),
   verbatimTextOutput(outputId = 'stats')
@@ -393,7 +393,7 @@ library('shiny')
 ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
-      numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000,  value = 10),
+      numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000, value = 10),
       sliderInput(inputId = 'p', "P( X = 1 )", min = 0, max = 1, value = 0.5),
       textInput(inputId = 'title', label = 'Write a label', value = 'Plot')
     ),
@@ -517,7 +517,7 @@ ui <- fluidPage(
   h1('HERE GOES MY APP'),
   sidebarLayout(
     sidebarPanel(
-      numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000,  value = 10),
+      numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000, value = 10),
       sliderInput(inputId = 'p', "P( X = 1 )", min = 0, max = 1, value = 0.5),
       textInput(inputId = 'title', label = 'Write a label', value = 'Plot')
     ),
@@ -643,7 +643,7 @@ ui <- fluidPage(theme=shinytheme("cosmo"),
       selectInput('dist', 'Distribution', c("Bernoulli" = "bern", "Binomial" = "bin", "Normal" = 'norm'), selected = "bern"),
       conditionalPanel(
         condition = "input.dist == 'bern'",
-        numericInput(inputId = 'Nsample', "Sample Size", min = 1, max = 10000,  value = 10),
+        numericInput(inputId = 'Nsample', "Sample Size", min = 1, max = 10000, value = 10),
         sliderInput(inputId = 'p', "P( X = 1 )", min = 0, max = 1, value = 0.5)
       ),
       conditionalPanel(
