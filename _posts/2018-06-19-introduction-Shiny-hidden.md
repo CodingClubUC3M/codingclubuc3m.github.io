@@ -27,7 +27,7 @@ editor_options:
 
 **Abstract**
 
-The main goal of this session is to show a regular R user how to develop his/her own interactive (web) application without much effort. For doing so, we introduce the Shiny R package that makes this task simple even for an R programmer that has never heard about HTML, CSS or JavaScript (or does not care about them at all). During the session, we will develop from scratch an interactive app that illustrates the law of large numbers. This will allow us to understand the input and output of a Shiny app, as well as the whole workflow intuition for building Shiny apps.
+The main goal of this session is to show a regular R user how to develop his/her own interactive (web) application without much effort. For doing so, we introduce the Shiny R package that makes this task simple even for an R programmer that has never heard about HTML, CSS or JavaScript (or does not care about them at all). During the session, we will develop from scratch an interactive App that illustrates the law of large numbers. This will allow us to understand the input and output of a Shiny App, as well as the whole workflow intuition for building Shiny Apps.
 
 **Required packages**
 
@@ -40,12 +40,12 @@ install.packages("shiny", dependencies = TRUE)
 
 # Introduction
 
-New teaching methodologies have arised during the last years and many of them have been leaded by the introduction of emerging technologies. Bright examples are *Active Learning* or *Research-Informed Learning* phylosophies which aim to give a more participative role to the students and motivates the learning proccess by means of practical examples. 
+New teaching methodologies have arisen during the last years and many of them have been leaded by the introduction of emerging technologies. Bright examples are *Active Learning* or *Research-Informed Learning* philosophies which aim to give a more participative role to the students and motivate the learning process by means of practical examples. 
 
-In addition to be a pontetially more enjoyable approach, these methodologies have demostrated to improve significanly the performance of the students in many areas of knowledge in high level education. Freeman et Al (2014) compared the performance in undergraduate science, technology, engineering, and mathematics courses under traditional lecturing versus *Active Learning* and concluded that "average examination scores improved by about 6% in Active Learning sections, and that students in classes with traditional lecturing were 1.5 times more likely to fail than were students in classes with Active Learning". As another example, Fawcett (2018) introduced Interactive Shiny Apps for supporting *Research-Informed Learning and Teaching*. They studied its effect on students' responses in data analysis work, and assigments that require the interpretation of methods in a recently published paper. For doing so, they compare the results of student who had access to the Apps versus student that did not and they concluded that the methods benefited students, not only in terms of their ability to understand and implement advanced techniques from the recent literature but also in terms of their confidence and overall satisfaction with the course.
+In addition to be a potentially more enjoyable approach, these methodologies have demonstrated to improve significantly the performance of the students in many areas of knowledge in high level education. Freeman et Al (2014) compared the performance in undergraduate science, technology, engineering, and mathematics courses under traditional lecturing versus *Active Learning* and concluded that "average examination scores improved by about 6% in Active Learning sections, and that students in classes with traditional lecturing were 1.5 times more likely to fail than were students in classes with Active Learning". As another example, Fawcett (2018) introduced Interactive Shiny Apps for supporting *Research-Informed Learning and Teaching*. They studied its effect on students' responses in data analysis work, and assignments that require the interpretation of methods in a recently published paper. For doing so, they compare the results of student who had access to the Apps versus student that did not and they concluded that the methods benefited students, not only in terms of their ability to understand and implement advanced techniques from the recent literature but also in terms of their confidence and overall satisfaction with the course.
 In the same direction, Williams and Williams (2017) and Doi et al (2016) used R Shiny App as support for their innovation teaching projects.
 
-Universities and academic staff have noticed the potencial of such as Shiny R Applications as a teaching tool and they have put effort on developing repositories with examples in different topics.
+Universities and academic staff have noticed the potential of such as Shiny R Applications as a teaching tool and they have put effort on developing repositories with examples in different topics.
 
  - [http://stat.psu.edu/information/shiny-pilot](http://stat.psu.edu/information/shiny-pilot) 
  - [https://statistics.calpoly.edu/shiny](https://statistics.calpoly.edu/shiny)
@@ -62,19 +62,19 @@ A web page is just a set of files HTML (HyperText Markup Language), CSS (Cascadi
 
 ![](/figure/source/2018-06-19-introduction-Shiny/web.png)
 
-Each of this files enumarated above has a different goal. HTML is in charge of including the information we want to visualize and building the structure of the web. CSS introduces the desing of the web and how to present the information. Finally, JS is the programming lenguage of HTML and allows to introduce dynamics.
+Each of this files enumerated above has a different goal. HTML is in charge of including the information we want to visualize and building the structure of the web. CSS introduces the design of the web and how to present the information. Finally, JS is the programming language of HTML and allows to introduce dynamics.
 
 As the abstracts says, today we do not need knowledge about these but it is important to take it into account to value the work that Shiny is doing for us. Despite this, basic knowledge of web programming would increase exponentially your options.
 
 ## What is an Interactive App?
 
-The user can interactuate with the server in such a way he/she can lead the process behind the App. The user declare input or variables that the developer design for being modificated by him/her. Afterwards, the server uses this input for conditionally returning the output.
+The user can interact with the server in such a way he/she can lead the process behind the App. The user declare input or variables that the developer design for being modified by him/her. Afterwards, the server uses this input for conditionally returning the output.
 
-This trade off between user and server is a key point and it is the difference between a dynamic App and a static document (.pdf) or a book. The following diagram illustrates this workflow for an App runing on a server.
+This trade off between user and server is a key point and it is the difference between a dynamic App and a static document (.pdf) or a book. The following diagram illustrates this workflow for an App running on a server.
 
 ![](/figure/source/2018-06-19-introduction-Shiny/app.png)
 
-Today we will forget about the comunication betwen user and server and our dynamic App will be running locally; the user and the files providing the web are in the same place as at the right panel of the sketch above.
+Today we will forget about the communication between user and server and our dynamic App will be running locally; the user and the files providing the web are in the same place as at the right panel of the sketch above.
 
 ## What is R Shiny?
 
@@ -103,11 +103,11 @@ server <- function(input, output){}
 shinyApp(ui = ui, server = server)
 {% endhighlight %}
 
-As the diagram below shows, the input and ouput trade off plays the role of being the communication link between user and server. In addition to that, thanks to the Shiny package, one could avoid web programming and simply install the package in a machine with RStudio.
+As the diagram below shows, the input and output trade off plays the role of being the communication link between user and server. In addition to that, thanks to the Shiny package, one could avoid web programming and simply install the package in a machine with RStudio.
 
 ![](/figure/source/2018-06-19-introduction-Shiny/shinyApp.png)
 
-Once we have understood the main workflow, we are going to develope an App from a simple R code. From my point view, a good strategy for building a Shiny R App is to thing about our R code in terms of input and ouput objects. In other words, what we want to be choosen by the user and what we want to show to the user given his/her inputs selection. 
+Once we have understood the main workflow, we are going to develop an App from a simple R code. From my point view, a good strategy for building a Shiny R App is to thing about our R code in terms of input and output objects. In other words, what we want to be chosen by the user and what we want to show to the user given his/her inputs selection. 
 As an illustration, we are going to build a Shiny App based on the next code that empirically demonstrates the [Law of Large Numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers#Weak_law). For the moment, let us consider $N$ realizations of a $X\sim Bern(p)$, then sample mean $\sum_{i=1}^N \frac{x_i}{N} \rightarrow E[X]=p$ as $N \rightarrow \infty$.
 
 The code below shows a bar plot of the realization, a cumulative mean plot versus the number of realizations and some statistics.
@@ -115,11 +115,11 @@ The code below shows a bar plot of the realization, a cumulative mean plot versu
 
 {% highlight r %}
 N <- 1000 # Number of realizations
-p <- 0.25 # Parameter of the Bernouilli distribution
-x <- rbinom(N, 1, p) # Binomial ~ Bin(n=1, p) == Bernouilli ~ Ber(p) 
+p <- 0.25 # Parameter of the Bernoulli distribution
+x <- rbinom(N, 1, p) # Binomial ~ Bin(n=1, p) == Bernoulli ~ Ber(p) 
 
 par(mfrow = c(1, 2))
-barplot(table(x)/N, ylim = c(0,1), ylab='Frecuency', main = 'Barplot')
+barplot(table(x)/N, ylim = c(0, 1), ylab = 'Frecuency', main = 'Barplot')
 plot(cumsum(x)/c(1:N), type = 'l', ylab = 'Y', xlab = 'Trials', main = 'LLN')
 abline(h = p)
 {% endhighlight %}
@@ -141,7 +141,7 @@ summary(x)
 
 ### Inputs Objects
 
-In orther to see that the empirical mean converges to the expected value, one would like to see how this sample mean behave when increasing the number of realizations $N$. In the same way, one could also think about modifiying the parameter $p$ of the distribution. Therefore, we have two inputs values i.e. $p$ and $N$.
+In order to see that the empirical mean converges to the expected value, one would like to see how this sample mean behave when increasing the number of realizations $N$. In the same way, one could also think about modifying the parameter $p$ of the distribution. Therefore, we have two inputs values i.e. $p$ and $N$.
 
 There are many different functions from Shiny that allows to collect these values from the user. In the following figure, we have a set of examples:
 
@@ -189,7 +189,7 @@ help('plotOutput')
 help('verbatimTextOutput')
 {% endhighlight %}
 
-This trade off between `render*()` and `*Output()` functions is a cornerstone of reactivity. The server part would involve `output$<myOutput> <- render*(expr,...)`, it produces the desired R ouput and it contains the R code in `expr`. Then, the output can be called from the UI by `*Output(outputId = '<myOutput>')`.
+This trade off between `render*()` and `*Output()` functions is a cornerstone of reactivity. The server part would involve `output$<myOutput> <- render*(expr,...)`, it produces the desired R output and it contains the R code in `expr`. Then, the output can be called from the UI by `*Output(outputId = '<myOutput>')`.
 
 
 {% highlight r %}
@@ -223,7 +223,7 @@ shinyApp(ui = ui, server = server)
 
 ### Modulating Reactivity
 
-Up to here, we have desing very simple reactive relationship; each input is linked with a simple ouput. However, Shiny allows to have more complex connections through different functions. Some of them are the following,
+Up to here, we have designed very simple reactive relationship; each input is linked with a simple output. However, Shiny allows to have more complex connections through different functions. Some of them are the following,
 
   1) `reactive()`: this function generate a reactive expression i.e. each time one its inputs values is modified, all its code is re-run. Once we have created the reactive value `example <- reactive({code})`, you can use the result by `example()`.
   
@@ -248,7 +248,7 @@ server <- function(input, output){
   output$LLN <- renderPlot({
 
     par(mfrow = c(1,2))
-    barplot(table(data())/input$N, ylim = c(0, 1), ylab='Frecuency')
+    barplot(table(data())/input$N, ylim = c(0, 1), ylab = 'Frecuency')
     plot(cumsum(data())/c(1:input$N), type = 'l', ylab = 'Y', xlab = 'Trials', main = input$title)
     abline(h = input$p)
 
@@ -262,7 +262,7 @@ server <- function(input, output){
 shinyApp(ui = ui, server = server)
 {% endhighlight %}
 
-  2) `isolate()`: If we change any input object the code is rightaway completely re-run. We can isolate some input values in such a way the code is not re-run when modified but, of course, its effect will be taken into account.
+  2) `isolate()`: If we change any input object the code is right away completely re-run. We can isolate some input values in such a way the code is not re-run when modified but, of course, its effect will be taken into account.
 
 > Each time we modified the title we obtain a new data set. Can we isolate changes in the title of the plot?
 
@@ -296,7 +296,7 @@ server <- function(input, output){
 shinyApp(ui = ui, server = server)
 {% endhighlight %}
 
-  3) Triggers: One could also introduce action buttoms in our UI, `actionButtom()`, for controling the moment when the code reacts to an input change by using `observeEvent()`. There is also an `observe({})` that will re-run all the code inside its `{}` if any of its inputs are modified, it is a reactive function. 
+  3) Triggers: One could also introduce action buttons in our UI, `actionButtom()`, for controlling the moment when the code reacts to an input change by using `observeEvent()`. There is also an `observe({})` that will re-run all the code inside its `{}` if any of its inputs are modified, it is a reactive function. 
 
 
 {% highlight r %}
@@ -374,13 +374,13 @@ Some of this functions may appear so similar in this when applying to our exampl
 
 ## Polishing our App
 
-Up to here, we have just messed inputs and ouputs up without any structure at all. Now is the moment for making up our App and arranging the contents in a friendly and beautiful structure.  
+Up to here, we have just messed inputs and outputs up without any structure at all. Now is the moment for making up our App and arranging the contents in a friendly and beautiful structure.  
 
 As explained at the beginning, the UI part of the code is in charge of the visualization aspect and therefore all the code related with these will be located at the `fluidPage()` function.
 
 ### Adding layouts
 
-One possible option is to organize our input and output with layout functions. In the figure below, we have som examples. 
+One possible option is to organize our input and output with layout functions. In the figure below, we have some examples. 
 
 ![From Shiny [https://www.rstudio.com/resources/cheatsheets/](Cheat Sheet)](/figure/source/2018-06-19-introduction-Shiny/layout.png)
 
@@ -427,10 +427,10 @@ shinyApp(ui = ui, server = server)
 
 ### Adding tabs
 
-One could also structure the App in diffent panels with simple functions.
+One could also structure the App in different panels with simple functions.
 ![From Shiny [https://www.rstudio.com/resources/cheatsheets/](Cheat Sheet)](/figure/source/2018-06-19-introduction-Shiny/tabs.png)
 
-Lets suppose that we want to explit the different outputs in different tabs with `tabsetPanel` at our main panel layout section. And lets also add a table printing the generate data set.
+Lets suppose that we want to split the different outputs in different tabs with `tabsetPanel` at our main panel layout section. And lets also add a table printing the generate data set.
 
 
 {% highlight r %}
@@ -481,7 +481,7 @@ shinyApp(ui = ui, server = server)
 
 ### UI is an HTML document!
 
-Rstudio and Shiny converst our code inside `fluidPage` into a HTML file for builing our web App. One can observed this fact just by running the following code in the console,
+Rstudio and Shiny converts our code inside `fluidPage` into a HTML file for building our web App. One can observed this fact just by running the following code in the console,
 
 
 {% highlight r %}
@@ -507,7 +507,7 @@ fluidPage(
 )
 {% endhighlight %}
 
-The ouput is a translation of our Shiny R functions to their HTML counterparts. Then, one must suspect that is almost straighforward to add HTML code through tags. Moreover, it is also allowed to include CSS as well as JS files with `includeCSS` and `includeScript`. 
+The output is a translation of our Shiny R functions to their HTML counterparts. Then, one must suspect that is almost straightforward to add HTML code through tags. Moreover, it is also allowed to include CSS as well as JS files with `includeCSS` and `includeScript`. 
 
 
 {% highlight r %}
@@ -562,9 +562,9 @@ shinyApp(ui = ui, server = server)
 ## Other handy features
 
 ### Conditional Panels
-Following with our App, one could be willing to proof empirically the Law of Large Number but for a random variable coming from another distribution rather than Bernouilli. This task brings the problem of including inputs that depends on the selected distribution. In other words, one would need conditional panels. For example, if the selected distribution is the univariate Gaussian, one would like to have as input $\mu$ and $\sigma ^2$ rather than $p$.
+Following with our App, one could be willing to proof empirically the Law of Large Number but for a random variable coming from another distribution rather than Bernoulli. This task brings the problem of including inputs that depends on the selected distribution. In other words, one would need conditional panels. For example, if the selected distribution is the univariate Gaussian, one would like to have as input $\mu$ and $\sigma ^2$ rather than $p$.
 
-Fortuntely, we can use the function `conditionalPanel()` in addition to an extra input object for selecting the distribution. For now, lets just include a binomial, $Bin(n,p)$ and an univariate Gaussian distribution, $N(\mu, \sigma)$.
+Fortunately, we can use the function `conditionalPanel()` in addition to an extra input object for selecting the distribution. For now, lets just include a binomial, $Bin(n,p)$ and an univariate Gaussian distribution, $N(\mu, \sigma)$.
 
 
 {% highlight r %}
@@ -602,7 +602,7 @@ server <- function(input, output){
     if(input$dist == "bern"){
       x <- rbinom(input$Nsample, 1, input$p)
       par(mfrow = c(1,2))
-      barplot(table(x)/input$Nsample, ylim=c(0,1), ylab = 'Frecuency')
+      barplot(table(x)/input$Nsample, ylim = c(0, 1), ylab = 'Frecuency')
       plot(cumsum(x)/c(1:input$Nsample), type='l', ylab='Y', xlab = 'Realization')
       abline(h=input$p)
     }
