@@ -47,10 +47,10 @@ In the same direction, Williams and Williams (2017) and Doi et al (2016) used R 
 
 Universities and academic staff have noticed the potencial of such as Shiny R Applications as a teaching tool and they have put effort on developing repositories with examples in different topics.
 
- - http://stat.psu.edu/information/shiny-pilot 
- - https://statistics.calpoly.edu/shiny
- - http://www.artofstat.com/home.html
- - https://github.com/egarpor/ShinyServer
+ - [http://stat.psu.edu/information/shiny-pilot](http://stat.psu.edu/information/shiny-pilot) 
+ - [https://statistics.calpoly.edu/shiny](https://statistics.calpoly.edu/shiny)
+ - [http://www.artofstat.com/home.html](http://www.artofstat.com/home.html)
+ - [https://github.com/egarpor/ShinyServer](https://github.com/egarpor/ShinyServer)
 
 Despite the main motivation of the session is devoted to teaching and researching, Shiny App is becoming more and more employed in industry. Their usefulness and adaptability to different needs do not have limit as can be shown in these [more ambicious examples](https://shiny.rstudio.com/gallery/) and [these others](https://www.showmeshiny.com/).
 
@@ -134,7 +134,7 @@ summary(x)
 
 {% highlight text %}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   0.000   0.000   0.000   0.253   1.000   1.000
+##    0.00    0.00    0.00    0.26    1.00    1.00
 {% endhighlight %}
 
 > Which values from our code are going to be inputs and which one outputs?
@@ -143,7 +143,7 @@ summary(x)
 
 In orther to see that the empirical mean converges to the expected value, one would like to see how this sample mean behave when increasing the number of realizations $N$. In the same way, one could also think about modifiying the parameter $p$ of the distribution. Therefore, we have two inputs values i.e. $p$ and $N$.
 
-There are many different functions from Shiny that allows to collect these values from the user. In the following figure, NOTA
+There are many different functions from Shiny that allows to collect these values from the user. In the following figure, we have a set of examples:
 
 ![From Rbloggers [Rblogger posts](https://www.r-bloggers.com/building-shiny-apps-an-interactive-tutorial/)](/figure/source/2018-06-19-introduction-Shiny/shiny-inputs.png)
 
@@ -199,12 +199,12 @@ ui <- fluidPage(
   numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000,  value = 10),
   sliderInput(inputId = 'p', "P( X = 1 )", min = 0, max = 1, value = 0.5),
   textInput(inputId = 'title', label = 'Write a label', value = 'Plot'),
-  plotOutput(outputId = 'LLW'),
+  plotOutput(outputId = 'LLN'),
   verbatimTextOutput(outputId = 'stats')
 )
 
 server <- function(input, output){
-  output$LLW <- renderPlot({
+  output$LLN <- renderPlot({
     x <- rbinom(input$N, 1, input$p)
     
     par(mfrow = c(1, 2))
@@ -214,7 +214,7 @@ server <- function(input, output){
   })
   
   output$stats <- renderPrint({
-    summary(x)
+    summary(rbinom(input$N, 1, input$p))
   })
 }
 
@@ -237,7 +237,7 @@ ui <- fluidPage(
   numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000,  value = 10),
   sliderInput(inputId = 'p', "P( X = 1 )", min = 0, max = 1, value = 0.5),
   textInput(inputId = 'title', label = 'Write a label', value = 'Plot'),
-  plotOutput(outputId = 'LLW'),
+  plotOutput(outputId = 'LLN'),
   verbatimTextOutput(outputId = 'stats')
 )
 
@@ -245,7 +245,7 @@ server <- function(input, output){
   
   data <- reactive({rbinom(input$N, 1, input$p)})
   
-  output$LLW <- renderPlot({
+  output$LLN <- renderPlot({
 
     par(mfrow = c(1,2))
     barplot(table(data())/input$N, ylim = c(0, 1), ylab='Frecuency')
@@ -279,27 +279,59 @@ ui <- fluidPage(
 )
 
 server <- function(input, output){
-  
-  data <- reactive({rbinom(input$N, 1, input$p)})
-  
   output$LLW <- renderPlot({
-
+    x <- rbinom(input$N, 1, input$p)
+    
     par(mfrow = c(1, 2))
-    barplot(table(data())/input$N, ylim = c(0, 1), ylab = 'Frecuency')
-    plot(cumsum(data())/c(1:input$N), type = 'l', ylab = 'Y', xlab = 'Trials', main = isolate(input$title))
+    barplot(table(x)/input$N, ylim = c(0, 1), ylab = 'Frecuency')
+    plot(cumsum(x)/c(1:input$N), type = 'l', ylab = 'Y', xlab = 'Trials', main = isolate(input$title))
     abline(h = input$p)
-
   })
   
   output$stats <- renderPrint({
-    summary(data())
+    summary(x)
   })
 }
 
 shinyApp(ui = ui, server = server)
 {% endhighlight %}
 
-  3) Triggers: One could also introduce action buttoms in our UI, `actionButtom()`, for controling the moment when the code reacts to an input change by using `observeEvent()`.
+  3) Triggers: One could also introduce action buttoms in our UI, `actionButtom()`, for controling the moment when the code reacts to an input change by using `observeEvent()`. There is also an `observe({})` that will re-run all the code inside its `{}` if any of its inputs are modified, it is a reactive function. 
+
+
+{% highlight r %}
+library('shiny')
+
+ui <- fluidPage(
+  numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000,  value = 10),
+  sliderInput(inputId = 'p', "P( X = 1 )", min = 0, max = 1, value = 0.5),
+  textInput(inputId = 'title', label = 'Write a label', value = 'Plot'),
+  actionButton(inputId ='go', label='Go'),
+  plotOutput(outputId = 'LLW'),
+  verbatimTextOutput(outputId = 'stats')
+)
+
+server <- function(input, output){
+  observeEvent(input$go, {
+    output$LLW <- renderPlot({
+      x <- rbinom(input$N, 1, input$p)
+      
+      par(mfrow = c(1, 2))
+      barplot(table(x)/input$N, ylim = c(0, 1), ylab = 'Frecuency')
+      plot(cumsum(x)/c(1:input$N), type = 'l', ylab = 'Y', xlab = 'Trials', main = input$title)
+      abline(h = input$p)
+    })
+    
+    output$stats <- renderPrint({
+      summary(rbinom(input$N, 1, input$p))
+    })
+  }
+  
+  )
+}
+
+shinyApp(ui = ui, server = server)
+{% endhighlight %}
 
   4) Delay actions: we could also include a bottom that trigger reactive values just when clicked.  `rv <- eventReactive( input$go, {rnorm})`.
 
@@ -312,7 +344,7 @@ library('shiny')
 ui <- fluidPage(
   numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000,  value = 10),
   sliderInput(inputId = 'p', "P( X = 1 )", min = 0, max = 1, value = 0.5),
-  plotOutput(outputId = 'LLW'),
+  plotOutput(outputId = 'LLN'),
   verbatimTextOutput(outputId = 'stats')
 )
 
@@ -322,7 +354,7 @@ server <- function(input, output){
     rbinom(input$N, 1, input$p)
   })
   
-  output$LLW <- renderPlot({
+  output$LLN <- renderPlot({
     par(mfrow = c(1, 2))
     barplot(table(data())/input$N, ylim = c(0, 1), ylab = 'Frecuency')
     plot(cumsum(data())/c(1:input$N), type = 'l', ylab = 'Y', xlab = 'Trials')
@@ -337,6 +369,7 @@ server <- function(input, output){
 shinyApp(ui = ui, server = server)
 {% endhighlight %}
 
+  
 Some of this functions may appear so similar in this when applying to our example. However, each one satisfies one different need for more complex settings.   
 
 ## Polishing our App
@@ -365,7 +398,7 @@ ui <- fluidPage(
       textInput(inputId = 'title', label = 'Write a label', value = 'Plot')
     ),
     mainPanel(   
-      plotOutput(outputId = 'LLW'),
+      plotOutput(outputId = 'LLN'),
       verbatimTextOutput(outputId = 'stats')
     )
   )
@@ -375,7 +408,7 @@ server <- function(input, output){
   
   data <- reactive({rbinom(input$N, 1, input$p)})
   
-  output$LLW <- renderPlot({
+  output$LLN <- renderPlot({
 
     par(mfrow = c(1, 2))
     barplot(table(data())/input$N, ylim = c(0, 1), ylab='Frecuency')
@@ -412,9 +445,9 @@ ui <- fluidPage(
     ),
     mainPanel( 
       tabsetPanel(
-        tabPanel('tab1', plotOutput(outputId = 'LLW')),
-        tabPanel('tab2', verbatimTextOutput(outputId = 'stats')),
-        tabPanel('tab3', dataTableOutput(outputId = 'realization'))
+        tabPanel('Plot', plotOutput(outputId = 'LLN')),
+        tabPanel('Summary', verbatimTextOutput(outputId = 'stats')),
+        tabPanel('Data', dataTableOutput(outputId = 'realization'))
       )
     )
   )
@@ -424,7 +457,7 @@ server <- function(input, output){
   
   data <- reactive({rbinom(input$N, 1, input$p)})
   
-  output$LLW <- renderPlot({
+  output$LLN <- renderPlot({
 
     par(mfrow = c(1, 2))
     barplot(table(data())/input$N, ylim = c(0, 1), ylab = 'Frecuency')
@@ -488,9 +521,10 @@ ui <- fluidPage(
       sliderInput(inputId = 'p', "P( X = 1 )", min = 0, max = 1, value = 0.5),
       textInput(inputId = 'title', label = 'Write a label', value = 'Plot')
     ),
-    mainPanel( 
+    mainPanel( h2('Here we could include some comments about the App like'),
+               h3('In probability theory, the law of large numbers (LLN) is a theorem that    describes the result of performing the same experiment a large number of times. According to the law, the average of the results obtained from a large number of trials should be close to the expected value, and will tend to become closer as more trials are performed.'),
       tabsetPanel(
-        tabPanel('tab1', plotOutput(outputId = 'LLW')),
+        tabPanel('tab1', plotOutput(outputId = 'LLN')),
         tabPanel('tab2', verbatimTextOutput(outputId = 'stats')),
         tabPanel('tab3', dataTableOutput(outputId = 'realization'))
       )
@@ -503,7 +537,7 @@ server <- function(input, output){
   
   data <- reactive({rbinom(input$N, 1, input$p)})
   
-  output$LLW <- renderPlot({
+  output$LLN <- renderPlot({
 
     par(mfrow = c(1, 2))
     barplot(table(data())/input$N, ylim = c(0, 1), ylab = 'Frecuency')
@@ -527,6 +561,7 @@ shinyApp(ui = ui, server = server)
 
 ## Other handy features
 
+### Conditional Panels
 Following with our App, one could be willing to proof empirically the Law of Large Number but for a random variable coming from another distribution rather than Bernouilli. This task brings the problem of including inputs that depends on the selected distribution. In other words, one would need conditional panels. For example, if the selected distribution is the univariate Gaussian, one would like to have as input $\mu$ and $\sigma ^2$ rather than $p$.
 
 Fortuntely, we can use the function `conditionalPanel()` in addition to an extra input object for selecting the distribution. For now, lets just include a binomial, $Bin(n,p)$ and an univariate Gaussian distribution, $N(\mu, \sigma)$.
@@ -557,6 +592,72 @@ ui <- fluidPage(
           numericInput(inputId = 'mu', "Mean", min = -1000, max = 1000, value = 0),
           sliderInput(inputId = 'sd', "Sd", min = 0, max = 1000, value = 1)
         )
+    ),
+    mainPanel(plotOutput(outputId = 'LLN'))
+  )
+)
+
+server <- function(input, output){
+  output$LLN <- renderPlot({
+    if(input$dist == "bern"){
+      x <- rbinom(input$Nsample, 1, input$p)
+      par(mfrow = c(1,2))
+      barplot(table(x)/input$Nsample, ylim=c(0,1), ylab = 'Frecuency')
+      plot(cumsum(x)/c(1:input$Nsample), type='l', ylab='Y', xlab = 'Realization')
+      abline(h=input$p)
+    }
+    if(input$dist == "bin"){
+      x <- rbinom(input$Nsample2, input$trials, input$p2)
+      par(mfrow = c(1, 2))
+      barplot(table(x)/input$Nsample2, ylab = 'Frecuency')
+      plot(cumsum(x)/c(1:input$Nsample2), type = 'l', ylab = 'Y', xlab = 'Realization')
+      abline(h = input$p2*input$trials)
+    }
+    if(input$dist == "norm"){
+      x <- rnorm(input$Nsample3, input$mu, input$sd)
+      par(mfrow = c(1, 2))
+      hist(x, ylab = 'Histogram')
+      plot(cumsum(x)/c(1:input$Nsample3), type = 'l', ylab = 'Y', xlab = 'Realization')
+      abline(h = input$mu)
+    }
+    
+  })
+}
+
+shinyApp(ui = ui, server = server)
+{% endhighlight %}
+
+### Shiny themes
+
+We could also like to use a nice style but we do not want to include a CSS file. In this case, there are pre-defined themes with the package `shinythemes`.
+
+
+{% highlight r %}
+library('shiny')
+library('shinythemes')
+
+ui <- fluidPage(theme=shinytheme("cosmo"),
+  headerPanel("Law of Large Numbers"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput('dist', 'Distribution', c("Bernoulli" = "bern", "Binomial" = "bin", "Normal" = 'norm'), selected = "bern"),
+      conditionalPanel(
+        condition = "input.dist == 'bern'",
+        numericInput(inputId = 'Nsample', "Sample Size", min = 1, max = 10000,  value = 10),
+        sliderInput(inputId = 'p', "P( X = 1 )", min = 0, max = 1, value = 0.5)
+      ),
+      conditionalPanel(
+        condition = "input.dist == 'bin'",
+        numericInput(inputId = 'Nsample2', "Sample Size", min = 1, max = 10000,  value = 10),
+        sliderInput(inputId = 'trials', "Number Trials", min = 1, max = 1000, value = 1),
+        sliderInput(inputId = 'p2', "P( X = 1 )", min = 0, max = 1, value = 0.5)
+      ),
+      conditionalPanel(
+        condition = "input.dist == 'norm'",
+        numericInput(inputId = 'Nsample3', "Sample Size", min = 1, max = 10000,  value = 10),
+        numericInput(inputId = 'mu', "Mean", min = -1000, max = 1000, value = 0),
+        sliderInput(inputId = 'sd', "Sd", min = 0, max = 1000, value = 1)
+      )
     ),
     mainPanel(plotOutput(outputId = 'LLN'))
   )
