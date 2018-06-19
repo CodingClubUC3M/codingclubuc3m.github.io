@@ -53,7 +53,7 @@ Universities and academic staff have noticed the potential of such as Shiny R Ap
  - [http://www.artofstat.com/home.html](http://www.artofstat.com/home.html)
  - [https://github.com/egarpor/ShinyServer](https://github.com/egarpor/ShinyServer)
 
-Despite the main motivation of the session is devoted to teaching and researching, Shiny App is becoming more and more employed in industry. Their usefulness and adaptability to different needs do not have limit as can be shown in these [more ambicious examples](https://shiny.rstudio.com/gallery/) and [these others](https://www.showmeshiny.com/).
+Despite the main motivation of the session is devoted to teaching and researching, Shiny App is becoming more and more employed in industry. Their usefulness and adaptability to different needs do not have limit as can be shown in these [more ambitious examples](https://shiny.rstudio.com/gallery/) and [these others](https://www.showmeshiny.com/).
 
 # What is an Interactive Web R Shiny App?
 
@@ -63,13 +63,13 @@ A web page is just a set of files HTML (HyperText Markup Language), CSS (Cascadi
 
 ![](/figure/source/2018-06-19-introduction-Shiny/web.png)
 
-Each of this files enumerated above has a different goal. HTML is in charge of including the information we want to visualize and building the structure of the web. CSS introduces the design of the web and how to present the information. Finally, JS is the programming language of HTML and allows to introduce dynamics.
+Each of these files enumerated above has a different goal. HTML is in charge of including the information we want to visualize and building the structure of the web. CSS introduces the design of the web and how to present the information. Finally, JS is the programming language of HTML and allows to introduce dynamics.
 
 As the abstracts says, today we do not need knowledge about these, but it is important to take it into account to value the work that Shiny is doing for us. Despite this, basic knowledge of web programming would increase exponentially your options.
 
 ## What is an Interactive App?
 
-The user can interact with the server in such a way he/she can lead the process behind the App. The user declare input or variables that the developer design for being modified by him/her. Afterwards, the server uses this input for conditionally returning the output.
+The user can interact with the server in such a way he/she can lead the process behind the App. The user declares input or variables that the developer design for being modified by him/her. Afterwards, the server uses this input for conditionally returning the output.
 
 This trade off between user and server is a key point and it is the difference between a dynamic App and a static document (.pdf) or a book. The following diagram illustrates this workflow for an App running on a server.
 
@@ -178,7 +178,7 @@ shinyApp(ui = ui, server = server)
 
 Once we have the input values, we can use them to *produce* an output with R for being *provided* to the user in the interface. This last sentence has two parts 1) to produce and 2) to provide in the same way we have to program our App by 1) `render*()` and 2) `*Output()` functions. 
 
-These two functions work together and each output function has its own render function counterpart. The following image presents some of this functions,
+These two functions work together and each output function has its own render function counterpart. The following image presents some of these functions,
 
 ![](/figure/source/2018-06-19-introduction-Shiny/shiny-outputs.png)
 *From Shiny [Cheat Sheet](https://www.rstudio.com/resources/cheatsheets/)*
@@ -373,7 +373,7 @@ shinyApp(ui = ui, server = server)
 {% endhighlight %}
 
   
-Some of this functions may appear so similar in this when applying to our example. However, each one satisfies one different need for more complex settings.   
+Some of these functions may appear so similar in this when applying to our example. However, each one satisfies one different need for more complex settings.   
 
 ## Polishing our App
 
@@ -435,7 +435,7 @@ One could also structure the App in diffent panels with simple functions.
 ![](/figure/source/2018-06-19-introduction-Shiny/tabs.png)
 *From Shiny [https://www.rstudio.com/resources/cheatsheets/](Cheat Sheet)*
 
-Lets suppose that we want to split the different outputs in different tabs with `tabsetPanel` at our main panel layout section. And lets also add a table printing the generate data set.
+Let's suppose that we want to split the different outputs in different tabs with `tabsetPanel` at our main panel layout section. And lets also add a table printing the generate data set.
 
 
 {% highlight r %}
@@ -486,7 +486,7 @@ shinyApp(ui = ui, server = server)
 
 ### UI is an HTML document!
 
-Rstudio and Shiny converts our code inside `fluidPage` into a HTML file for building our web App. One can observed this fact just by running the following code in the console,
+Rstudio and Shiny converts our code inside `fluidPage` into a HTML file for building our web App. One can observe this fact just by running the following code in the console,
 
 
 {% highlight r %}
@@ -527,7 +527,7 @@ ui <- fluidPage(
       textInput(inputId = 'title', label = 'Write a label', value = 'Plot')
     ),
     mainPanel( h2('Here we could include some comments about the App like'),
-               h3('In probability theory, the law of large numbers (LLN) is a theorem that    describes the result of performing the same experiment a large number of times. According to the law, the average of the results obtained from a large number of trials should be close to the expected value, and will tend to become closer as more trials are performed.'),
+               h3('In probability theory, the law of large numbers (LLN) is a theorem that describes the result of performing the same experiment a large number of times. According to the law, the average of the results obtained from a large number of trials should be close to the expected value, and it will tend to become closer as more trials are performed.'),
       tabsetPanel(
         tabPanel('tab1', plotOutput(outputId = 'LLN')),
         tabPanel('tab2', verbatimTextOutput(outputId = 'stats')),
@@ -569,7 +569,7 @@ shinyApp(ui = ui, server = server)
 ### Conditional Panels
 Following with our App, one could be willing to proof empirically the Law of Large Number but for a random variable coming from another distribution rather than Bernoulli. This task brings the problem of including inputs that depends on the selected distribution. In other words, one would need conditional panels. For example, if the selected distribution is the univariate Gaussian, one would like to have as input $\mu$ and $\sigma ^2$ rather than $p$.
 
-Fortunately, we can use the function `conditionalPanel()` in addition to an extra input object for selecting the distribution. For now, lets just include a binomial, $Bin(n,p)$ and an univariate Gaussian distribution, $N(\mu, \sigma)$.
+Fortunately, we can use the function `conditionalPanel()` in addition to an extra input object for selecting the distribution. For now, let's just include a binomial, $Bin(n,p)$ and an univariate Gaussian distribution, $N(\mu, \sigma)$.
 
 
 {% highlight r %}
