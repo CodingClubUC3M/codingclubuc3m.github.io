@@ -5,7 +5,7 @@ title: "An introduction to Shiny as a teaching resource"
 author: Antonio Elías Fernández
 date: 2018-06-19
 published: true
-visible: false
+visible: true
 categories: [R, app, shiny, teaching]
 excerpt_seperator: ""
 output:
