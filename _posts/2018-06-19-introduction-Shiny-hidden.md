@@ -27,7 +27,7 @@ editor_options:
 
 **Abstract**
 
-The main goal of this session is to show a regular R user how to develop his/her own interactive (web) application without much effort. For doing so, we introduce the Shiny R package that makes this task simple even for an R programmer that has never heard about HTML, CSS or JavaScript (or does not care about them at all). During the session, we will develop from scratch an interactive app that illustrates the law of large numbers. This will allow us to understand the input and output of a Shiny app, as well as the whole workflow intuition for building Shiny apps.
+The main goal of this session is to show a regular ```R``` user how to develop his/her own interactive (web) application without much effort. For doing so, we introduce the ```Shiny``` ```R``` package that makes this task simple even for an ```R``` programmer that has never heard about ```HTML```, ```CSS``` or ```JavaScript``` (or does not care about them at all). During the session, we will develop from scratch an interactive app that illustrates the law of large numbers. This will allow us to understand the input and output of a ```Shiny``` app, as well as the whole workflow intuition for building ```Shiny``` apps.
 
 **Required packages**
 
@@ -145,7 +145,8 @@ In orther to see that the empirical mean converges to the expected value, one wo
 
 There are many different functions from Shiny that allows to collect these values from the user. In the following figure, we have a set of examples:
 
-![From Rbloggers [Rblogger posts](https://www.r-bloggers.com/building-shiny-apps-an-interactive-tutorial/)](/figure/source/2018-06-19-introduction-Shiny/shiny-inputs.png)
+![](/figure/source/2018-06-19-introduction-Shiny/shiny-inputs.png)
+*From Rbloggers [Rblogger posts](https://www.r-bloggers.com/building-shiny-apps-an-interactive-tutorial/)*
 
 These functions work as easy as a regular R function does and one could check their Description, Usage and Arguments by ``help('<functionName>') ``. However, the key point here is to answer the following question: must this chunk of code be at the UI or in the server part of our template?
 
@@ -178,7 +179,8 @@ Once we have the input values, we can use them to *produce* an output with R for
 
 This two functions work together and each output function has its own render function counterpart. The following image presents some of this functions,
 
-![From Shiny [Cheat Sheet](https://www.rstudio.com/resources/cheatsheets/)](/figure/source/2018-06-19-introduction-Shiny/shiny-outputs.png)
+![](/figure/source/2018-06-19-introduction-Shiny/shiny-outputs.png)
+*From Shiny [Cheat Sheet](https://www.rstudio.com/resources/cheatsheets/)*
 
 But one more time: must these chunks of code be at the UI, at the server part of our template?
 
@@ -382,7 +384,8 @@ As explained at the beginning, the UI part of the code is in charge of the visua
 
 One possible option is to organize our input and output with layout functions. In the figure below, we have som examples. 
 
-![From Shiny [https://www.rstudio.com/resources/cheatsheets/](Cheat Sheet)](/figure/source/2018-06-19-introduction-Shiny/layout.png)
+![](/figure/source/2018-06-19-introduction-Shiny/layout.png)
+*From Shiny [https://www.rstudio.com/resources/cheatsheets/](Cheat Sheet)*
 
 For our Shiny App example, we can define the layout with `sidebarLayout()` as follows,
 
@@ -428,7 +431,8 @@ shinyApp(ui = ui, server = server)
 ### Adding tabs
 
 One could also structure the App in diffent panels with simple functions.
-![From Shiny [https://www.rstudio.com/resources/cheatsheets/](Cheat Sheet)](/figure/source/2018-06-19-introduction-Shiny/tabs.png)
+![](/figure/source/2018-06-19-introduction-Shiny/tabs.png)
+*From Shiny [https://www.rstudio.com/resources/cheatsheets/](Cheat Sheet)*
 
 Lets suppose that we want to explit the different outputs in different tabs with `tabsetPanel` at our main panel layout section. And lets also add a table printing the generate data set.
 
