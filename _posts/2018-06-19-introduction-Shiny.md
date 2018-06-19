@@ -178,7 +178,7 @@ shinyApp(ui = ui, server = server)
 
 Once we have the input values, we can use them to *produce* an output with R for being *provided* to the user in the interface. This last sentence has two parts 1) to produce and 2) to provide in the same way we have to program our App by 1) `render*()` and 2) `*Output()` functions. 
 
-These two functions work together and each output function has its own render function counterpart. The following image presents some of these functions,
+These two functions work together and each output function has its own render function counterpart. The following image presents some of these functions.
 
 ![](/figure/source/2018-06-19-introduction-Shiny/shiny-outputs.png)
 *From Shiny [Cheat Sheet](https://www.rstudio.com/resources/cheatsheets/)*
