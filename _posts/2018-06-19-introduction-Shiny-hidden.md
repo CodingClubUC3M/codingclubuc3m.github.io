@@ -64,7 +64,7 @@ A web page is just a set of files HTML (HyperText Markup Language), CSS (Cascadi
 
 Each of this files enumerated above has a different goal. HTML is in charge of including the information we want to visualize and building the structure of the web. CSS introduces the design of the web and how to present the information. Finally, JS is the programming language of HTML and allows to introduce dynamics.
 
-As the abstracts says, today we do not need knowledge about these but it is important to take it into account to value the work that Shiny is doing for us. Despite this, basic knowledge of web programming would increase exponentially your options.
+As the abstracts says, today we do not need knowledge about these, but it is important to take it into account to value the work that Shiny is doing for us. Despite this, basic knowledge of web programming would increase exponentially your options.
 
 ## What is an Interactive App?
 
@@ -78,7 +78,7 @@ Today we will forget about the communication between user and server and our dyn
 
 ## What is R Shiny?
 
-The Shiny package in [CRAN](https://cran.r-project.org/web/packages/shiny/index.html) is a web application framework for R. Obviously, the idea of creating an application with statistical purposes is not new at all, in fact, there are many projects related with the development of [Applet](http://www.rossmanchance.com/applets/). However, this tool require high knowledge of web programming, while Shiny mitigates this drawback by nesting R functions that assemble a complete Application. 
+The Shiny package in [CRAN](https://cran.r-project.org/web/packages/shiny/index.html) is a web application framework for R. Obviously, the idea of creating an application with statistical purposes is not new at all, in fact, there are many projects related with the development of [Applet](http://www.rossmanchance.com/applets/). However, this tool requires high knowledge of web programming, while Shiny mitigates this drawback by nesting R functions that assemble a complete Application. 
 
 ![](/figure/source/2018-06-19-introduction-Shiny/cran.png)
 
@@ -116,7 +116,7 @@ The code below shows a bar plot of the realization, a cumulative mean plot versu
 {% highlight r %}
 N <- 1000 # Number of realizations
 p <- 0.25 # Parameter of the Bernoulli distribution
-x <- rbinom(N, 1, p) # Binomial ~ Bin(n=1, p) == Bernoulli ~ Ber(p) 
+x <- rbinom(N, 1, p) # Binomial ~ Bin(n = 1, p) == Bernoulli ~ Ber(p) 
 
 par(mfrow = c(1, 2))
 barplot(table(x)/N, ylim = c(0, 1), ylab = 'Frecuency', main = 'Barplot')
@@ -176,7 +176,7 @@ shinyApp(ui = ui, server = server)
 
 Once we have the input values, we can use them to *produce* an output with R for being *provided* to the user in the interface. This last sentence has two parts 1) to produce and 2) to provide in the same way we have to program our App by 1) `render*()` and 2)  `*Output()` functions. 
 
-This two functions work together and each output function has its own render function counterpart. The following image presents some of this functions,
+These two functions work together and each output function has its own render function counterpart. The following image presents some of this functions,
 
 ![From Shiny [Cheat Sheet](https://www.rstudio.com/resources/cheatsheets/)](/figure/source/2018-06-19-introduction-Shiny/shiny-outputs.png)
 
@@ -196,7 +196,7 @@ This trade off between `render*()` and `*Output()` functions is a cornerstone of
 library('shiny')
 
 ui <- fluidPage(
-  numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000,  value = 10),
+  numericInput(inputId = 'N', "Sample Size", min = 1, max = 10000, value = 10),
   sliderInput(inputId = 'p', "P( X = 1 )", min = 0, max = 1, value = 0.5),
   textInput(inputId = 'title', label = 'Write a label', value = 'Plot'),
   plotOutput(outputId = 'LLN'),
@@ -411,7 +411,7 @@ server <- function(input, output){
   output$LLN <- renderPlot({
 
     par(mfrow = c(1, 2))
-    barplot(table(data())/input$N, ylim = c(0, 1), ylab='Frecuency')
+    barplot(table(data())/input$N, ylim = c(0, 1), ylab = 'Frecuency')
     plot(cumsum(data())/c(1:input$N), type = 'l', ylab = 'Y', xlab = 'Trials', main = input$title)
     abline(h = input$p)
 
@@ -577,18 +577,18 @@ ui <- fluidPage(
         selectInput('dist', 'Distribution', c("Bernoulli" = "bern", "Binomial" = "bin", "Normal" = 'norm'), selected = "bern"),
         conditionalPanel(
           condition = "input.dist == 'bern'",
-          numericInput(inputId = 'Nsample', "Sample Size", min = 1, max = 10000,  value = 10),
+          numericInput(inputId = 'Nsample', "Sample Size", min = 1, max = 10000, value = 10),
           sliderInput(inputId = 'p', "P( X = 1 )", min = 0, max = 1, value = 0.5)
         ),
         conditionalPanel(
           condition = "input.dist == 'bin'",
-          numericInput(inputId = 'Nsample2', "Sample Size", min = 1, max = 10000,  value = 10),
+          numericInput(inputId = 'Nsample2', "Sample Size", min = 1, max = 10000, value = 10),
           sliderInput(inputId = 'trials', "Number Trials", min = 1, max = 1000, value = 1),
           sliderInput(inputId = 'p2', "P( X = 1 )", min = 0, max = 1, value = 0.5)
         ),
         conditionalPanel(
           condition = "input.dist == 'norm'",
-          numericInput(inputId = 'Nsample3', "Sample Size", min = 1, max = 10000,  value = 10),
+          numericInput(inputId = 'Nsample3', "Sample Size", min = 1, max = 10000, value = 10),
           numericInput(inputId = 'mu', "Mean", min = -1000, max = 1000, value = 0),
           sliderInput(inputId = 'sd', "Sd", min = 0, max = 1000, value = 1)
         )
@@ -648,13 +648,13 @@ ui <- fluidPage(theme=shinytheme("cosmo"),
       ),
       conditionalPanel(
         condition = "input.dist == 'bin'",
-        numericInput(inputId = 'Nsample2', "Sample Size", min = 1, max = 10000,  value = 10),
+        numericInput(inputId = 'Nsample2', "Sample Size", min = 1, max = 10000, value = 10),
         sliderInput(inputId = 'trials', "Number Trials", min = 1, max = 1000, value = 1),
         sliderInput(inputId = 'p2', "P( X = 1 )", min = 0, max = 1, value = 0.5)
       ),
       conditionalPanel(
         condition = "input.dist == 'norm'",
-        numericInput(inputId = 'Nsample3', "Sample Size", min = 1, max = 10000,  value = 10),
+        numericInput(inputId = 'Nsample3', "Sample Size", min = 1, max = 10000, value = 10),
         numericInput(inputId = 'mu', "Mean", min = -1000, max = 1000, value = 0),
         sliderInput(inputId = 'sd', "Sd", min = 0, max = 1000, value = 1)
       )
@@ -668,8 +668,8 @@ server <- function(input, output){
     if(input$dist == "bern"){
       x <- rbinom(input$Nsample, 1, input$p)
       par(mfrow = c(1,2))
-      barplot(table(x)/input$Nsample, ylim=c(0,1), ylab = 'Frecuency')
-      plot(cumsum(x)/c(1:input$Nsample), type='l', ylab='Y', xlab = 'Realization')
+      barplot(table(x)/input$Nsample, ylim = c(0, 1), ylab = 'Frecuency')
+      plot(cumsum(x)/c(1:input$Nsample), type='l', ylab = 'Y', xlab = 'Realization')
       abline(h=input$p)
     }
     if(input$dist == "bin"){
