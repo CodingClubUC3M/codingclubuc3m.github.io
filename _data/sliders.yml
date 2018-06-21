@@ -1,5 +1,5 @@
 - selector: slider1
-  bullets: false
+  bullets: true
   captions: true
   images:
     - src: /public/pics/2018-06-19-1.jpg
