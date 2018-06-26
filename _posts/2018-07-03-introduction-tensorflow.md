@@ -12,4 +12,4 @@ output:
     mathjax:  default
 ---
 
-**Abstract:** ```Tensorflow``` has been widely used for many applications in machine learning and deep learning. However, ```Tensorflow``` is more than that, it is a general purpose computing library. Based on that, people have created a rich ecosystem surround for quickly developing models. In this talk, I will show how statistician can get most of the main features in ```tensorflow``` such as automatic differentiation, opimization and Bayesian analysis through a simple linear regression example.  
+**Abstract:** ```Tensorflow``` has been widely used for many applications in machine learning and deep learning. However, ```Tensorflow``` is more than that, it is a general purpose computing library. Based on that, people have created a rich ecosystem for quickly developing models. In this talk, I will show how statisticians can get most of the main features in ```Tensorflow``` such as automatic differentiation, optimization and Bayesian analysis through a simple linear regression example.  
