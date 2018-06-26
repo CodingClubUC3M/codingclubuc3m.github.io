@@ -71,7 +71,7 @@ pip3 install --upgrade tfp-nightly    # depends on tensorflow (CPU-only)
 
 {% highlight bash %}
 sudo apt-get install python3-pip python3-dev
-pip3 install ```TensorFlow```
+pip3 install tensorflow
 pip3 install --upgrade tfp-nightly    # depends on tensorflow (CPU-only)
 {% endhighlight %}
 
