@@ -315,7 +315,7 @@ Here are few things that we summary in ```TensorBoard```. The algorithm reachs c
 
 ## Maximum likelihood with ```TensorFlow```
 
-Tensorflow contains a large collection of probability distributions. ```tf$contrib$distributions``` provides some common distribution such as Bernoulli, Binomial, Uniform, Normal, Student-t, ... The interesting feature of these functions is automatic differentiation. Thus, we just need to sepecify the likelihood function of the model and let ```TensorFlow``` takes care of the likelihood. ```TensorFlow``` uses reserve mode automatic differentiation.
+Tensorflow contains a large collection of probability distributions. ```tf$contrib$distributions``` provides some common distribution such as Bernoulli, Binomial, Uniform, Normal, Student-t,... The interesting feature of these functions is automatic differentiation. Thus, we just need to sepecify the likelihood function of the model and let ```TensorFlow``` takes care of the likelihood. ```TensorFlow``` uses reserve mode automatic differentiation.
 
 In general, we have the following workflow, 
 

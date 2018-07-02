@@ -5,18 +5,18 @@ title: Calendar
 
 ## Next events
 
-<div class="highlighter-black"> Title: <span style="color:red;"> An introduction to Shiny as a teaching resource </span> </div>
-<div class="highlighter-black"> Time:  <span style="color:red;"> 19.06.2018, 15.00 - 16:00 </span>
+<div class="highlighter-black"> Title: <span style="color:red;"> An introduction to TensorFlow </span> </div>
+<div class="highlighter-black"> Time:  <span style="color:red;"> 03.07.2018, 15.00 - 16:00 </span>
 	<a href="https://calendar.google.com/calendar/r/eventedit?
 	text=CodingClubUC3M
-	&dates=20180619T130000Z/20180619T140000Z
+	&dates=20180703T130000Z/20180703T140000Z
 	&details=For+details,+link+here:+https://codingclubuc3m.github.io/calendar.html
 	&location=Campomanes+Building+10.1.5
 	&sf=true
 	&output=xml"
 	target="_blank" rel="nofollow">(Add to my calendar)</a> 
 </div> 
-<div class="highlighter-black"> Presenter: <a href="" class="highlighter-red"> Antonio Elías Fernández </a></div> 
+<div class="highlighter-black"> Presenter: <a href="" class="highlighter-red"> Hoang Nguyen </a></div> 
 <div class="highlighter-black"> Location: <a href="https://www.google.com/maps/place/Campomanes+Building/@40.3139726,-3.7259817,17z/data=!4m12!1m6!3m5!1s0xd4220b90a840de7:0x8bc24e4eab60c842!2sUniversity+Carlos+III+de+Madrid:+Getafe+Campus!8m2!3d40.316966!4d-3.7270795!3m4!1s0xd4220bee09d184d:0x799904d05c39a14f!8m2!3d40.3140885!4d-3.7259468"> Getafe campus, 
 Campomanes Building, 10.1.5 </a> </div>
 

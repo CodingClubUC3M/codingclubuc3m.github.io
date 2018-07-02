@@ -32,8 +32,8 @@ a. Download [Python](https://www.python.org/downloads/release/python-354/) and i
 b. Open cmd with administration role and execute,
 
 {% highlight bash %}
-pip3 install --upgrade tensorflow
-pip3 install --upgrade tfp-nightly    # depends on tensorflow (CPU-only)
+pip3 install tensorflow==1.9.0rc1
+pip3 install tfp-nightly==0.1.0rc1.dev20180702    # depends on tensorflow (CPU-only)
 {% endhighlight %}
 
 
@@ -43,8 +43,8 @@ pip3 install --upgrade tfp-nightly    # depends on tensorflow (CPU-only)
 
 {% highlight bash %}
 sudo apt-get install python3-pip python3-dev
-pip3 install tensorflow
-pip3 install --upgrade tfp-nightly    # depends on tensorflow (CPU-only)
+pip3 install tensorflow==1.9.0rc1
+pip3 install tfp-nightly==0.1.0rc1.dev20180702    # depends on tensorflow (CPU-only)
 {% endhighlight %}
 
 
@@ -62,8 +62,8 @@ If pip or pip3 8.1 or later is not installed, issue the following commands to in
 {% highlight bash %}
 sudo easy_install --upgrade pip
 sudo easy_install --upgrade six 
-pip3 install tensorflow
-pip3 install tfp-nightly    # depends on tensorflow (CPU-only)
+pip3 install tensorflow==1.9.0rc1
+pip3 install tfp-nightly==0.1.0rc1.dev20180702    # depends on tensorflow (CPU-only)
 {% endhighlight %}
 
 Once you have installed `TensorFlow`, we go to `Rstudio` and intall the R API package.
