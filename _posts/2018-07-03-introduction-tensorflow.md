@@ -23,6 +23,8 @@ output:
 
 **Abstract:** ```Tensorflow``` has been widely used for many applications in machine learning and deep learning. However, ```Tensorflow``` is more than that, it is a general purpose computing library. Based on that, people have created a rich ecosystem for quickly developing models. In this talk, I will show how statisticians can get most of the main features in ```Tensorflow``` such as automatic differentiation, optimization and Bayesian analysis through a simple linear regression example.  
 
+You can download the script with the ```R``` code [here](https://raw.githubusercontent.com/CodingClubUC3M/codingclubuc3m.github.io/master/scripts/tensorflow.R) (right click and "Save as…").
+
 ## Introduction 
 
 ```Tensorflow``` is a machine learning framework of Google. It is developed by ```Google Brain``` team since 2015 and released publicly in 02.2017. It is now implemented for many applications in machine learning and deep learning. It has ```API``` for ```Python```, ```R```, ```C```. 
