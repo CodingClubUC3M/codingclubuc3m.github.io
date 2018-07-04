@@ -225,91 +225,93 @@ tf$reset_default_graph()
 
 ## ---- eval=FALSE---------------------------------------------------------
 ## # For Ubuntu due to both python2 and python3
-## # Sys.setenv(TENSORFLOW_PYTHON="/usr/bin/python3")
-## library(tensorflow)
-## # use_python("/usr/bin/python3", required = T)
-##     # reticulate::use_python("/opt/local/tools/python/Python-3.6.5/bin/python3.6")
-## library(reticulate)
-## 
-## 
-## repl_python()
-## import numpy as np
-## import tensorflow as tf
-## import tensorflow_probability as tfp
-## from tensorflow_probability import edward2 as ed
-## import matplotlib.pyplot as plt
-## 
-## y_data = np.array(
-## [0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1,0.2,0.2,0.1,0.1,0.2,0.4,0.4,0.3,
-## 0.3,0.3,0.2,0.4,0.2,0.5,0.2,0.2,0.4,0.2,0.2,0.2,0.2,0.4,0.1,0.2,0.2,0.2,
-## 0.2,0.1,0.2,0.2,0.3,0.3,0.2,0.6,0.4,0.3,0.2,0.2,0.2,0.2,1.4,1.5,1.5,1.3,
-## 1.5,1.3,1.6,1.,1.3,1.4,1.,1.5,1.,1.4,1.3,1.4,1.5,1.,1.5,1.1,1.8,1.3,
-## 1.5,1.2,1.3,1.4,1.4,1.7,1.5,1.,1.1,1.,1.2,1.6,1.5,1.6,1.5,1.3,1.3,1.3,
-## 1.2,1.4,1.2,1.,1.3,1.2,1.3,1.3,1.1,1.3,2.5,1.9,2.1,1.8,2.2,2.1,1.7,1.8,
-## 1.8,2.5,2.,1.9,2.1,2.,2.4,2.3,1.8,2.2,2.3,1.5,2.3,2.,2.,1.8,2.1,1.8,
-## 1.8,1.8,2.1,1.6,1.9,2.,2.2,1.5,1.4,2.3,2.4,1.8,1.8,2.1,2.4,2.3,1.9,2.3,
-## 2.5,2.3,1.9,2.,2.3,1.8], dtype=np.float32)
-## x_data = np.array(
-## [1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5,1.5,1.6,1.4,1.1,1.2,1.5,1.3,1.4,
-## 1.7,1.5,1.7,1.5,1.,1.7,1.9,1.6,1.6,1.5,1.4,1.6,1.6,1.5,1.5,1.4,1.5,1.2,
-## 1.3,1.4,1.3,1.5,1.3,1.3,1.3,1.6,1.9,1.4,1.6,1.4,1.5,1.4,4.7,4.5,4.9,4.,
-## 4.6,4.5,4.7,3.3,4.6,3.9,3.5,4.2,4.,4.7,3.6,4.4,4.5,4.1,4.5,3.9,4.8,4.,
-## 4.9,4.7,4.3,4.4,4.8,5.,4.5,3.5,3.8,3.7,3.9,5.1,4.5,4.5,4.7,4.4,4.1,4.,
-## 4.4,4.6,4.,3.3,4.2,4.2,4.2,4.3,3.,4.1,6.,5.1,5.9,5.6,5.8,6.6,4.5,6.3,
-## 5.8,6.1,5.1,5.3,5.5,5.,5.1,5.3,5.5,6.7,6.9,5.,5.7,4.9,6.7,4.9,5.7,6.,
-## 4.8,4.9,5.6,5.8,6.1,6.4,5.6,5.1,5.6,6.1,5.6,5.5,4.8,5.4,5.6,5.1,5.1,5.9,
-## 5.7,5.2,5.,5.2,5.4,5.1], dtype=np.float32)
-## 
-## 
-## def linear_model(x_data):
-##     A = ed.Normal(loc=0., scale=10., name="A")
-##     b = ed.Normal(loc=0., scale=10., name="b")
-##     sigma = ed.Gamma(concentration=1., rate=1., name="sigma")
-##     mu = A * x_data + b
-##     y_data = ed.Normal(loc=mu, scale=sigma,name="y_data")  # `y` above
-##     return y_data
-## 
-## log_joint = ed.make_log_joint_fn(linear_model)
-## 
-## 
-## def target_log_prob_fn(A, b, sigma):
-##     return log_joint(
-##       x_data=x_data,
-##       A=A,
-##       b=b,
-##       sigma=sigma,
-##       y_data=y_data)
-## 
-## 
-## num_results = 5000
-## num_burnin_steps = 3000
-## 
-## states, kernel_results = tfp.mcmc.sample_chain(
-##     num_results=num_results,
-##     num_burnin_steps=num_burnin_steps,
-##     current_state=[
-##         tf.zeros([], name='init_A'),
-##         tf.zeros([], name='init_b'),
-##         tf.ones([], name='init_sigma'),
-##     ],
-##     kernel=tfp.mcmc.HamiltonianMonteCarlo(
-##         target_log_prob_fn=target_log_prob_fn,
-##         step_size=0.008,
-##         num_leapfrog_steps=5))
-## 
-## A, b, sigma = states
-## 
-## sess = tf.Session()
-## 
-## [A_mcmc, b_mcmc, sigma_mcmc, is_accepted_] = sess.run([
-##       A, b, sigma, kernel_results.is_accepted])
-## 
-## num_accepted = np.sum(is_accepted_)
-## print('Acceptance rate: {}'.format(num_accepted / num_results))
-## 
-## plt.plot(A_mcmc)
-## plt.show()
-## 
-## print("Coefficient: ", A_mcmc.mean(), "\n Intercept: ", b_mcmc.mean(), "\n Sigma: ", sigma_mcmc.mean())
-## exit
+Sys.setenv(TENSORFLOW_PYTHON="/usr/bin/python3")
+library(tensorflow)
+use_python("/usr/bin/python3", required = T)
+    # reticulate::use_python("/opt/local/tools/python/Python-3.6.5/bin/python3.6")
+library(reticulate)
+## test tensorflow probability 
+# tfp <- import( module = "tensorflow_probability" )
+# ed <- tfp$edward2
+
+repl_python()
+import numpy as np
+import tensorflow as tf
+import tensorflow_probability as tfp
+from tensorflow_probability import edward2 as ed
+import matplotlib.pyplot as plt
+
+y_data = np.array(
+[0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1,0.2,0.2,0.1,0.1,0.2,0.4,0.4,0.3,
+0.3,0.3,0.2,0.4,0.2,0.5,0.2,0.2,0.4,0.2,0.2,0.2,0.2,0.4,0.1,0.2,0.2,0.2,
+0.2,0.1,0.2,0.2,0.3,0.3,0.2,0.6,0.4,0.3,0.2,0.2,0.2,0.2,1.4,1.5,1.5,1.3,
+1.5,1.3,1.6,1.,1.3,1.4,1.,1.5,1.,1.4,1.3,1.4,1.5,1.,1.5,1.1,1.8,1.3,
+1.5,1.2,1.3,1.4,1.4,1.7,1.5,1.,1.1,1.,1.2,1.6,1.5,1.6,1.5,1.3,1.3,1.3,
+1.2,1.4,1.2,1.,1.3,1.2,1.3,1.3,1.1,1.3,2.5,1.9,2.1,1.8,2.2,2.1,1.7,1.8,
+1.8,2.5,2.,1.9,2.1,2.,2.4,2.3,1.8,2.2,2.3,1.5,2.3,2.,2.,1.8,2.1,1.8,
+1.8,1.8,2.1,1.6,1.9,2.,2.2,1.5,1.4,2.3,2.4,1.8,1.8,2.1,2.4,2.3,1.9,2.3,
+2.5,2.3,1.9,2.,2.3,1.8], dtype=np.float32)
+x_data = np.array(
+[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5,1.5,1.6,1.4,1.1,1.2,1.5,1.3,1.4,
+1.7,1.5,1.7,1.5,1.,1.7,1.9,1.6,1.6,1.5,1.4,1.6,1.6,1.5,1.5,1.4,1.5,1.2,
+1.3,1.4,1.3,1.5,1.3,1.3,1.3,1.6,1.9,1.4,1.6,1.4,1.5,1.4,4.7,4.5,4.9,4.,
+4.6,4.5,4.7,3.3,4.6,3.9,3.5,4.2,4.,4.7,3.6,4.4,4.5,4.1,4.5,3.9,4.8,4.,
+4.9,4.7,4.3,4.4,4.8,5.,4.5,3.5,3.8,3.7,3.9,5.1,4.5,4.5,4.7,4.4,4.1,4.,
+4.4,4.6,4.,3.3,4.2,4.2,4.2,4.3,3.,4.1,6.,5.1,5.9,5.6,5.8,6.6,4.5,6.3,
+5.8,6.1,5.1,5.3,5.5,5.,5.1,5.3,5.5,6.7,6.9,5.,5.7,4.9,6.7,4.9,5.7,6.,
+4.8,4.9,5.6,5.8,6.1,6.4,5.6,5.1,5.6,6.1,5.6,5.5,4.8,5.4,5.6,5.1,5.1,5.9,
+5.7,5.2,5.,5.2,5.4,5.1], dtype=np.float32)
+
+
+def linear_model(x_data):
+    A = ed.Normal(loc=0., scale=10., name="A")
+    b = ed.Normal(loc=0., scale=10., name="b")
+    sigma = ed.Gamma(concentration=1., rate=1., name="sigma")
+    mu = A * x_data + b
+    y_data = ed.Normal(loc=mu, scale=sigma,name="y_data")  # `y` above
+    return y_data
+
+log_joint = ed.make_log_joint_fn(linear_model)
+
+
+def target_log_prob_fn(A, b, sigma):
+    return log_joint(
+      x_data=x_data,
+      A=A,
+      b=b,
+      sigma=sigma,
+      y_data=y_data)
+
+
+num_results = 5000
+num_burnin_steps = 3000
+
+states, kernel_results = tfp.mcmc.sample_chain(
+    num_results=num_results,
+    num_burnin_steps=num_burnin_steps,
+    current_state=[
+        tf.zeros([], name='init_A'),
+        tf.zeros([], name='init_b'),
+        tf.ones([], name='init_sigma'),
+    ],
+    kernel=tfp.mcmc.HamiltonianMonteCarlo(
+        target_log_prob_fn=target_log_prob_fn,
+        step_size=0.008,
+        num_leapfrog_steps=5))
+
+A, b, sigma = states
+
+sess = tf.Session()
+
+[A_mcmc, b_mcmc, sigma_mcmc, is_accepted_] = sess.run([
+      A, b, sigma, kernel_results.is_accepted])
+
+num_accepted = np.sum(is_accepted_)
+print('Acceptance rate: {}'.format(num_accepted / num_results))
+
+plt.plot(A_mcmc)
+plt.show()
+
+print("Coefficient: ", A_mcmc.mean(), "\n Intercept: ", b_mcmc.mean(), "\n Sigma: ", sigma_mcmc.mean())
+exit
 
