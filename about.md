@@ -104,4 +104,4 @@ Send an email to <coding.club.uc3m@gmail.com>
 
 ## License
 
-All material in this repository is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+All material in this website is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
