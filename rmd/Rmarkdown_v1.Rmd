@@ -1,13 +1,46 @@
 ---
-layout: post
-comments:  true
-title: "Custom Print Methods"
-author: "Yihui Xie"
-date: 2018-05-10
-published: true
-visible: true
-categories: [R, markdown]
-excerpt_seperator: ""
+title: "Rmarkdown"
+author: "Hoang Nguyen"
+date: "July 17, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+**Abstract**: `Markdown` is a lightweight markup language. It has a simple text format syntax which can be easily converted to `html`, `pdf`, `doc`. It allows for a universal text format which you can edit using any text editor and to be rendered in different web frameworks. `R Markdown` helps incorporate `R` codes into the `Markdown` file and creates a reproducible research. This document is prepared by [`@CodingClubUC3M`](https://twitter.com/CodingClubUc3m) to introduce fundamental elements of `R Markdown` and serves as a reference template for contributors.
+
+# Introduction
+
+In **RStudio**, go to **File** --> **New file** --> **R Markdown**, we can now start to edit and run R code. In order to compile, click **Knit** and view the compiled file in the new pop-up window.
+
+Here is the sample default file created by `RStudio`.
+```
+---
+title: "Untitled"
+author: "Hoang Nguyen"
+date: "July 17, 2018"
+output: html_document
+---
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```
+
+`R Markdown` metadata section provides many options to configure markdown file. `title`, `author`, `date` are your tutorial information. You can pass other options to `Pandoc` so that `RStudio` can convert the  `R Markdown` file to the appropriate format. For example: `output` can be  `html_document`, `pdf_document`, `word_document`, `md_document`, ...
+
+For the [CodingClubUc3m](https://http://codingclubuc3m.github.com) post, we give this meta header as an example,
+```
+---
+title: "An introduction to Tensorflow"
+author: Hoang Nguyen
+date: 2018-07-03
 output:
   html_document:
     mathjax:  default
@@ -18,204 +51,264 @@ output:
       smooth_scroll: no
     code_folding: show
 ---
+```
+You can configure to suit with your talk, or if you want to make a self-configuration,
+please refer to the Section 3 (Pandoc options) of [this reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 
+# `Markdown` language
 
-Before **knitr** v1.6, printing objects in R code chunks basically emulates the R console. For example, a data frame is printed like this^[Note R prints an object without an explicit `print()` call when it is _visible_; see `?invisible`]:
+## Text format
 
-```{r normal-print, comment=''}
-head(mtcars)
+To emphasize a snippet of text with bold font face, we use double asterisks, for example:
+```
+**Here is an important sentence.**
+```
+will be rendered to:  
+**Here is an important sentence.**
+
+Similarly, we can create italic or strike-through text:
+```
+We introduce *a new syntax*
+*You can~~not~~ combine them*
+```
+will be rendered to:  
+We introduce *a new syntax*  
+*You can~~not~~ combine them*
+
+Moreover, you can use the back-tick to create an inline code format, or programming languages such as `R`, `C`, `Matlab`, `Julia`,...
+```
+We introduce a new `R` package where you can add two big numbers.
+```
+will be rendered to:  
+We introduce a new `R` package where you can add two big numbers.
+
+## Line break
+
+In order to create a line break in `Markdown`, you can choose one of these syntaxes:
+
+1. Add the backslash (`\`) at the end of the line (in the first paragraph).
+2. Add an empty line to separate two paragraphs (in the second paragraph).
+3. Add two or more spaces at the end of the line (in the third paragraph).
+
+Note that, the single line break (using enter button) in the plain `Markdown` file does not translate into a line break in the compiled output file.
+For example:
+```
+This is the first paragraph.\
+This is the second paragraph.
+
+This is the third paragraph.  
+This is the fourth paragraph.
+```
+will be rendered to:
+
+This is the first paragraph.\
+This is the second paragraph.
+
+This is the third paragraph.  
+This is the fourth paragraph.
+
+## Blockquotes
+
+In `Markdown`, it is easy to quote a sentence or a paragraph using `>` symbol:
+```
+As Box once said
+> "All models are wrong, but some are useful."
+```
+will be rendered to:  
+
+As Box once said:
+
+> "All models are wrong, but some are useful."
+
+## Header
+
+Like Microsoft office word, we separate the post using six header levels:
+```
+# Introduction
+## Motivation
+### Applications
+#### More headers
+##### More tiny headers
+##### Supper tiny headers
 ```
 
-The text representation of the data frame above may look very familiar with most R users, but for reporting purposes, it may not be satisfactory -- often times we want to see a table representation instead. That is the problem that the chunk option `render` and the S3 generic function `knit_print()` try to solve.
+will be rendered to: 
 
-## Customize Printing
+# Introduction
+## Motivation
+### Applications
+#### More headers
+##### More tiny headers
+##### Supper tiny headers
 
-After we evaluate each R expression in a code chunk, there is an object returned. For example, `1 + 1` returns `2`. This object is passed to the chunk option `render`, which is a function with two arguments, `x` and `options`, or `x` and `...`. The default value for the `render` option is `knit_print`, an S3 function in **knitr**:
+## Links and embedded elements
+
+`Markdown` also allows for a convenient syntax for website links and other embedded elements such as photos, video,... Note that, you can also use html tag to embed videos.
+
+### Hyperlink
+
+Web links are automatically rendered, you can paste the website address directly or label it. For example:
+```
+For more information, please visit http://codingclubuc3m.github.io.  
+please visit [Coding club website](https://http://codingclubuc3m.github.io)
+```
+will be rendered to: 
+
+For more information, please visit http://codingclubuc3m.github.io.  
+please visit [Coding club website](https://http://codingclubuc3m.github.io)
+
+### Image and video
+
+For images, you cannot configure image sizes, so it is better to resize it before embedded:
+```
+![Coding club is awesome](https://github.com/CodingClubUC3M/codingclubuc3m.github.io/raw/master/public/logos/UC3M_logo_cc.png "Put your title here")
+```
+will be rendered to:  
+![Coding club is awesome](https://github.com/CodingClubUC3M/codingclubuc3m.github.io/raw/master/public/logos/UC3M_logo_cc.png "Put your title here")
+
+For videos, you can embed an image which links to the video clip. 
+```
+[![UC3M](http://img.youtube.com/vi/-qZzK5KhwSs/0.jpg)](http://www.youtube.com/watch?v=-qZzK5KhwSs)
+```
+will be rendered to:  
+[![UC3M](http://img.youtube.com/vi/-qZzK5KhwSs/0.jpg)](http://www.youtube.com/watch?v=-qZzK5KhwSs)
+
+## List
+
+Here are several ways to write ordered lists and unordered lists:
+```
+1. Use a number to label an ordered list
+    a. Or you could use a letter
+        - while an unordered list could start with a minus sign (hyphen)
+        + an unordered list with a plus sign
+        * an unordered list with an asterisks
+            * a tab for a lower level
+2. The second ordered list label
+```
+will be rendered to:
+
+1. Use a number to label an ordered list
+    a. Or you could use a letter
+        - while an unordered list could start with a minus sign (hyphen)
+        + an unordered list with a plus sign
+        * an unordered list with an asterisks
+            * a tab for a lower level
+2. The second ordered list label
+    
+## Math expressions
+
+The syntax of math expressions in `Markdown` is similar to that of $\LaTeX$,
+for example:
+```
+$$
+X = \begin{bmatrix}1 & x_{1}\\
+1 & x_{2}\\
+1 & x_{3}
+\end{bmatrix}
+$$
+```
+would become
+
+$$X = \begin{bmatrix}1 & x_{1}\\
+1 & x_{2}\\
+1 & x_{3}
+\end{bmatrix}$$
+
+You can also use inline math mode as $\LaTeX$ syntax. For example, `$1+1 = 2$` will be rendered to $1+1 = 2$
+
+## Inline HTML
+
+In case that you are familiar with html tag, you can write down the html code in the `Markdown` file.
+For example,
+```
+ <table style="width:100%">
+  <tr>
+    <th>First Header</th>
+    <th>Second Header</th>
+  </tr>
+  <tr>
+    <td>Content from cell 1</td>
+    <td>Content from cell 2</td>
+  </tr>
+  <tr>
+    <td>Content in the first column</td>
+    <td>Content in the second column</td>
+  </tr>
+</table> 
+```
+
+will be rendered to: 
+
+First Header | Second Header
+------------ | -------------
+Content from cell 1 | Content from cell 2
+Content in the first column | Content in the second column
+
+# R codes with chunk options 
+
+In order to insert R codes into the markdown file, you can click the `Insert` button,
+then choose the first option `R`, for example
 
 ```{r}
-library(knitr)
-knit_print  # an S3 generic function
-methods(knit_print)
-getS3method('knit_print', 'default')  # the default method
-normal_print
+cat("Here is the first chunk code in R Markdown")
 ```
 
-As we can see, `knit_print()` has a `default` method, which is basically `print()` or `show()`, depending on whether the object is an S4 object. This means it does nothing special when printing R objects:
+As you compile using `Knit` button, `RStudio` will run the R code chunk and write down the results to the output file. The options for the output settings are written as ````{r, chunk_label_name, echo=TRUE, eval=TRUE, warning=TRUE}`. Here, you can choose:
 
-```{r collapse=TRUE}
-knit_print(1:10)
-knit_print(head(mtcars))
-```
+- To include the chunk code to the output file (`echo` option), 
+- To evaluate the chunk (`eval` option), 
+- To include the warning when running the chunk code (`warning` option). 
+- To display any error messages (`error` option)
+- To display any messages (`message` option)
 
-S3 generic functions are extensible in the sense that we can define custom methods for them. A method `knit_print.foo()` will be applied to the object that has the class `foo`. Here is quick example of how we can print data frames as tables:
+The name option is optional but it is recommended to name the chunk properly. This makes the `R Markdown` document become flexible and suit with different purposes. You can find more advanced options at https://bookdown.org/yihui/rmarkdown/r-code.html
 
-```{r}
-library(knitr)
-# define a method for objects of the class data.frame
-knit_print.data.frame = function(x, ...) {
-  res = paste(c('', '', kable(x)), collapse = '\n')
-  asis_output(res)
+You can also create a cache for the results using `cache = TRUE`. This is very useful for a chunk that requires heavy computation. The next time you compile the `R Markdown` file, it will run faster. 
+
+We also have another set of useful options for plotting in `R Markdown` such as ````{r, fig.height = 4, fig.width = 6, fig.align='center', fig.cap='Here is our example'}` where we center the figure, and set `height = 4` and `width =6`.
+
+```{r, fig.height = 4, fig.width = 6, fig.align='center', fig.cap='Here is our example'}
+jet.colors <- colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan",
+                                 "#7FFF7F", "yellow", "#FF7F00", "red", 
+                                 "#7F0000"))
+# Plot for palettes
+testPalette <- function(col, n = 200, ...) {
+  image(1:n, 1, as.matrix(1:n), col = get(col)(n = n, ...), 
+        main = col, xlab = "", ylab = "", axes = FALSE)
 }
+
+# Color palettes comparison
+par(mfrow = c(2, 3))
+res <- sapply(c("rainbow", "topo.colors", "terrain.colors", 
+                "heat.colors", "cm.colors", "jet.colors"), testPalette)
 ```
 
-We expect the print method to return a character vector, or an object that can be coerced into a character vector. In the example above, the `kable()` function returns a character vector, which we pass to the `asis_output()` function so that later **knitr** knows that this result needs no special treatment (just write it as is), otherwise it depends on the chunk option `results` (`= 'asis'` / `'markup'` / `'hide'`) how a normal character vector should be written. The function `asis_output()` has the same effect as `results = 'asis'`, but saves us the effort to provide this chunk option explicitly. Now we check how the printing behavior is changed. We print a number, a character vector, a list, a data frame, and write a character value using `cat()` in the chunk below:
 
-```{r knit-print}
-1 + 1
-head(letters)
-list(a = 1, b = 9:4)
-head(mtcars)
-cat('This is cool.')
+Here is another example, we export the table data using `kable` function
+
+```{r, iris, echo = TRUE, message = FALSE, fig.asp = 1}
+data("iris")
+knitr::kable(iris[1:5, ], caption = 'Iris data')
 ```
 
-We see all objects except the data frame were printed "normally"^[The two hashes `##` were from the chunk option `comment`; you can turn them off by `comment = ''`.]. The data frame was printed as a real table. Note you do not have to use `kable()` to create tables -- there are many other options such as **xtable**. Just make sure the print method returns a character string.
+## Examples
 
-In the future, I may provide a companion package with **knitr** that includes appropriate printing methods so that users only need to load this package to get attractive printed results. A major factor to consider when defining a printing method is the output format. For example, the table syntax can be entirely different when the output is LaTeX vs when it is Markdown.
+Some blog post examples that contributors had written for Coding Club Uc3m:
 
-It is strongly recommended that your S3 method has a `...` argument, so that your method can safely ignore arguments that are passed to `knit_print()` but not defined in your method. At the moment, a `knit_print()` method can have two optional arguments:
+a. [Useful one-function R packages, big data solutions, and a message from Yoda](https://raw.githubusercontent.com/CodingClubUC3M/codingclubuc3m.github.io/master/rmd/2018-05-10-misc-R-function.Rmd)
+b. [An introduction to Shiny as a teaching resource](https://raw.githubusercontent.com/CodingClubUC3M/codingclubuc3m.github.io/master/rmd/2018-06-19-introduction-Shiny.Rmd)
 
-- the `options` argument takes a list of the current chunk options;
-- the `inline` argument indicates if the method is called in code chunks or inline R code;
+## Reference
 
-Depending on your application, you may optionally use these arguments. Here are some examples:
+1. [Markdown cheatsheet](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf)
+2. [R Markdown syntax](https://bookdown.org/yihui/bookdown/markdown-syntax.html)
+3. [R Markdown reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 
-```{r eval=FALSE, tidy=FALSE}
-knit_print.classA = function(x, ...) {
-  # ignore options and inline
-}
-knit_print.classB = function(x, options, ...) {
-  # use the chunk option out.height
-  asis_output(paste(
-    '<iframe src="https://yihui.name" height="', options$out.height, '"></iframe>',
-  ))
-}
-knit_print.classC = function(x, inline = FALSE, ...) {
-  # different output according to inline=TRUE/FALSE
-  if (inline) {
-    'inline output for classC'
-  } else {
-    'chunk output for classC'
-  }
-}
-knit_print.classD = function(x, options, inline = FALSE, ...) {
-  # use both options and inline
-}
-```
+## Credits
 
-## A Low-level Explanation
+The document is proposed by [Hoang Nguyen](https://hoanguc3m.github.io) and [Eduardo García-Portugués](https://egarpor.github.io). The material in this document is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-You can skip this section if you do not care about the low-level implementation details.
 
-### The `render` option
 
-As mentioned before, the chunk option `render` is a function that defaults to `knit_print()`. We can certainly use other render functions. For example, we create a dummy function that always says "I do not know what to print" no matter what objects it receives:
 
-```{r}
-dummy_print = function(x, ...) {
-  cat("I do not know what to print!")
-  # this function implicitly returns an invisible NULL
-}
-```
 
-Now we use the chunk option `render = dummy_print`:
-
-```{r knit-print, render=dummy_print, collapse=TRUE}
-```
-
-Note the `render` function is only applied to visible objects. There are cases in which the objects returned are invisible, e.g. those wrapped in `invisible()`.
-
-```{r}
-1 + 1
-invisible(1 + 1)
-invisible(head(mtcars))
-x = 1:10  # invisibly returns 1:10
-```
-
-### Metadata
-
-The print function can have a side effect of passing "metadata" about objects to **knitr**, and **knitr** will collect this information as it prints objects. The motivation of collecting metadata is to store external dependencies of the objects to be printed. Normally we print an object only to obtain a text representation, but there are cases that can be more complicated. For example, a [**ggvis** ](http://ggvis.rstudio.com/) graph requires external JavaScript and CSS dependencies such as `ggvis.js`. The graph itself is basically a fragment of JavaScript code, which will not work unless the required libraries are loaded (in the HTML header). Therefore we need to collect the dependencies of an object beside printing the object itself.
-
-One way to specify the dependencies is through the `meta` argument of `asis_output()`. Here is a pseudo example:
-
-```{r eval=FALSE, tidy=FALSE}
-# pseudo code
-knit_print.ggvis = function(x, ...) {
-  res = ggvis::print_this_object(x)
-  knitr::asis_output(res, meta = list(
-    ggvis = list(
-      version = '0.1.0',
-      js  = system.file('www', 'js',  'ggvis.js',  package = 'ggvis'),
-      css = system.file('www', 'www', 'ggvis.css', package = 'ggvis')
-    )
-  ))
-}
-```
-
-Then when **knitr** prints a **ggvis** object, the `meta` information will be collected and stored. After knitting is done, we can obtain a list of all the dependencies via `knit_meta()`. It is very likely that there are duplicate entries in the list, and it is up to the package authors to clean them up, and process the metadata list in their own way (e.g. write the dependencies into the HTML header). We give a few more quick and dirty examples below to see how `knit_meta()` works.
-
-Now we define a print method for `foo` objects:
-
-```{r tidy=FALSE}
-library(knitr)
-knit_print.foo = function(x, ...) {
-  res = paste('**This is a `foo` object**:', x)
-  asis_output(res, meta = list(
-    js  = system.file('www', 'shared', 'shiny.js',  package = 'shiny'),
-    css = system.file('www', 'shared', 'shiny.css', package = 'shiny')
-  ))
-}
-```
-
-See what happens when we print `foo` objects:
-
-```{r}
-new_foo = function(x) structure(x, class = 'foo')
-new_foo('hello')
-```
-
-Check the metadata now:
-
-```{r}
-str(knit_meta(clean = FALSE))
-```
-
-Another `foo` object:
-
-```{r}
-new_foo('world')
-```
-
-Similarly for `bar` objects:
-
-```{r}
-knit_print.bar = function(x, ...) {
-  asis_output(x, meta = list(head = '<script>console.log("bar!")</script>'))
-}
-new_bar = function(x) structure(x, class = 'bar')
-new_bar('**hello** world!')
-new_bar('hello **world**!')
-```
-
-The final version of the metadata, and clean it up:
-
-```{r}
-str(knit_meta())
-str(knit_meta()) # empty now, because clean = TRUE by default
-```
-
-### For package authors
-
-If you are implementing a custom print method in your own package, here are two hints:
-
-1. `knit_print()` is an S3 generic function in **knitr**, so in theory you need to import it in your namespace via `importFrom(knitr, knit_print)`, but due to the "lack of rigor" of the S3 system, you can choose not to import **knitr**, and just do `export(knit_print.foo)` in the namespace, then R will find the S3 "method" after your package is attached via `library()`, because it is essentially a normal R function;
-1. `asis_output()` is simply a function that marks an object with the class `knit_asis`, and you do not have to import this function to your package, either -- just let your print method return `structure(x, class = 'knit_asis')`, and if there are additional metadata, just put it in the `knit_meta` attribute; here is the source code of this function:
-    ```{r}
-    knitr::asis_output
-    ```
-
-If you are worried about possible future changes in `asis_output()`, you can put **knitr** in the `Suggests` field in DESCRIPTION, and use `knitr::asis_output()`, so that you can avoid the "hard" dependency on **knitr**.
-
-```{r clean-up, include=FALSE}
-# R compiles all vignettes in the same session, which can be bad
-rm(list = ls(all = TRUE))
-```
