@@ -23,13 +23,13 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-**Abstract:** ```Tensorflow``` has been widely used for many applications in machine learning and deep learning. However, ```Tensorflow``` is more than that, it is a general purpose computing library. Based on that, people have created a rich ecosystem for quickly developing models. In this talk, I will show how statisticians can get most of the main features in ```Tensorflow``` such as automatic differentiation, optimization and Bayesian analysis through a simple linear regression example.  
+**Abstract:** ```Tensorflow``` has been widely used for many applications in machine learning and deep learning. However, ```Tensorflow``` is more than that, it is a general purpose computing library. Based on that, people have created a rich ecosystem for quickly developing models. In this talk, I will show how statisticians can get most of the main features in ```Tensorflow``` such as automatic differentiation, optimization, and Bayesian analysis through a simple linear regression example.  
 
 ## Introduction 
 
-```Tensorflow``` is a machine learning framework of Google. It is developed by ```Google Brain``` team since 2015 and released publicly in 02.2017. It is now implemented for many applications in machine learning and deep learning. It has ```API``` for ```Python```, ```R```, ```C```. 
+```Tensorflow``` is a machine learning framework of `Google`. It is developed by ```Google Brain``` team since 2015 and released publicly in 02.2017. It is now implemented for many applications in machine learning and deep learning. It has ```API``` for ```Python```, ```R```, ```C```. 
 
-```Tensorflow``` is not only used for deep learning. As statistician, there are a lot of features that we can take advantages.
+```Tensorflow``` is not only used for deep learning. As a   statistician, there are a lot of features that we can take advantages.
 
 - ```Tensorflow``` = general purpose computing library.
 - ```Tensorflow``` in ```R``` = Interface to ```TensorFlow``` library.
@@ -39,8 +39,8 @@ Tensorflow features:
 
 - Reverse-mode auto differentiation.
 - Multicore CPU, GPU supports.
-- Official ```Python``` API and ```C``` API, third party packages for ```Julia```, ```R```.
-- Ecosystem with numbers of machine learning algorithms ```tfestimators```, ```keras```.
+- Official ```Python``` API and ```C``` API, third-party packages for ```Julia```, ```R```.
+- An ecosystem with numbers of machine learning algorithms ```tfestimators```, ```keras```.
 - Graphical probabilistic modelling with ```TensorFlow Probability```.
 - Monitor and metrics with ```TensorBoard```.
 
@@ -59,9 +59,9 @@ For the full instruction, please go to:
 
 1. Install python, pip3 and ```TensorFlow```, 
 
-a. Download [Python](https://www.python.org/downloads/release/python-354/) and install (Choose add path and install pip3).
-
-b. Open cmd with administration role and execute,
+    a. Download [Python](https://www.python.org/downloads/release/python-354/) and install (Choose add path and install pip3).
+    
+    b. Open cmd with administration role and execute,
 ```{bash, eval=FALSE}
 pip3 install tensorflow==1.9.0rc1
 pip3 install tfp-nightly==0.1.0rc1.dev20180702    # depends on tensorflow (CPU-only)
@@ -105,7 +105,7 @@ tensorflow::install_tensorflow()
 
 ### Hello ```TensorFlow```
 
-Test your installation with this trunk of codes
+Test your installation with this chunk of codes
 
 ```{r}
 library(tensorflow)

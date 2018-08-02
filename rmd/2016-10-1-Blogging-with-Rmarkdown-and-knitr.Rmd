@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Workflow for Rmd to blog post in coding club"
+title: "Workflow for compiling R markdown file to blog post in Coding Club UC3M website"
 author: hoanguc3m
 date: "May 1, 2018"
 categories: []
@@ -17,10 +17,16 @@ knitr::opts_chunk$set(echo = TRUE)
 setwd("/home/hoanguc3m/Dropbox/blog")
 ```
 
-# Prepare the Rmd file
-a. You need to create the contend of the Rmd file.
-b. You need to change the name of the file to ```date-shortTitle.Rmd``` for example ```2016-10-1-Blogging-with-Rmarkdown-and-knitr.Rmd```
-c. You need to add the header to the Rmd file such that it could be translated later by Jekyll.
+
+
+# Prepare the `R markdown` file
+
+Firstly, we prepare the `R markdown` file as following,
+
+- You need to create the content of the `R markdown` file.
+- You need to change the name of the file to `date-shortTitle.Rmd` for example `2016-10-01-Blogging-with-Rmarkdown-and-knitr.Rmd`.
+- You need to add the header to the `R markdown` file such that it could be translated later by `Jekyll`.
+
 
 ```{r rmd_header, eval=FALSE}
 layout: post
@@ -35,17 +41,22 @@ excerpt_seperator: ""
 output:
   html_document:
     mathjax:  default
+    number_sections: no
+    toc: yes
+    toc_float:
+      collapsed: no
+      smooth_scroll: no
+    code_folding: show
 ```
 
 where you can change ```title, author, date, categories``` as the description of the talk. 
 The field ```published``` and ```visible``` say that if you want to publish the article and put it visible.
-If ```published: fasle ```, the article can not be viewed in the website.
-If ```published: true ``` and ```visible: false``` the article can be viewed in the website only when you know the link to access it.
+If ```published: false ```, the article cannot be viewed on the website.
+If ```published: true ``` and ```visible: false``` the article can be viewed on the website only when you know the link to access it.
 
+# Compile `R markdown` file to `markdown` file
 
-# Compile ```Rmd``` file to ```md``` file
-
-a. You need to install ```knitr``` package and add this function to R environment.
+a. You need to install `knitr` package and add this function to `R` environment.
 
 ```{r knit_exp, eval=FALSE}
 
@@ -61,23 +72,13 @@ KnitPost <- function(input, base.url = "/") {
 
 ```
 
-b. Then compile the Rmd file that you created, for example
+b. Then compile the `R markdown` file that you created, for example
+
 ```{r knit_compile, eval=FALSE}
 KnitPost("2016-10-1-Blogging-with-Rmarkdown-and-knitr.Rmd")
 ```
-c. For making md nicely in the post, edit the  ```md``` file
-- Line count: You can find and replace 
-```{r highlight_compile, eval=FALSE}
-highlight r
-```
- with 
-```{r highlight_line_compile, eval=FALSE}
-highlight r linenos
-```
 
-
-d. Copy the output figure folder to ```codingclubuc3m``` main folder and the ```md``` file to ```post``` folder. 
-- Then upload to github folder. 
+c. Copy the output figure folder to `codingclubuc3m.github.io` main folder and the `md` file to `_post` folder. Then commit changes and upload to `Github` folder. 
 
 ```{r git_commit, eval=FALSE}
 git add -A
