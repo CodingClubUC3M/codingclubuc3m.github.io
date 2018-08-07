@@ -1,7 +1,7 @@
 ---
 layout: post
 comments:  true
-title: "An introduction to Tensorflow"
+title: "An introduction to TensorFlow"
 author: Hoang Nguyen
 date: 2018-07-03
 published: true
@@ -21,86 +21,86 @@ output:
 
 
 
-**Abstract:** ```Tensorflow``` has been widely used for many applications in machine learning and deep learning. However, ```Tensorflow``` is more than that, it is a general purpose computing library. Based on that, people have created a rich ecosystem for quickly developing models. In this talk, I will show how statisticians can get most of the main features in ```Tensorflow``` such as automatic differentiation, optimization and Bayesian analysis through a simple linear regression example.  
-
-You can download the script with the ```R``` code [here](https://raw.githubusercontent.com/CodingClubUC3M/codingclubuc3m.github.io/master/scripts/tensorflow.R) (right click and "Save as…").
+**Abstract:** `TensorFlow` has been widely used for many applications in machine learning and deep learning. However, `TensorFlow` is more than that, it is a general purpose computing library. Based on that, people have created a rich ecosystem for quickly developing models. In this talk, I will show how statisticians can get most of the main features in `TensorFlow` such as automatic differentiation, optimization, and Bayesian analysis through a simple linear regression example.  
 
 ## Introduction 
 
-```Tensorflow``` is a machine learning framework of Google. It is developed by ```Google Brain``` team since 2015 and released publicly in 02.2017. It is now implemented for many applications in machine learning and deep learning. It has ```API``` for ```Python```, ```R```, ```C```. 
+`TensorFlow` is a machine learning framework of `Google`. It is developed by `Google Brain` team since 2015 and released publicly in 02.2017. It is now implemented for many applications in machine learning and deep learning. It has `API` for `Python`, `R`, `C`. 
 
-```Tensorflow``` is not only used for deep learning. As statistician, there are a lot of features that we can take advantages.
+`TensorFlow` is not only used for deep learning. As a   statistician, there are a lot of features that we can take advantages.
 
-- ```Tensorflow``` = general purpose computing library.
-- ```Tensorflow``` in ```R``` = Interface to ```TensorFlow``` library.
+- `TensorFlow` = general purpose computing library.
+- `TensorFlow` in `R` = Interface to `TensorFlow` library.
 - Computations are implemented as input data (tensor/ generalized matrix/ multidimensional array) flow through nodes (mathematical operators) to the output data.
 
 Tensorflow features:
 
 - Reverse-mode auto differentiation.
 - Multicore CPU, GPU supports.
-- Official ```Python``` API and ```C``` API, third party packages for ```Julia```, ```R```.
-- Ecosystem with numbers of machine learning algorithms ```tfestimators```, ```keras```.
-- Graphical probabilistic modelling with ```TensorFlow Probability```.
-- Monitor and metrics with ```TensorBoard```.
+- Official `Python` API and `C` API, third-party packages for `Julia`, `R`.
+- An ecosystem with numbers of machine learning algorithms `tfestimators`, `keras`.
+- Graphical probabilistic modelling with `TensorFlow Probability`.
+- Monitor and metrics with `TensorBoard`.
 
 ![tensorflow](/figure/source/2018-07-03-introduction-tensorflow/pic0.png "Tf framework")
 
-### Install ```TensorFlow``` in R
+### Install `TensorFlow` in `R`
 
-We summary the main steps for installing ```TensorFlow``` package in R. 
+We summary the main steps for installing `TensorFlow` package in `R`. 
 For the full instruction, please go to:
 
 - [Windows](https://www.tensorflow.org/install/install_windows)
 - [Ubuntu](https://www.tensorflow.org/install/install_linux)
 - [macOS](https://www.tensorflow.org/install/install_mac)
 
-#### Windows
+#### Install `TensorFlow` in `python` virtual environment
 
-1. Install python, pip3 and ```TensorFlow```, 
+##### Windows
 
-a. Download [Python](https://www.python.org/downloads/release/python-354/) and install (Choose add path and install pip3).
+Install `python`, `pip3` and `TensorFlow`, 
+
+a. Download [`python`](https://www.python.org/downloads/release/python-354/) and install (Choose add path and install `pip3`).
 
 b. Open cmd with administration role and execute,
 
 {% highlight bash %}
 pip3 install tensorflow==1.9.0rc1
-pip3 install tfp-nightly==0.1.0rc1.dev20180702    # depends on tensorflow (CPU-only)
+pip3 install tfp-nightly==0.1.0rc1.dev20180702  # depends on tensorflow (CPU-only)
 {% endhighlight %}
 
 
 
-#### Ubuntu
-1. Install python, pip3 and ```TensorFlow```,
+##### Ubuntu
+Install `python`, `pip3` and `TensorFlow`, 
 
 {% highlight bash %}
 sudo apt-get install python3-pip python3-dev
 pip3 install tensorflow==1.9.0rc1
-pip3 install tfp-nightly==0.1.0rc1.dev20180702    # depends on tensorflow (CPU-only)
+pip3 install tfp-nightly==0.1.0rc1.dev20180702  # depends on tensorflow (CPU-only)
 {% endhighlight %}
 
 
-#### macOS
+##### macOS
 
-Check pip3 version:
+Check `pip3` version:
 
 {% highlight bash %}
 pip3 -V # for Python 3.n 
 {% endhighlight %}
 
-If pip or pip3 8.1 or later is not installed, issue the following commands to install or upgrade:
+If `pip` or `pip3` version `8.1` or later is not installed, issue the following commands to install or upgrade:
 
 
 {% highlight bash %}
 sudo easy_install --upgrade pip
 sudo easy_install --upgrade six 
 pip3 install tensorflow==1.9.0rc1
-pip3 install tfp-nightly==0.1.0rc1.dev20180702    # depends on tensorflow (CPU-only)
+pip3 install tfp-nightly==0.1.0rc1.dev20180702  # depends on tensorflow (CPU-only)
 {% endhighlight %}
 
-Once you have installed `TensorFlow`, we go to `Rstudio` and intall the R API package.
+Once you have installed `TensorFlow`, we go to `RStudio` and intall the `R` API package.
 
-#### Install ```R``` package ```TensorFlow```
+#### Install `R` package `TensorFlow`
 
 
 {% highlight r %}
@@ -108,9 +108,9 @@ install.packages("tensorflow", "reticulate")
 tensorflow::install_tensorflow()
 {% endhighlight %}
 
-### Hello ```TensorFlow```
+### Hello `TensorFlow`
 
-Test your installation with this trunk of codes
+Test your installation with this chunk of codes
 
 
 {% highlight r %}
@@ -125,7 +125,7 @@ sess$run(hello)
 
 
 {% highlight text %}
-## b'Hello, TensorFlow!'
+## [1] "Hello, TensorFlow!"
 {% endhighlight %}
 
 
@@ -151,15 +151,15 @@ sess$close()
 If everything works, we are ready to go.
 
 
-## TensorFlow API from R 
+## `TensorFlow` API from `R` 
 
-We start with how to declare variables, constants and placeholders in ```TensorFlow```.
-We assign an object (```sess```) pointing to ```tf$Session()``` 
-and close a session with ```sess$close()```. Here top level API is ```tf``` which provides access to Tensorflow modules.  
+We start with how to declare variables, constants and placeholders in `TensorFlow`.
+We assign an object (`sess`) pointing to `tf$Session()` 
+and close a session with `sess$close()`. Here top level API is `tf` which provides access to `TensorFlow` modules.  
 
-There are several ways to evaluate a ```TensorFlow``` variable. 
+There are several ways to evaluate a `TensorFlow` variable. 
 
-- Temporary use ```tf$Session()```,
+- Temporary use `tf$Session()`,
 
 {% highlight r %}
 tensor_0D <- tf$constant(42, name = "tensor_0D")    # Declare a constant 
@@ -189,7 +189,7 @@ with(tf$Session() %as% sess, {      # temporary use tf$Session()
 - ```tf$Session()$run()``` in ```tf$Session()``` ,
 
 {% highlight r %}
- # Start a sesssion with tensorflow
+ # Start a sesssion with `TensorFlow`
 sess <- tf$Session()                
 # vector of variables as a place holder
 tensor_1D <- tf$Variable(c(1,2,3), name = "tensor_1D") 
@@ -269,19 +269,19 @@ tf$reset_default_graph()
 ## Linear regression 
 
 ### Gradient descent algorithm
-We analyze an example of simple linear regression to see how to use ```TensorFlow``` to optimize over a loss function. 
-Then we use ```TensorBoard``` to monitor the loss function in each iteration. 
+We analyze an example of simple linear regression to see how to use `TensorFlow` to optimize over a loss function. 
+Then we use `TensorBoard` to monitor the loss function in each iteration. 
 For a simple linear regression, we fit a linear function, 
 
 $$y = A x + b + \epsilon$$
 
-such that it minimize the distance between the predicted values ($\hat{y_i}$) and the observed values ($y_i$) in term of mean square error.
+such that it minimizes the distance between the predicted values ($\hat{y_i}$) and the observed values ($y_i$) in term of mean square error (MSE).
 
 $$MSE = \frac{1}{n} \sum_{i = 1}^n (y_i - \hat{y}_i)^2$$
 
-In order to illustrate how to solve for this optimization, we use the ```iris``` data (collected by Ronald Fisher in his well-known 1936 paper).
-We want to define a linear model between ```Petal.Length``` and ```Petal.Width```.
-We first create a placeholder (```x_data```, ```y_data```) for (```Petal.Length```, ```Petal.Width```),
+In order to illustrate how to solve for this optimization, we use the `iris` data (collected by Ronald Fisher in his well-known 1936 paper).
+We want to define a linear model between `Petal.Length` and `Petal.Width`.
+We first create a placeholder (`x_data`, `y_data`) for (`Petal.Length`, `Petal.Width`),
 Then, we derive the prediction $\hat{y} = A x + b$.
 
 
@@ -304,8 +304,8 @@ b <- tf$Variable(1.0,	name = "Intercept")
 y_hat <- A * x_data + b
 {% endhighlight %}
 
-Secondly, we define a loss function (MSE) and a submodule optimizer ```tf$train$GradientDescentOptimizer```
-with a learning rate $\gamma = 0.03$. There are several other submodules such as ```AdagradOptimizer```, ```MomentumOptimizer```, ```RMSPropOptimizer``` which based on the problem of interest. The ```GradientDescentOptimizer``` will update the parameters $A$ and $b$ in each iteration by,
+Secondly, we define a loss function (MSE) and a submodule optimizer `tf$train$GradientDescentOptimizer`
+with a learning rate $\gamma = 0.03$. There are several other submodules such as `AdagradOptimizer`, `MomentumOptimizer`, `RMSPropOptimizer` which based on the problem of interest. The `GradientDescentOptimizer` will update the parameters $A$ and $b$ in each iteration by,
 
 $$A_{n+1} = A_{n} - \gamma \nabla MSE(A_n)$$
 
@@ -319,7 +319,7 @@ optimizer <- tf$train$GradientDescentOptimizer(0.03)
 train <- optimizer$minimize(MSE) 
 {% endhighlight %}
 
-Finally, we fetch data to placeholder using ```feed_dict``` and update paramters along the gradient few thousand times.
+Finally, we fetch data to placeholder using `feed_dict` and update parameters along the gradient few thousand times.
 
 {% highlight r %}
 sess$run(tf$global_variables_initializer()) # To init all the variables
@@ -363,8 +363,8 @@ lm(Petal.Width ~ Petal.Length, data = iris)
 ##      -0.3631        0.4158
 {% endhighlight %}
 
-### Monitoring with ```TensorBoard```
-```TensorBoard``` is a metrics module that helps to monitor the learning process. In the complex model, ```TensorBoard``` not only visualizes but also debug, optimize the objective function. Most of the codes in this section are inherited from the previous section with few lines for adding variables to our watch list.
+### Monitoring with `TensorBoard`
+`TensorBoard` is a metrics module that helps to monitor the learning process. In the complex model, `TensorBoard` not only visualizes but also debug, optimize the objective function. Most of the codes in this section are inherited from the previous section with few lines for adding variables to our watch list.
 
 
 {% highlight r %}
@@ -427,21 +427,21 @@ rm(list = ls())
 tensorboard(log_dir = "/home/hoanguc3m/logs") # Play with tensorboard
 {% endhighlight %}
 
-Here are few things that we summary in ```TensorBoard```. The algorithm reachs convergence after 1000 iterations. For graph structure, each node in the graph represents for an operator at the edge, we can see the flow of the data. It could be a scalar in case of $A$ and $b$ or it could be a vector in case of $x$ and $y$.
+Here are few things that we summary in `TensorBoard`. The algorithm reaches convergence after 1000 iterations. For the graph structure, each node in the graph represents for an operator at the edge, we can see the flow of the data. It could be a scalar in case of $A$ and $b$ or it could be a vector in case of $x$ and $y$.
 ![tensor_board](/figure/source/2018-07-03-introduction-tensorflow/pic1.jpg "Scalar")
 
 ![tensor_board](/figure/source/2018-07-03-introduction-tensorflow/pic2.jpg "Graph")
 
-## Maximum likelihood with ```TensorFlow```
+## Maximum likelihood with `TensorFlow`
 
-Tensorflow contains a large collection of probability distributions. ```tf$contrib$distributions``` provides some common distribution such as Bernoulli, Binomial, Uniform, Normal, Student-t,... The interesting feature of these functions is automatic differentiation. Thus, we just need to sepecify the likelihood function of the model and let ```TensorFlow``` takes care of the likelihood. ```TensorFlow``` uses reserve mode automatic differentiation.
+`TensorFlow` contains a large collection of probability distributions. `tf$contrib$distributions` provide some common distributions such as Bernoulli, Binomial, Uniform, Normal, Student-t,... The interesting feature of these functions is automatic differentiation. Thus, we just need to sepecify the likelihood function of the model and let `TensorFlow` takes care of the likelihood. `TensorFlow` uses reserve mode automatic differentiation.
 
 In general, we have the following workflow, 
 
 - Define the graph (variables, placeholders for data).
-- The flow of the graph and operation on graph.
+- The flow of the graph and operation on the graph.
 - Calculate the loss function and choose the optimizer engine. 
-- Graph is executed. 
+- The Graph is executed. 
 
 
 {% highlight r %}
@@ -532,13 +532,13 @@ tf$reset_default_graph()
 {% endhighlight %}
 
 
-## Bayesian with ```TensorFlow_Probability```
-```TensorFlow_Probability``` contains the most recent innovated Bayesian inference algorithms used in machine learning and deep learning. ```TensorFlow_Probability``` make it easier for probabilistic reasoning and statistical analysis. 
+## Bayesian with `TensorFlow_Probability`
+`TensorFlow_Probability` contains the most recent innovated Bayesian inference algorithms used in machine learning and deep learning. `TensorFlow_Probability` make it easier for probabilistic reasoning and statistical analysis. 
 
 ![tfp](https://cdn-images-1.medium.com/max/800/0*19BJhsJ-2DzQ7fFH. "Tfp framework")
 
-```TensorFlow``` package in R does not support for API to ```TensorFlow_Probability``` yet, so we can run python code through ```reticulate``` package who helps to connect R and python.
-In this section, we will work with a graphical probabilistic model using ```tfp$edward2``` and making inference with Hamiltonian Monte Carlo ```tfp.mcmc.HamiltonianMonteCarlo```. More examples could be found at [Github/tfp](https://github.com/tensorflow/probability).
+`TensorFlow` package in `R` does not support for API to `TensorFlow_Probability` yet, so we can run `python` code through `reticulate` package who helps to connect `R` and `python`.
+In this section, we will work with a graphical probabilistic model using `tfp$edward2` and make an inference with Hamiltonian Monte Carlo `tfp.mcmc.HamiltonianMonteCarlo`. More examples could be found at [Github/tfp](https://github.com/tensorflow/probability).
 
 
 
@@ -639,5 +639,5 @@ References:
 
 - [MLE with TensorFlow](http://kyleclo.github.io/maximum-likelihood-in-tensorflow-pt-1/)
 - [Machine Learning with R and TensorFlow](https://www.youtube.com/watch?v=atiYXm7JZv0)
-- [Tensorflow probability](https://medium.com/tensorflow/introducing-tensorflow-probability-dca4c304e245)
+- [TensorFlow probability](https://medium.com/tensorflow/introducing-tensorflow-probability-dca4c304e245)
 - [Using TensorFlow Api](https://tensorflow.rstudio.com/tensorflow/articles/using_tensorflow_api.html)
