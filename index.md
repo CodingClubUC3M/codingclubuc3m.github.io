@@ -55,6 +55,8 @@ SimpleJekyllSearch({
 
 Just show up. But it would be nice if you let us know in advance to adapt the logistics by filling the confirmation form (if you have received it) or by dropping us a line at <coding.club.uc3m@gmail.com>.
 
-Check out the lastest news by <a href="https://twitter.com/CodingClubUc3m?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="small" data-show-count="true">CodingClubUc3m</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+Check out the lastest news at <button type="button" class="btn btn-primary" onclick="window.open('https://twitter.com/CodingClubUC3M')">@CodingClubUC3M</button>
+
 
 If you want to contribute a session, then please fill in [this form](https://goo.gl/forms/CIj7hxkAeEA4VjZR2). 
+ 
