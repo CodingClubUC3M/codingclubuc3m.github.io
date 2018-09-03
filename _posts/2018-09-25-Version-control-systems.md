@@ -4,8 +4,8 @@ comments:  true
 title: "Version Control Systems for Researchers"
 author: Pedro Vicente Gómez
 date: 2018-07-03
-published: false
-visible: false
+published: true
+visible: true
 categories: [git, github]
 excerpt_seperator: ""
 output:
