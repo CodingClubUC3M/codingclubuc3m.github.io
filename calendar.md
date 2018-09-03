@@ -9,7 +9,7 @@ title: Calendar
 <div class="highlighter-black"> Time:  <span style="color:red;"> 25.09.2018, 15.00 - 17:00 </span>
 	<a href="https://calendar.google.com/calendar/r/eventedit?
 	text=CodingClubUC3M
-	&dates=20180925T140000Z/20180925T160000Z
+	&dates=20180925T130000Z/20180925T150000Z
 	&details=For+details,+link+here:+https://codingclubuc3m.github.io/calendar.html
 	&location=Campomanes+Building+10.1.5
 	&sf=true
