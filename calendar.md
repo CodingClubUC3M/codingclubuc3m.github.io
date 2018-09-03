@@ -6,10 +6,10 @@ title: Calendar
 ## Next events
 
 <div class="highlighter-black"> Title: <span style="color:red;"> Version Control Systems for Researchers </span> </div>
-<div class="highlighter-black"> Time:  <span style="color:red;"> 25.09.2018</span>
+<div class="highlighter-black"> Time:  <span style="color:red;"> 25.09.2018, 15.00 - 17:00 </span>
 	<a href="https://calendar.google.com/calendar/r/eventedit?
 	text=CodingClubUC3M
-	&dates=20180703T130000Z/20180703T140000Z
+	&dates=20180925T140000Z/20180925T160000Z
 	&details=For+details,+link+here:+https://codingclubuc3m.github.io/calendar.html
 	&location=Campomanes+Building+10.1.5
 	&sf=true
