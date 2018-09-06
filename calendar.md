@@ -17,7 +17,7 @@ title: Calendar
 	target="_blank" rel="nofollow">(Add to my calendar)</a> 
 </div> 
 <div class="highlighter-black"> Presenter: <a href="" class="highlighter-red"> Pedro Vicente Gómez </a></div> 
-<div class="highlighter-black"> Location: <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2558.1506148727212!2d-3.7259305204639386!3d40.31636424653651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4220b917629175%3A0xe88b2f626003db99!2sEdificio+L%C3%B3pez+Aranguren%2C+Calle+Madrid%2C+126%2C+28903+Getafe%2C+Madrid!5e0!3m2!1sen!2ses!4v1536244208934"> Getafe campus, Edificio López Aranguren, 15.1.41 </a> </div>
+<div class="highlighter-black"> Location: <a href="https://goo.gl/maps/CpkZ74eUb4E2"> Getafe campus, Edificio López Aranguren, 15.1.41 </a> </div>
 
 ### Map
 
@@ -26,9 +26,7 @@ title: Calendar
 
 ### Calendar
 
-<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;hl=en_GB&amp;bgcolor=%23FFFFFF&amp;src=coding.club.uc3m%40gmail.com&amp;color=%23125A12&amp;src=uc3m.es_rf416kf90mttgqjks6vj4kfdbo%40group.calendar.google.com&amp;color=%23333333&amp;ctz=Europe%2FMadrid" style="border-width:0" width="100%" height="700" frameborder="0" scrolling="no"></iframe>
-
-
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3042.147896927009!2d-3.728482584607135!3d40.31687507937694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4220b917629175%3A0xe88b2f626003db99!2sEdificio+L%C3%B3pez+Aranguren%2C+Calle+Madrid%2C+126%2C+28903+Getafe%2C+Madrid!5e0!3m2!1sen!2ses!4v1536244427011" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 
 {% comment %}
 
