@@ -11,7 +11,7 @@ title: Calendar
 	text=CodingClubUC3M
 	&dates=20180925T130000Z/20180925T150000Z
 	&details=For+details,+link+here:+https://codingclubuc3m.github.io/calendar.html
-	&location=Campomanes+Building+10.1.5
+	&location=Edificio+López+Aranguren+15.1.41
 	&sf=true
 	&output=xml"
 	target="_blank" rel="nofollow">(Add to my calendar)</a> 
@@ -21,8 +21,7 @@ title: Calendar
 
 ### Map
 
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2558.1506148727212!2d-3.7259305204639386!3d40.31636424653651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4220b917629175%3A0xe88b2f626003db99!2sEdificio+L%C3%B3pez+Aranguren%2C+Calle+Madrid%2C+126%2C+28903+Getafe%2C+Madrid!5e0!3m2!1sen!2ses!4v1536244208934" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d760.5369740139768!2d-3.7268410707557384!3d40.31687509871106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4220b917629175%3A0xe88b2f626003db99!2sEdificio+L%C3%B3pez+Aranguren%2C+Calle+Madrid%2C+126%2C+28903+Getafe%2C+Madrid!5e0!3m2!1sen!2ses!4v1536244605656" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 
 ### Calendar
 
