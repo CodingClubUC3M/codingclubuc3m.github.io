@@ -17,12 +17,12 @@ title: Calendar
 	target="_blank" rel="nofollow">(Add to my calendar)</a> 
 </div> 
 <div class="highlighter-black"> Presenter: <a href="" class="highlighter-red"> Pedro Vicente Gómez </a></div> 
-<div class="highlighter-black"> Location: <a href="https://www.google.com/maps/place/Campomanes+Building/@40.3139726,-3.7259817,17z/data=!4m12!1m6!3m5!1s0xd4220b90a840de7:0x8bc24e4eab60c842!2sUniversity+Carlos+III+de+Madrid:+Getafe+Campus!8m2!3d40.316966!4d-3.7270795!3m4!1s0xd4220bee09d184d:0x799904d05c39a14f!8m2!3d40.3140885!4d-3.7259468"> Getafe campus, 
-Campomanes Building, 10.1.5 </a> </div>
+<div class="highlighter-black"> Location: <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2558.1506148727212!2d-3.7259305204639386!3d40.31636424653651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4220b917629175%3A0xe88b2f626003db99!2sEdificio+L%C3%B3pez+Aranguren%2C+Calle+Madrid%2C+126%2C+28903+Getafe%2C+Madrid!5e0!3m2!1sen!2ses!4v1536244208934"> Getafe campus, Edificio López Aranguren, 15.1.41 </a> </div>
 
 ### Map
 
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3042.278666502382!2d-3.72598171337128!3d40.31397255912516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4220bee09d184d%3A0x799904d05c39a14f!2sCampomanes+Building!5e0!3m2!1sen!2ses!4v1527755233840" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2558.1506148727212!2d-3.7259305204639386!3d40.31636424653651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4220b917629175%3A0xe88b2f626003db99!2sEdificio+L%C3%B3pez+Aranguren%2C+Calle+Madrid%2C+126%2C+28903+Getafe%2C+Madrid!5e0!3m2!1sen!2ses!4v1536244208934" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
 
 ### Calendar
 
@@ -31,6 +31,9 @@ Campomanes Building, 10.1.5 </a> </div>
 
 
 {% comment %}
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3042.278666502382!2d-3.72598171337128!3d40.31397255912516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4220bee09d184d%3A0x799904d05c39a14f!2sCampomanes+Building!5e0!3m2!1sen!2ses!4v1527755233840" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
 
 <div class="highlighter-black"> Time:  <span style="color:red;"> 06.06.2018, 16.30 - 17:30 </span>
 	<a href="https://calendar.google.com/calendar/r/eventedit?
