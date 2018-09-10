@@ -21,6 +21,10 @@ images:
     image_path: /public/contributor/david.png
     link: null
     description: PhD student at the Department of Statistics at Carlos III University of Madrid, his research interests have led him to have programming as an essential part of his daily work. Although most of his code is made in <code class="highlighter-rouge">C++</code>, he is also fan of other languages as <code class="highlighter-rouge">Julia</code>, <code class="highlighter-rouge">R</code> or <code class="highlighter-rouge">MATLAB</code>.
+  - name: Pedro Vicente Gómez 
+    image_path: /public/contributor/pedro.jpg
+    link: https://github.com/pedrovgs
+    description: Pedro is a Software Engineer focused on new technologies, open source, clean code, and testing. Right now he's working as a Senior Software Engineer at <code class="highlighter-rouge">Karumi</code>, a little software development studio. <code class="highlighter-rouge">Tuenti</code> and <code class="highlighter-rouge">Droiders</code> alumni, Pedro tries to write the best possible code every day to build excellent tech products.
 ---
 
 <table>

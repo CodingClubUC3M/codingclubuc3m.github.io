@@ -16,7 +16,7 @@ title: Calendar
 	&output=xml"
 	target="_blank" rel="nofollow">(Add to my calendar)</a> 
 </div> 
-<div class="highlighter-black"> Presenter: <a href="" class="highlighter-red"> Pedro Vicente Gómez </a></div> 
+<div class="highlighter-black"> Presenter: <a href="https://github.com/pedrovgs" class="highlighter-red"> Pedro Vicente Gómez </a></div> 
 <div class="highlighter-black"> Location: <a href="https://goo.gl/maps/CpkZ74eUb4E2"> Getafe campus, Edificio López Aranguren, 15.1.41 </a> </div>
 
 ### Map
