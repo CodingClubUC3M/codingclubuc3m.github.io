@@ -1,5 +1,5 @@
 ---
-title: "Organizer"
+title: "Organizers"
 layout: page
 images:
     
@@ -28,28 +28,50 @@ images:
 
 <table>
 <colgroup>
-<col width="30%" />
-<col width="70%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th>Contributors</th>
-<th>Biography</th>
+<th>Main coordinator</th>
+<th>Review editor</th>
+<th>Logistics</th>
+<th>Content management</th>
 </tr>
+
 </thead>
 <tbody>
-{% for image in page.images %}
+
 <tr>
 <td align="center">
-      <a href="{{ image.link }}">
-        <img src="{{ image.image_path }}" width="200" alt="{{ image.name}}" class="avatar"/> 
-        <h4>{{ image.name}}</h4>
+      <a href="http://egarpor.github.io/">
+        <img src="/public/contributor/edu.png" width="200" alt="Eduardo García Portugués" class="avatar"/> 
+        <h4>https://github.com/DavidGarHeredia</h4>
       </a> 
 </td>
-<td>     
-      <p>{{ image.description }}</p>
+<td align="center">
+      <a href="">
+        <img src="/public/contributor/david.png" width="200" alt="David García Heredia" class="avatar"/> 
+        <h4>David García Heredia</h4>
+      </a> 
 </td>
+<td align="center">
+      <a href="https://www.linkedin.com/in/antonio-el%C3%ADas-fern%C3%A1ndez-656ab495/">
+        <img src="/public/contributor/antonio.jpeg" width="200" alt="Antonio Elías Fernández" class="avatar"/> 
+        <h4>Antonio Elías Fernández</h4>
+      </a> 
+</td>
+<td align="center">
+      <a href="http://hoanguc3m.github.io/">
+        <img src="/public/contributor/hoang.jpg" width="200" alt="Hoang Nguyen" class="avatar"/> 
+        <h4>Hoang Nguyen</h4>
+      </a> 
+</td>
+
+
 </tr>
-{% endfor %}
+
 </tbody>
 </table>

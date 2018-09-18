@@ -61,4 +61,4 @@ If you want to contribute a session, then please fill in [this form](https://goo
 
 ### Sponsors
 
-We thank UC3M-BS Institute of Financial Big Data (IFiBiD) for the sponsorships.
+We thank [UC3M-BS Institute of Financial Big Data (IFiBiD)](http://portal.uc3m.es/portal/page/portal/ifibid/home) for the sponsorships. 
