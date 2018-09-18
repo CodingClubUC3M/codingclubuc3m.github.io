@@ -26,7 +26,7 @@ images:
 
 ---
 
-<table>
+<table align="center">
 <colgroup>
 <col width="25%" />
 <col width="25%" />
@@ -35,10 +35,10 @@ images:
 </colgroup>
 <thead>
 <tr class="header">
-<th>Main coordinator</th>
-<th>Review editor</th>
-<th>Logistics</th>
-<th>Content management</th>
+<th  align="center">Main coordinator</th>
+<th  align="center">Review editor</th>
+<th  align="center">Logistics</th>
+<th align="center">Content management</th>
 </tr>
 
 </thead>
@@ -48,7 +48,7 @@ images:
 <td align="center">
       <a href="http://egarpor.github.io/">
         <img src="/public/contributor/edu.png" width="200" alt="Eduardo García Portugués" class="avatar"/> 
-        <h4>https://github.com/DavidGarHeredia</h4>
+        <h4>Eduardo García Portugués</h4>
       </a> 
 </td>
 <td align="center">
