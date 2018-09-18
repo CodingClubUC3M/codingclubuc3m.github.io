@@ -38,7 +38,7 @@ images:
 <th  align="center">Main coordinator</th>
 <th  align="center">Review editor</th>
 <th  align="center">Logistics</th>
-<th align="center">Content management</th>
+<th align="center">Content manager</th>
 </tr>
 
 </thead>
