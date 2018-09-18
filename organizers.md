@@ -1,17 +1,13 @@
 ---
-title: "Contributors"
+title: "Organizer"
 layout: page
 images:
     
-  - name: Pedro Vicente Gómez 
-    image_path: /public/contributor/pedro.jpg
-    link: https://github.com/pedrovgs
-    description: Pedro is a Software Engineer focused on new technologies, open source, clean code, and testing. Right now he's working as a Senior Software Engineer at <code class="highlighter-rouge">Karumi</code>, a little software development studio. <code class="highlighter-rouge">Tuenti</code> and <code class="highlighter-rouge">Droiders</code> alumni, Pedro tries to write the best possible code every day to build excellent tech products.
 
   - name: Hoang Nguyen
     image_path: /public/contributor/hoang.jpg
     link: http://hoanguc3m.github.io/
-    description: Hoang is on his final year of the PhD program in Statistics at Carlos III University of Madrid. He enjoys Bayesian inference and statistical computation. He contributes to several <code class="highlighter-rouge">R</code> packages in his <a href="https://github.com/hoanguc3m/">repositories</a>. 
+    description: . 
 
   - name: Antonio Elías Fernández
     image_path: /public/contributor/antonio.jpeg
