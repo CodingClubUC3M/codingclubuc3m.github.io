@@ -52,7 +52,7 @@ images:
       </a> 
 </td>
 <td align="center">
-      <a href="">
+      <a href="https://github.com/DavidGarHeredia">
         <img src="/public/contributor/david.png" width="200" alt="David García Heredia" class="avatar"/> 
         <h4>David García Heredia</h4>
       </a> 
