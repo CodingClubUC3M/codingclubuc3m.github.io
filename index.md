@@ -58,3 +58,7 @@ Just show up. But it would be nice if you let us know in advance to adapt the lo
 Check out the lastest news at <a href="https://twitter.com/CodingClubUC3M?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="small" data-show-count="true">CodingClubUC3M</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
 If you want to contribute a session, then please fill in [this form](https://goo.gl/forms/CIj7hxkAeEA4VjZR2). 
+
+### Sponsors
+
+We thank UC3M-BS Institute of Financial Big Data (IFiBiD) for the sponsorships.
