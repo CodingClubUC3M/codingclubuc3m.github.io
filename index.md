@@ -33,7 +33,7 @@ SimpleJekyllSearch({
 })
 </script>
 
-  {% for post in site.posts reversed %}
+  {% for post in site.posts %}
     {% if post.visible != false  %}
     {% unless post.next %}
 
