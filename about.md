@@ -37,7 +37,7 @@ Sessions to be held in a room equipped with a projector and spots for laptops. T
 
 ## Session duration
 
-The sessions are scheduled for **60 minutes**, with a strong compromise to keep the duration of the session at this limit.
+The sessions are *typically* scheduled for **60 minutes**, with a strong compromise to keep the duration of the session at this limit.
 
 ## Session structure
 
