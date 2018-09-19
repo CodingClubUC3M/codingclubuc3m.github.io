@@ -12,13 +12,57 @@ contributorsY2:
   - name: Antonio Elías Fernández
     image_path: /public/contributor/antonio.jpeg
     link: https://www.linkedin.com/in/antonio-el%C3%ADas-fern%C3%A1ndez-656ab495/
-    description:  Entering the final stretch of the PhD program in Statistics at Carlos III University of Madrid. <code class="highlighter-rouge">gretl</code> was his first contact with the open-source world and got stunned by the <code class="highlighter-rouge">R</code> community. His codes are devoted to complex data analysis.
+    description:  Date &colon; <b>16/10/2018</b> <br /> Title &colon; <b>An Introdution to Shiny II</b>
+
+  - name: Miguel Ángel
+    image_path: /public/contributor/TBA.jpg
+    link: 
+    description:  Date &colon; <b>06/11/2018</b> <br /> Title &colon; <b>Online resources for teaching</b>
+
+  - name: Stefano Cabras
+    image_path: /public/contributor/TBA.jpg
+    link: 
+    description:  Date &colon; <b>27/11/2018</b> <br /> Title &colon; <b>Tensorflow and Keras</b>
+
+  - name: Juan Miguel 
+    image_path: /public/contributor/TBA.jpg
+    link: 
+    description:  Date &colon; <b>22/01/2019</b> <br /> Title &colon; <b>Stan</b>
+
+  - name: Vanesa Guerrero
+    image_path: /public/contributor/TBA.jpg
+    link: 
+    description:  Date &colon; <b>12/02/2019</b> <br /> Title &colon; <b>Optimization</b>
 
   - name: TBA
     image_path: /public/contributor/TBA.jpg
     link: 
-    description:  Upcoming sessions
+    description:  Date &colon; <b>05/03/2019</b> <br /> Title &colon; <b>TBA</b>
 
+  - name: Bernardo D'Auria
+    image_path: /public/contributor/TBA.jpg
+    link: 
+    description:  Date &colon; <b>26/03/2019</b> <br /> Title &colon; <b>R Markdown</b>
+
+  - name: Miguel Ángel
+    image_path: /public/contributor/TBA.jpg
+    link: 
+    description:  Date &colon; <b>09/04/2019</b> <br /> Title &colon; <b>Flexdashboard</b>
+
+  - name: Carlos Ruíz
+    image_path: /public/contributor/TBA.jpg
+    link: 
+    description:  Date &colon; <b>07/05/2019</b> <br /> Title &colon; <b>JupyterLab</b>
+
+  - name: Javier Nogales
+    image_path: /public/contributor/TBA.jpg
+    link: 
+    description:  Date &colon; <b>28/05/2019</b> <br /> Title &colon; <b>TBA</b>
+
+  - name: TBA
+    image_path: /public/contributor/TBA.jpg
+    link: 
+    description:  Date &colon; <b>8/06/2019</b> <br /> Title &colon; <b>TBA</b>
 
 contributorsY1:
     
