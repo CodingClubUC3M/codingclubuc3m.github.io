@@ -2,6 +2,10 @@
   bullets: true
   captions: true
   images:
+    - src: /public/pics/2018-09-25-2.jpg
+      alt: Participants in the sixth session
+    - src: /public/pics/2018-09-25-1.jpg
+      alt: Participants in the sixth session
     - src: /public/pics/2018-07-03-0.jpg
       alt: Participants in the fifth session
     - src: /public/pics/2018-07-03-1.jpg

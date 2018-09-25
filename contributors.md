@@ -11,8 +11,8 @@ contributorsY2:
 
   - name: TBA
     image_path: /public/contributor/TBA.jpg
-    link: https://github.com/pedrovgs
-    description:  Date &colon; <b>16/10/2018</b> <br /> Title &colon; <b>An Introdution to Shiny II</b> <br />     Date &colon; <b>06/11/2018</b> <br /> Title &colon; <b>Online resources for teaching</b> <br />     Date &colon; <b>27/11/2018</b> <br /> Title &colon; <b>Tensorflow and Keras</b> <br />     Date &colon; <b>22/01/2019</b> <br /> Title &colon; <b>Stan</b> <br />     Date &colon; <b>12/02/2019</b> <br /> Title &colon; <b>Optimization</b> <br />      Date &colon; <b>05/03/2019</b> <br /> Title &colon; <b>TBA</b> <br />     Date &colon; <b>26/03/2019</b> <br /> Title &colon; <b>R Markdown</b> <br />     Date &colon; <b>09/04/2019</b> <br /> Title &colon; <b>Flexdashboard</b> <br />     Date &colon; <b>07/05/2019</b> <br /> Title &colon; <b>JupyterLab</b> <br />     Date &colon; <b>28/05/2019</b> <br /> Title &colon; <b>TBA</b> <br />     Date &colon; <b>8/06/2019</b> <br /> Title &colon; <b>TBA</b> <br />
+    link: 
+    description: <b>TBA</b> <br />
 
 contributorsY1:
     
