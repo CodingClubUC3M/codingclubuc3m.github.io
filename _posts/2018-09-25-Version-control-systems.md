@@ -174,3 +174,7 @@ As you can see if you followed the previous sections, using Git to keep differen
 * [GitKraken documentation.](https://support.gitkraken.com/)
 * [Git official documentation.](https://git-scm.com/doc)
 * [GitHub tutorial.](https://guides.github.com/activities/hello-world/)
+
+## Slides for the talk
+
+<script async class="speakerdeck-embed" data-id="edccb285bece4868b9df24823ce59ea4" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
