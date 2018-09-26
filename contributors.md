@@ -12,7 +12,7 @@ contributorsY2:
   - name:
     image_path: /public/contributor/TBA2.jpg
     link: 
-    description: Much more contributors to be announced! <br />
+    description: Many more contributors to be announced! <br />
 
 contributorsY1:
     
