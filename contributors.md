@@ -9,10 +9,10 @@ contributorsY2:
     link: https://github.com/pedrovgs
     description: Pedro is a Software Engineer focused on new technologies, open source, clean code, and testing. Right now he's working as a Senior Software Engineer at <code class="highlighter-rouge">Karumi</code>, a little software development studio. <code class="highlighter-rouge">Tuenti</code> and <code class="highlighter-rouge">Droiders</code> alumni, Pedro tries to write the best possible code every day to build excellent tech products.
 
-  - name: TBA
+  - name:
     image_path: /public/contributor/TBA2.jpg
     link: 
-    description: <b>TBA</b> <br />
+    description: <b>Much more contributors to be announce!</b> <br />
 
 contributorsY1:
     
