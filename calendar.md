@@ -5,18 +5,18 @@ title: Calendar
 
 ## Next events
 
-<div class="highlighter-black"> Title: <span style="color:red;"> Version Control Systems for Researchers </span> </div>
-<div class="highlighter-black"> Time:  <span style="color:red;"> 25.09.2018, 15.00 - 17:00 </span>
+<div class="highlighter-black"> Title: <span style="color:red;"> An Introduction to Shiny II </span> </div>
+<div class="highlighter-black"> Time:  <span style="color:red;"> 16.10.2018, 15.00 - 16:00 </span>
 	<a href="https://calendar.google.com/calendar/r/eventedit?
 	text=CodingClubUC3M
-	&dates=20180925T130000Z/20180925T150000Z
+	&dates=20181016T130000Z/20181016T150000Z
 	&details=For+details,+link+here:+https://codingclubuc3m.github.io/calendar.html
 	&location=Edificio+López+Aranguren+15.1.41
 	&sf=true
 	&output=xml"
 	target="_blank" rel="nofollow">(Add to my calendar)</a> 
 </div> 
-<div class="highlighter-black"> Presenter: <a href="https://github.com/pedrovgs" class="highlighter-red"> Pedro Vicente Gómez </a></div> 
+<div class="highlighter-black"> Presenter: <a href="https://www.linkedin.com/in/antonio-el%C3%ADas-fern%C3%A1ndez-656ab495/" class="highlighter-red"> Elias Antonio Fernandez </a></div> 
 <div class="highlighter-black"> Location: <a href="https://goo.gl/maps/CpkZ74eUb4E2"> Getafe campus, Edificio López Aranguren, 15.1.41 </a> </div>
 
 ### Map

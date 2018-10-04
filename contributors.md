@@ -4,6 +4,11 @@ layout: page
 
 contributorsY2:
     
+  - name: Antonio Elías Fernández
+    image_path: /public/contributor/antonio.jpeg
+    link: https://www.linkedin.com/in/antonio-el%C3%ADas-fern%C3%A1ndez-656ab495/
+    description:  Entering the final stretch of the PhD program in Statistics at Carlos III University of Madrid. <code class="highlighter-rouge">gretl</code> was his first contact with the open-source world and got stunned by the <code class="highlighter-rouge">R</code> community. His codes are devoted to complex data analysis.
+  
   - name: Pedro Vicente Gómez 
     image_path: /public/contributor/pedro.jpg
     link: https://github.com/pedrovgs
