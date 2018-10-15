@@ -53,7 +53,7 @@ SimpleJekyllSearch({
 
 ### How to join?
 
-The participation to the seminar is free but it is compulsory to sign up in advance, either by filling the form in the announcement email (preferable) or by letting us know at <coding.club.uc3m@gmail.com>.
+The participation to the seminar is free but it is compulsory to sign up in advance, either by filling <a href="register.html">the form in the announcement email</a> (preferable) or by letting us know at <coding.club.uc3m@gmail.com>.
 
 Check out the lastest news at <a href="https://twitter.com/CodingClubUC3M?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="small" data-show-count="true">CodingClubUC3M</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
