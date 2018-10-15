@@ -61,7 +61,7 @@ Despite the main motivation of the session is devoted to teaching and researchin
 
 A web page is just a set of files HTML (HyperText Markup Language), CSS (Cascading Style Sheets) and JS (JavaScript) typically located in a server. We, as users, can request these data from our computer and display them with a browser. This process is outlined in the figure below.
 
-![](/figure/source/2018-06-19-introduction-shiny/web.png)
+![](/figure/source/2018-06-19-introduction-Shiny/web.png)
 
 Each of these files enumerated above has a different goal. HTML is in charge of including the information we want to visualize and building the structure of the web. CSS introduces the design of the web and how to present the information. Finally, JS is the programming language of HTML and allows to introduce dynamics.
 
@@ -73,7 +73,7 @@ The user can interact with the server in such a way he/she can lead the process 
 
 This trade off between user and server is a key point and it is the difference between a dynamic App and a static document (.pdf) or a book. The following diagram illustrates this workflow for an App running on a server.
 
-![](/figure/source/2018-06-19-introduction-shiny/app.png)
+![](/figure/source/2018-06-19-introduction-Shiny/app.png)
 
 Today we will forget about the communication between user and server and our dynamic App will be running locally; the user and the files providing the web are in the same place as at the right panel of the sketch above.
 
@@ -81,7 +81,7 @@ Today we will forget about the communication between user and server and our dyn
 
 The Shiny package in [CRAN](https://cran.r-project.org/web/packages/shiny/index.html) is a web application framework for R. Obviously, the idea of creating an application with statistical purposes is not new at all, in fact, there are many projects related with the development of [Applet](http://www.rossmanchance.com/applets/). However, this tool requires high knowledge of web programming, while Shiny mitigates this drawback by nesting R functions that assemble a complete Application. 
 
-![](/figure/source/2018-06-19-introduction-shiny/cran.png)
+![](/figure/source/2018-06-19-introduction-Shiny/cran.png)
 
 # Developing a Shiny App
 
@@ -106,7 +106,7 @@ shinyApp(ui = ui, server = server)
 
 As the diagram below shows, the input and output trade off plays the role of being the communication link between user and server. In addition to that, thanks to the Shiny package, one could avoid web programming and simply install the package in a machine with RStudio.
 
-![](/figure/source/2018-06-19-introduction-shiny/shinyApp.png)
+![](/figure/source/2018-06-19-introduction-Shiny/shinyApp.png)
 
 Once we have understood the main workflow, we are going to develop an App from a simple R code. From my point view, a good strategy for building a Shiny R App is to thing about our R code in terms of input and output objects. In other words, what we want to be chosen by the user and what we want to show to the user given his/her inputs selection. 
 As an illustration, we are going to build a Shiny App based on the next code that empirically demonstrates the [Law of Large Numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers#Weak_law). For the moment, let us consider $N$ realizations of a $X\sim Bern(p)$, then sample mean $\sum_{i=1}^N \frac{x_i}{N} \rightarrow E[X]=p$ as $N \rightarrow \infty$.
@@ -125,7 +125,7 @@ plot(cumsum(x)/c(1:N), type = 'l', ylab = 'Y', xlab = 'Trials', main = 'LLN')
 abline(h = p)
 {% endhighlight %}
 
-<img src="/figure/source/2018-06-19-introduction-shiny/unnamed-chunk-3-1.png" title="center" alt="center" style="display: block; margin: auto;" />
+<img src="/figure/source/2018-06-19-introduction-Shiny/unnamed-chunk-3-1.png" title="center" alt="center" style="display: block; margin: auto;" />
 
 {% highlight r %}
 summary(x)
@@ -146,7 +146,7 @@ In order to see that the empirical mean converges to the expected value, one wou
 
 There are many different functions from Shiny that allows to collect these values from the user. In the following figure, we have a set of examples:
 
-![](/figure/source/2018-06-19-introduction-shiny/shiny-inputs.png)
+![](/figure/source/2018-06-19-introduction-Shiny/shiny-inputs.png)
 *From Rbloggers [Rblogger posts](https://www.r-bloggers.com/building-shiny-apps-an-interactive-tutorial/)*
 
 These functions work as easy as a regular R function does and one could check their Description, Usage and Arguments by ``help('<functionName>') ``. However, the key point here is to answer the following question: must this chunk of code be at the UI or in the server part of our template?
@@ -180,7 +180,7 @@ Once we have the input values, we can use them to *produce* an output with R for
 
 These two functions work together and each output function has its own render function counterpart. The following image presents some of these functions.
 
-![](/figure/source/2018-06-19-introduction-shiny/shiny-outputs.png)
+![](/figure/source/2018-06-19-introduction-Shiny/shiny-outputs.png)
 *From Shiny [Cheat Sheet](https://www.rstudio.com/resources/cheatsheets/)*
 
 But one more time: must these chunks of code be at the UI, at the server part of our template?
@@ -385,7 +385,7 @@ As explained at the beginning, the UI part of the code is in charge of the visua
 
 One possible option is to organize our input and output with layout functions. In the figure below, we have some examples. 
 
-![](/figure/source/2018-06-19-introduction-shiny/layout.png)
+![](/figure/source/2018-06-19-introduction-Shiny/layout.png)
 *From Shiny [https://www.rstudio.com/resources/cheatsheets/](Cheat Sheet)*
 
 For our Shiny App example, we can define the layout with `sidebarLayout()` as follows,
@@ -432,7 +432,7 @@ shinyApp(ui = ui, server = server)
 ### Adding tabs
 
 One could also structure the App in diffent panels with simple functions.
-![](/figure/source/2018-06-19-introduction-shiny/tabs.png)
+![](/figure/source/2018-06-19-introduction-Shiny/tabs.png)
 *From Shiny [https://www.rstudio.com/resources/cheatsheets/](Cheat Sheet)*
 
 Let's suppose that we want to split the different outputs in different tabs with `tabsetPanel` at our main panel layout section. And lets also add a table printing the generate data set.
