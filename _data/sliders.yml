@@ -2,29 +2,23 @@
   bullets: true
   captions: true
   images:
+    - src: /public/pics/2018-09-25-1.jpg
+      alt: Participants in the seventh session
+    - src: /public/pics/2018-09-25-2.jpg
+      alt: Participants in the seventh session
     - src: /public/pics/2018-09-25-2.jpg
       alt: Participants in the sixth session
     - src: /public/pics/2018-09-25-1.jpg
       alt: Participants in the sixth session
     - src: /public/pics/2018-07-03-0.jpg
       alt: Participants in the fifth session
-    - src: /public/pics/2018-07-03-1.jpg
-      alt: Participants in the fifth session
     - src: /public/pics/2018-06-19-1.jpg
-      alt: Participants in the fourth session
-    - src: /public/pics/2018-06-19-2.jpg
       alt: Participants in the fourth session
     - src: /public/pics/2018-06-06-1.jpg
       alt: Participants in the third session
     - src: /public/pics/2018-05-23-1.jpg
       alt: Participants in the second session
-    - src: /public/pics/2018-05-23-2.jpg
-      alt: Participants in the second session
     - src: /public/pics/2018-05-10-1.jpg
-      alt: Participants in the first session
-    - data-src: /public/pics/2018-05-10-2.jpg
-      alt: Speaker introduced the topic
-    - data-src: /public/pics/2018-05-10-3.jpg
       alt: Participants in the first session
   settings:
     height: 400
