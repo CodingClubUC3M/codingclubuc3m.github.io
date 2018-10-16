@@ -256,7 +256,7 @@ shinyApp(ui = fluidPage(content1, content2,...), server = function(input, output
 
 However, when the App becomes more complicated and we want to add more functionalities the R script above could become hard to manage. Fortunately, if desired, one could create a folder for holding the App and split the code. As mandatory files, it must have *two .R files* named **ui.R** and **server.R**. We will also create the *main.R* for running the App by `runApp(path)`, being `path` the location of our folder. However, if we set our folder as working directory, R-Studio recognizes the App.
 
-![Our folder and Shiny [Cheat Sheet](https://www.rstudio.com/resources/cheatsheets/)](/figure/source/2018-10-16-Shiny-R-function/folder-App.png)
+![Our folder and Shiny Cheat Sheet](/figure/source/2018-10-16-Shiny-R-function/folder-App.png)
 
 # From R code to a Shiny App
 
@@ -552,9 +552,9 @@ shinyApp(ui = ui, render)
 {% endhighlight %}
 
 
-![](/figure/source/2018-10-16-Shiny-R-function/group1.png)
-![](/figure/source/2018-10-16-Shiny-R-function/group2.png)
-![](/figure/source/2018-10-16-Shiny-R-function/group3.png)
+![center](/figure/source/2018-10-16-Shiny-R-function/group1.png)
+![center](/figure/source/2018-10-16-Shiny-R-function/group2.png)
+![center](/figure/source/2018-10-16-Shiny-R-function/group3.png)
 
 ## Personal Tab
 
@@ -608,7 +608,7 @@ shinyApp(ui = ui, render)
 {% endhighlight %}
 
 
-![](/figure/source/2018-10-16-Shiny-R-function/individual1.png)
+![center](/figure/source/2018-10-16-Shiny-R-function/individual1.png)
 
 ## Final Grades Prediction Tab
 
@@ -662,7 +662,7 @@ render = function(input, output) {
 shinyApp(ui = ui, render)
 {% endhighlight %}
 
-![](/figure/source/2018-10-16-Shiny-R-function/gradesPrediction.png)
+![center](/figure/source/2018-10-16-Shiny-R-function/gradesPrediction.png)
 
 ## Comparison Tab
 
@@ -715,18 +715,18 @@ render = function(input, output) {
 shinyApp(ui = ui, render)
 {% endhighlight %}
 
-![](/figure/source/2018-10-16-Shiny-R-function/comparison1.png)
-![](/figure/source/2018-10-16-Shiny-R-function/comparison2.png)
+![center](/figure/source/2018-10-16-Shiny-R-function/comparison1.png)
+![center](/figure/source/2018-10-16-Shiny-R-function/comparison2.png)
 
 # Layout and themes
 
 Here comes the part related to tidy up our outputs in a nice interface and framework. I propose the following design and we will see how to incorporate these sections in our ui.R.
 
-![](/figure/source/2018-10-16-Shiny-R-function/layoutProposal.png)
+![center](/figure/source/2018-10-16-Shiny-R-function/layoutProposal.png)
 
 There is a wide list of choices and they can be combined as desired.
 
-![From Shiny [https://www.rstudio.com/resources/cheatsheets/](Cheat Sheet)](/figure/source/2018-10-16-Shiny-R-function/layout.png)
+![From Shiny Cheat Sheet](/figure/source/2018-10-16-Shiny-R-function/layout.png)
 
 The following code provides the main layout structure where outputs have to be added.
 
@@ -819,7 +819,7 @@ fluidPage(
 )
 {% endhighlight %}
 
-![](/figure/source/2018-10-16-Shiny-R-function/themes.png)
+![center](/figure/source/2018-10-16-Shiny-R-function/themes.png)
 
 # References
 
