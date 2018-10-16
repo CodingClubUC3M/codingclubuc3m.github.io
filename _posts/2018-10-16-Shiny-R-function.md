@@ -747,7 +747,6 @@ fluidPage(
              ),
              sidebarLayout(
                sidebarPanel(
-                 
                ),
                mainPanel(
                )
@@ -759,7 +758,6 @@ fluidPage(
     ),
     tabPanel("Comparison", 
              sidebarPanel(
-               
              ),
              mainPanel(
              )
@@ -783,8 +781,8 @@ But even without knowledge of web site programming, there are R functions for th
 
 {% highlight r %}
 fluidPage(
+  shinythemes::themeSelector(),
   navbarPage(
-    shinythemes::themeSelector(),
     # theme = "cerulean",  # <--- To use a theme, uncomment this
     "Statistics Grades 2018-2019",
     tabPanel("Group",
@@ -798,7 +796,6 @@ fluidPage(
              ),
              sidebarLayout(
                sidebarPanel(
-                 
                ),
                mainPanel(
                )
@@ -810,7 +807,6 @@ fluidPage(
     ),
     tabPanel("Comparison", 
              sidebarPanel(
-               
              ),
              mainPanel(
              )
