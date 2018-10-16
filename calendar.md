@@ -6,10 +6,10 @@ title: Calendar
 ## Next events
 
 <div class="highlighter-black"> Title: <span style="color:red;"> Online resources for teaching </span> </div>
-<div class="highlighter-black"> Time:  <span style="color:red;"> 06.11.2018, 15.00 - 16:00 </span>
+<div class="highlighter-black"> Time:  <span style="color:red;"> 06.11.2018, 16.00 - 17:00 </span>
 	<a href="https://calendar.google.com/calendar/r/eventedit?
 	text=CodingClubUC3M
-	&dates=20181106T140000Z/20181106T150000Z
+	&dates=20181106T150000Z/20181106T160000Z
 	&details=For+details,+link+here:+https://codingclubuc3m.github.io/calendar.html
 	&location=Edificio+López+Aranguren+15.1.41
 	&sf=true

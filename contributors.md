@@ -3,7 +3,11 @@ title: "Contributors"
 layout: page
 
 contributorsY2:
-    
+  - name: Miguel Ángel Daza Arbolí
+    image_path: /public/contributor/TBA2.jpeg
+    link: 
+    description:  TBA.
+      
   - name: Antonio Elías Fernández
     image_path: /public/contributor/antonio.jpeg
     link: https://www.linkedin.com/in/antonio-el%C3%ADas-fern%C3%A1ndez-656ab495/
