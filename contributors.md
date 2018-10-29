@@ -4,7 +4,7 @@ layout: page
 
 contributorsY2:
   - name: Miguel Ángel Daza Arbolí
-    image_path: /public/contributor/TBA2.jpeg
+    image_path: /public/contributor/TBA.jpg
     link: 
     description:  TBA.
       
