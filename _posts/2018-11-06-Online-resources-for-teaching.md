@@ -212,7 +212,7 @@ You can create a new count for GeoGebra, or you can login using other ways. See 
 
 <img src="figure/source/2018-11-06-Online-resources-for-teaching/geogebra.png" width="300px" />
 
-### Examples      
+## Examples      
 You can create a group for exchange apps with your students, for example this:
 GeoGebra Group -> **OySelE** (QY7KT) 
 
