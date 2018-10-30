@@ -4,9 +4,9 @@ layout: page
 
 contributorsY2:
   - name: Miguel Ángel Daza Arbolí
-    image_path: /public/contributor/TBA.jpg
+    image_path: /public/contributor/MiguelAngel.jpg
     link: 
-    description:  TBA.
+    description: Miguel obtained 5-year degree in Statiscal Sciences and Techniques by the University of Valencia (2002). He linked to the Carlos III University of Madrid as a part-time professor. In 2007, in a congress of the SEIO, he acceded to the Working  Group: Teaching and Learning of Statistics and Operation Research (GENAEIO) . From that year until today, he has known R, some authoring tools (Jclic, Geogebra, eXeLearning), educational platforms (MOODLE) and software for surveys (LimeSurvey). Enthusiast of the GNU philosophy and online resources. Lately, he adds some gamification in work (using Kahoot)
       
   - name: Antonio Elías Fernández
     image_path: /public/contributor/antonio.jpeg
