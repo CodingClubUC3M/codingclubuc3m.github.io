@@ -84,6 +84,8 @@ We will be shown the packages that are installed in the online Servers.
 **In this case the R version is 3.4.1 (2017-06-30)**     
 
 ![Example of an online terminal <https://www.tutorialspoint.com/unix_terminal_online.php>](figure/source/2018-11-06-Online-resources-for-teaching/terminal.png "An online terminal")     
+Example of an online terminal [(links)](https://www.tutorialspoint.com/unix_terminal_online.php)
+
 
 
 ### An online compiler on your own website
@@ -98,7 +100,7 @@ In this case, you only need to write this code in a **html box**.
 
 
 ![Example of an embedded compiler in your own web <https://sites.google.com/site/estadisticaaplicadaaeducacion2/r>](figure/source/2018-11-06-Online-resources-for-teaching/in_the_web.png "An embedded compiler in your own web")    
-
+Example of an embedded compiler in your own web [(links)](https://sites.google.com/site/estadisticaaplicadaaeducacion2/r)
 
 If we ask in R for the version, it shows:
 ```
@@ -134,7 +136,7 @@ For this case the following 3 options are presented, they are not all that exist
 -- It has an option (LIVE COOPERATION) that allows for collaboration in real time.    
 
 ![Example of https://rextester.com/l/r_online_compiler](figure/source/2018-11-06-Online-resources-for-teaching/compiler_online.png "https://rextester.com/l/r_online_compiler")     
-
+Example of [(https://rextester.com/l/r_online_compiler)](https://rextester.com/l/r_online_compiler)
 
 #### Jdoodle    
 
@@ -143,7 +145,7 @@ For this case the following 3 options are presented, they are not all that exist
   -- If you register, you can access (among others) the following features: Save, My projects, Recent, Collaborate etc.
 
   ![Example of https://www.jdoodle.com/execute-r-online](figure/source/2018-11-06-Online-resources-for-teaching/compiler_online2.png "https://www.jdoodle.com/execute-r-online")     
-
+Example of [(https://www.jdoodle.com/execute-r-online)](https://www.jdoodle.com/execute-r-online)
 
 #### Tutorialspoint     
 
@@ -151,6 +153,8 @@ For this case the following 3 options are presented, they are not all that exist
   -- It can be shared if you are registered.    
 
   ![Example of https://www.tutorialspoint.com/execute_r_online.php](figure/source/2018-11-06-Online-resources-for-teaching/compiler_online3.png "https://www.tutorialspoint.com/execute_r_online.php")
+
+  Example of [(https://www.tutorialspoint.com/execute_r_online.php)](https://www.tutorialspoint.com/execute_r_online.php)
 
 ## Examples
 
@@ -186,13 +190,14 @@ For this case the following 3 options are presented, they are not all that exist
 You can use GeoGebra in order to consult values and probabilities from distributions.
 
   ![Probability distributions <https://www.geogebra.org/classic#probability>](figure/source/2018-11-06-Online-resources-for-teaching/distribution.png "https://www.geogebra.org/classic#probability")
+Probability distributions [(links)](https://www.geogebra.org/classic#probability)
 
 ## Apps
 
 GeoGebra allows you to create apps without signing up.
 
   ![Geogebra online <https://www.geogebra.org/>](figure/source/2018-11-06-Online-resources-for-teaching/GeogebraTapiz.png "https://www.geogebra.org/")
-
+Geogebra online [(links)](https://www.geogebra.org/)
 
 Nevertheless, you can obtain all the best if you log in. In that case you can save the apps in the server (online), and share them with your students.
 
@@ -205,6 +210,7 @@ As mentioned before, you can create a group to exchange apps with your students,
 GeoGebra Group -> **OySelE** (QY7KT)
 
   ![Example of GeoGebra Group <https://www.geogebra.org/group/landingpage/id/QY7KT>](figure/source/2018-11-06-Online-resources-for-teaching/GeoGebraGroups.png "https://www.geogebra.org/group/landingpage/id/QY7KT")
+Example of GeoGebra Group [(links)](https://www.geogebra.org/group/landingpage/id/QY7KT)
 
 As an example, Problem 3.1   
 
@@ -221,6 +227,7 @@ To use it, you must need to log in first.
 <img src="figure/source/2018-11-06-Online-resources-for-teaching/PSPP Online _rollApp.png" width="300px" />
 
 ![PSPP on rollApp <https://www.rollapp.com/app/pspp>](figure/source/2018-11-06-Online-resources-for-teaching/pspp.png "PSPP on rollApp ")
+PSPP on rollApp [(links)](https://www.rollapp.com/app/pspp)
 
 ***     
 
@@ -233,12 +240,12 @@ In its own site says: RAW Graphs is an open source data visualization framework 
 
 
 ![RawGraphs <https://rawgraphs.io/> ](figure/source/2018-11-06-Online-resources-for-teaching/raw.png "RawGraphs ")      
-
+RawGraphs  [(https://rawgraphs.io)](https://rawgraphs.io)
 
 In the next picture you can see some examples of graphics that you can make with Raw. When you select one, a short description will apppear on the left side panel.     
 
 ![RawGraphs <https://rawgraphs.io/> ](figure/source/2018-11-06-Online-resources-for-teaching/RAW_Examples.png "RawGraphs ")     
-
+RawGraphs  [(https://rawgraphs.io)](https://rawgraphs.io)
 
 ```r
 # Data for an example in Raw.
@@ -257,3 +264,4 @@ NA, NA, NA
 
 If we choose an alluvial diagram, this is the result.       
 ![RawGraphs <https://rawgraphs.io/> ](figure/source/2018-11-06-Online-resources-for-teaching/RAW_example.png "RawGraphs ")
+RawGraphs  [(https://rawgraphs.io)](https://rawgraphs.io)
