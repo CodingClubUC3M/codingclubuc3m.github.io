@@ -3,6 +3,11 @@ title: "Contributors"
 layout: page
 
 contributorsY2:
+  - name: Stefano Cabras
+    image_path: /public/contributor/StefanoCabras.jpg
+    link: https://stefano-cabras.webnode.es/
+    description: TBA.
+  
   - name: Miguel Ángel Daza Arbolí
     image_path: /public/contributor/MiguelAngel.jpg
     link: 

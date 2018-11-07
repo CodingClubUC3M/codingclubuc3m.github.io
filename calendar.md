@@ -5,18 +5,18 @@ title: Calendar
 
 ## Next events
 
-<div class="highlighter-black"> Title: <span style="color:red;"> Online resources for teaching </span> </div>
-<div class="highlighter-black"> Time:  <span style="color:red;"> 06.11.2018, 16.00 - 17:00 </span>
+<div class="highlighter-black"> Title: <span style="color:red;"> Tensorflow and Keras </span> </div>
+<div class="highlighter-black"> Time:  <span style="color:red;"> 27.11.2018, 15.00 - 16:00 </span>
 	<a href="https://calendar.google.com/calendar/r/eventedit?
 	text=CodingClubUC3M
-	&dates=20181106T150000Z/20181106T160000Z
+	&dates=20181127T140000Z/20181127T150000Z
 	&details=For+details,+link+here:+https://codingclubuc3m.github.io/calendar.html
 	&location=Edificio+López+Aranguren+15.1.41
 	&sf=true
 	&output=xml"
 	target="_blank" rel="nofollow">(Add to my calendar)</a> 
 </div> 
-<div class="highlighter-black"> Presenter: <a href="" class="highlighter-red">  Miguel Ángel Daza Arbolí  </a></div> 
+<div class="highlighter-black"> Presenter: <a href="https://stefano-cabras.webnode.es/" class="highlighter-red">  Stefano Cabras  </a></div> 
 <div class="highlighter-black"> Location: <a href="https://goo.gl/maps/CpkZ74eUb4E2"> Getafe campus, Edificio López Aranguren, 15.1.41 </a> </div>
 
 ### Map
