@@ -87,7 +87,7 @@ to_categorical(0:3)
 # Background on Neural Networks
 
 
-## Example old faithFul IRIS data
+## Example old faithful IRIS data
 
 Consider the well-known IRIS data set
 
@@ -95,7 +95,7 @@ Consider the well-known IRIS data set
 {% highlight r %}
 rm(list=ls())
 data(iris)
-plot(iris$Petal.Length, 
+plot(iris$Petal.Length,
  iris$Petal.Width, col = iris$Species)
 {% endhighlight %}
 
@@ -125,13 +125,13 @@ We want to build an iris specie classifier based on the observed four iris dimen
 Data are
 
 1. Matrices ```matrix´´´ of doubles.
-2. Categorical variables need to be codified in dummies: _one hot encoding_ .
+2. Categorical variables need to be codified in dummies: _one hot encoding_.
 
 
 {% highlight r %}
-onehot.species = to_categorical(as.numeric(iris$Species) -1)
-iris = as.matrix(iris[,1:4])
-iris = cbind(iris,onehot.species)
+onehot.species = to_categorical(as.numeric(iris$Species) - 1)
+iris = as.matrix(iris[, 1:4])
+iris = cbind(iris, onehot.species)
 {% endhighlight %}
 
 ### Training and Test Data Sets
@@ -141,7 +141,7 @@ Define training and test
 
 {% highlight r %}
 set.seed(17)
-ind <- sample(2, nrow(iris), 
+ind <- sample(2, nrow(iris),
 replace = TRUE, prob = c(0.7, 0.3))
 iris.training <- iris[ind == 1, 1:4]
 iris.test <- iris[ind == 2, 1:4]
@@ -162,8 +162,8 @@ and suppose to use a very simple one
 
 
 {% highlight r %}
-model %>% 
- layer_dense(units = ncol(iris.trainingtarget), activation = 'softmax', 
+model %>%
+ layer_dense(units = ncol(iris.trainingtarget), activation = 'softmax',
  input_shape = ncol(iris.training))
 summary(model)
 {% endhighlight %}
@@ -257,45 +257,42 @@ plot(g,layout = layout,vertex.color = c(2,2,2,2,3))
 
 ![center](/figure/source/2018-11-27-LSTM-with-Keras-TensorFlow/unnamed-chunk-10-1.png)
 
-Blue is input and green output.
+In the plot, blue colors stand for input and green ones for output.
 
-Its analytic representation is the following
+Its analytic representation is the following one:
 
 $$Species_j = act.func(\mathbf{w}_j,\mathbf{x} = (PW,PL,SW,SL)),$$
 
 where the activation function is the ```softmax``` (the all life logistic!):
 
 $$act.func(\mathbf{w}_j,\mathbf{x}) = \frac{e^{\mathbf{x}^T\mathbf{w}}}{\sum_{k = 1}^Ke^{\mathbf{x}^T\mathbf{w}}},$$
-
-which estimates $$Pr(Specie = j\|\mathbf{x} = (PW,PL,SW,SL))$$. 
+which estimates $Pr(Specie = j\|\mathbf{x} = (PW,PL,SW,SL))$.
 
 ## Model fitting: ```fit()``` and the optimizer
 
-Estimation consists in finding the weights $\mathbf{w}$ that minimizes a loss function. For instance, if the response $Y$ were quantitative then 
+Estimation consists in finding the weights $\mathbf{w}$ that minimizes a loss function. For instance, if the response $Y$ were quantitative, then
 
 $$w = \arg\min \sum_{i = 1}^m(y_i-wx_i)^2,$$
 
-whose solution is given by the usual equations of derivatives $w$: 
+whose solution is given by the usual equations of derivatives $w$:
 
 $$\frac{\partial \sum_{i = 1}^n(y_i-wx_i)^2}{\partial w} = 0,$$
 
 Note however, that
 
 $$\partial \sum_{i = 1}^n(y_i-wx_i)^2 = \sum_{i = 1}^n \partial (y_i-wx_i)^2,$$
-
-(Is parallelizable in batches of samples (of lenght ```batch_size```), that is
+(Is parallelizable in batches of samples (of length ```batch_size```), that is
 
 $$\sum_{i = 1}^n \partial (y_i-wx_i)^2 = \sum_{l = 1}^L\{\partial\sum_{i = 1}^{n_l} (y_i-wx_i)^2\}$$
 
 where $n_l$ is the ```batch_size```.
 
-Suppose in general a non-analytical loss function (the usual case in more complicated networks) $Q(w) = \sum_{i = 1}^m(y_i-wx_i)^2,$ and suppose that $\frac{\partial Q(w)}{\partial w} = 0$ is not avaliable analitically. Then we would have to use "Newton-Raphson" optimizer family (or gradient optimizers) whose best known member in Deep Learning (DL) is the _Stochastic_ Gradient Descent (SGD):
+Suppose in general a non-analytical loss function (the usual case in more complicated networks) $Q(w) = \sum_{i = 1}^m(y_i-wx_i)^2,$ and suppose that $\frac{\partial Q(w)}{\partial w} = 0$ is not available analytically. Then we would have to use "Newton-Raphson" optimizer family (or gradient optimizers) whose best known member in Deep Learning (DL) is the _Stochastic_ Gradient Descent (SGD):
 
 Starting form an initial weight $w^{(0)}$ at step $m$:
 
 $$w^{(m)} = w^{(m-1)}-\eta\Delta Q_i(w),$$
-
-where $\eta>0$ is the **Learning Rate**: the lower (bigger) $\eta$ is the more (less) steps are needed to achieve the optimum with a greater (worse) precision.
+where $\eta>0$ is the **Learning Rate**: the lower (bigger) $\eta$ is, the more (less) steps are needed to achieve the optimum with a greater (worse) precision.
 
 It is stochastic in the sense that the index $i$ of the sample is random (avoids overfitting): $\Delta Q(w) : = \Delta Q_i(w)$. This also induces complications when (if) dealing with time series.
 
@@ -309,7 +306,7 @@ Using SGD with $\eta = 0.01$ we have to set:
 sgd <- optimizer_sgd(lr = 0.01)
 {% endhighlight %}
 
-and then this is plugged in into the model and after used in compilation. Once it is established, the loss function $Q$ (here we use the ```categorical_crossentropy``` because the response is a non-binary categorical variable):
+and then this is plugged in into the model and used afterwards in compilation. Once it is established, the loss function $Q$ (here we use the ```categorical_crossentropy``` because the response is a non-binary categorical variable):
 
 
 {% highlight r %}
@@ -320,15 +317,15 @@ model %>% compile(
 )
 {% endhighlight %}
 
-We have to train it in ```epochs``` (i.e. the $m$ steps above) using a portion of the training sample, ```validation_split```, to verify eventual overfitting (i.e. the model is fitted and the loss evaluated in that _random_ part of the sample which is finally not used for training):
+we have to train it in ```epochs``` (i.e. the $m$ steps above) using a portion of the training sample, ```validation_split```, to verify eventual overfitting (i.e. the model is fitted and the loss evaluated in that _random_ part of the sample which is finally not used for training):
 
 
 {% highlight r %}
 history <- model %>% fit(
- x = iris.training, 
- y = iris.trainingtarget, 
+ x = iris.training,
+ y = iris.trainingtarget,
  epochs = 100,
- batch_size = 5, 
+ batch_size = 5,
  validation_split = 0.2,
  verbose = 0
 )
@@ -359,7 +356,7 @@ table(iris.testtarget%*%0:2, classes)
 ##      0  1  2
 ##   0 20  0  0
 ##   1  0 12  0
-##   2  0  5 10
+##   2  0  7  8
 {% endhighlight %}
 
 with a validation score
@@ -373,16 +370,16 @@ with a validation score
 
 {% highlight text %}
 ## $loss
-## [1] 0.2748878
+## [1] 0.3292574
 ## 
 ## $acc
-## [1] 0.893617
+## [1] 0.8510638
 {% endhighlight %}
 
 
-## Another example: Clasification of breast cancer
+## Another example: Classification of breast cancer
 
-We have 10 variables (all factors) and a binary response: _benign_ versus _malign_ .
+We have 10 variables (all factors) and a binary response: _benign_ versus _malign_.
 
 
 {% highlight r %}
@@ -504,9 +501,9 @@ Let's build the DL model with tree layers of neurons:
 model <- keras_model_sequential()
 
 # Add layers to model
-model %>% 
- layer_dense(units = 8, activation = 'relu', input_shape = ncol(x.train)) %>% 
- layer_dense(units = 5, activation = 'relu') %>% 
+model %>%
+ layer_dense(units = 8, activation = 'relu', input_shape = ncol(x.train)) %>%
+ layer_dense(units = 5, activation = 'relu') %>%
  layer_dense(units = ncol(y.train), activation = 'softmax')
 
 summary(model)
@@ -552,10 +549,10 @@ Train the model
 
 {% highlight r %}
 history <- model %>% fit(
- x = x.train, 
- y = y.train, 
+ x = x.train,
+ y = y.train,
  epochs = 50,
- batch_size = 50, 
+ batch_size = 50,
  validation_split = 0.2,
  verbose = 2
 )
@@ -565,7 +562,7 @@ plot(history)
 ![center](/figure/source/2018-11-27-LSTM-with-Keras-TensorFlow/unnamed-chunk-23-1.png)
 
 
-Validate it on the test set 
+Validate it on the test set
 
 {% highlight r %}
 classes <- model %>% predict_classes(x.test)
@@ -577,8 +574,8 @@ table(y.test%*%0:1, classes)
 {% highlight text %}
 ##    classes
 ##       0   1
-##   0 119   8
-##   1   3  72
+##   0 121   6
+##   1   5  70
 {% endhighlight %}
 
 also with a score
@@ -592,7 +589,7 @@ also with a score
 
 {% highlight text %}
 ## $loss
-## [1] 0.3664929
+## [1] 0.1734528
 ## 
 ## $acc
 ## [1] 0.9455446
@@ -679,10 +676,10 @@ YAHOO database query and the ACF of the considered IBEX 35 series is here:
 
 
 {% highlight r %}
-myts <- BatchGetSymbols(tickers = tickers, 
+myts <- BatchGetSymbols(tickers = tickers,
  first.date = first.date,
- last.date = last.date, 
- cache.folder = file.path(tempdir(), 
+ last.date = last.date,
+ cache.folder = file.path(tempdir(),
  'BGS_Cache') ) # cache in tempdir()
 {% endhighlight %}
 
@@ -706,7 +703,7 @@ print(myts$df.control)
 
 {% highlight text %}
 ##    ticker   src download.status total.obs perc.benchmark.dates
-## 1 %5EIBEX yahoo              OK      3788             0.990333
+## 1 %5EIBEX yahoo              OK      3787            0.9903304
 ##   threshold.decision
 ## 1               KEEP
 {% endhighlight %}
@@ -715,9 +712,9 @@ print(myts$df.control)
 
 {% highlight r %}
 y = myts$df.tickers$price.close
-myts = data.frame(index = myts$df.tickers$ref.date,price = y,vol = myts$df.tickers$volume)
-myts = myts[complete.cases(myts),]
-myts = myts[-seq(nrow(myts)-3000),]
+myts = data.frame(index = myts$df.tickers$ref.date, price = y, vol = myts$df.tickers$volume)
+myts = myts[complete.cases(myts), ]
+myts = myts[-seq(nrow(myts) - 3000), ]
 myts$index = seq(nrow(myts))
 
 library(plotly)
@@ -771,13 +768,13 @@ library(plotly)
 
 
 {% highlight r %}
-plot_ly(myts, x = ~index, y = ~price,type = "scatter",mode = "markers",color = ~vol)
+plot_ly(myts, x = ~index, y = ~price, type = "scatter", mode = "markers", color = ~vol)
 {% endhighlight %}
 
 ![center](/figure/source/2018-11-27-LSTM-with-Keras-TensorFlow/unnamed-chunk-27-1.png)
 
 {% highlight r %}
-acf(myts$price,lag.max = 3000)
+acf(myts$price, lag.max = 3000)
 {% endhighlight %}
 
 ![center](/figure/source/2018-11-27-LSTM-with-Keras-TensorFlow/unnamed-chunk-27-2.png)
@@ -788,10 +785,10 @@ Data must be standardized
 
 
 {% highlight r %}
-msd.price = c(mean(myts$price),sd(myts$price))
-msd.vol = c(mean(myts$vol),sd(myts$vol))
-myts$price = (myts$price-msd.price[1])/msd.price[2]
-myts$vol = (myts$vol-msd.vol[1])/msd.vol[2]
+msd.price = c(mean(myts$price), sd(myts$price))
+msd.vol = c(mean(myts$vol), sd(myts$vol))
+myts$price = (myts$price - msd.price[1])/msd.price[2]
+myts$vol = (myts$vol - msd.vol[1])/msd.vol[2]
 summary(myts)
 {% endhighlight %}
 
@@ -813,8 +810,8 @@ Let's use the first 2000 days for training and the last 1000 for test. Remember 
 
 {% highlight r %}
 datalags = 10
-train = myts[seq(2000+datalags),]
-test = myts[2000+datalags+seq(1000+datalags),]
+train = myts[seq(2000 + datalags), ]
+test = myts[2000 + datalags + seq(1000 + datalags), ]
 batch.size = 50
 {% endhighlight %}
 
@@ -833,11 +830,11 @@ Response $Y$ is a 2D matrix:
 
 
 {% highlight r %}
-x.train = array(data = lag(cbind(train$price,train$vol),datalags)[-(1:datalags),], dim = c(nrow(train)-datalags, datalags, 2))
+x.train = array(data = lag(cbind(train$price, train$vol), datalags)[-(1:datalags), ], dim = c(nrow(train) - datalags, datalags, 2))
 y.train = array(data = train$price[-(1:datalags)], dim = c(nrow(train)-datalags, 1))
 
-x.test = array(data = lag(cbind(test$vol,test$price),datalags)[-(1:datalags),], dim = c(nrow(test)-datalags, datalags, 2))
-y.test = array(data = test$price[-(1:datalags)], dim = c(nrow(test)-datalags, 1))
+x.test = array(data = lag(cbind(test$vol, test$price), datalags)[-(1:datalags), ], dim = c(nrow(test) - datalags, datalags, 2))
+y.test = array(data = test$price[-(1:datalags)], dim = c(nrow(test) - datalags, 1))
 {% endhighlight %}
 
 The LSTM model codified with Keras
@@ -848,18 +845,18 @@ model <- keras_model_sequential()
 
 model %>%
  layer_lstm(units = 100,
- input_shape = c(datalags, 2), 
+ input_shape = c(datalags, 2),
  batch_size = batch.size,
- return_sequences = TRUE, 
+ return_sequences = TRUE,
  stateful = TRUE) %>%
- layer_dropout(rate = 0.5) %>% 
- layer_lstm(units = 50, 
- return_sequences = FALSE, 
- stateful = TRUE) %>% 
- layer_dropout(rate = 0.5) %>% 
+ layer_dropout(rate = 0.5) %>%
+ layer_lstm(units = 50,
+ return_sequences = FALSE,
+ stateful = TRUE) %>%
+ layer_dropout(rate = 0.5) %>%
  layer_dense(units = 1)
- 
-model %>% 
+
+model %>%
  compile(loss = 'mae', optimizer = 'adam')
 
 model
@@ -889,17 +886,17 @@ model
 {% endhighlight %}
 
 
-Let's train in 2000 steps. Remember: for being the model stateful (``` stateful = TRUE ```), which means that the signal state (the latent part of the model) is trained on the batch of the time serie, you need to manually reset the states (batches are supposed to be independent sequences (!) ):
+Let's train in 2000 steps. Remember: for being the model stateful (``` stateful = TRUE ```), which means that the signal state (the latent part of the model) is trained on the batch of the time series, you need to manually reset the states (batches are supposed to be independent sequences (!) ):
 
 
 {% highlight r %}
 for(i in 1:2000){
- model %>% fit(x = x.train, 
- y = y.train, 
+ model %>% fit(x = x.train,
+ y = y.train,
  batch_size = batch.size,
- epochs = 1, 
- verbose = 0, 
- shuffle = FALSE) 
+ epochs = 1,
+ verbose = 0,
+ shuffle = FALSE)
  model %>% reset_states()
 }
 {% endhighlight %}
@@ -912,8 +909,8 @@ The prediction
 {% highlight r %}
 pred_out <- model %>% predict(x.test, batch_size = batch.size) %>% .[,1]
 
-plot_ly(myts, x = ~index, y = ~price,type = "scatter",mode = "markers",color = ~vol) %>% 
- add_trace(y = c(rep(NA,2000),pred_out),x = myts$index,name = "LSTM prediction",mode = "lines")
+plot_ly(myts, x = ~index, y = ~price, type = "scatter", mode = "markers", color = ~vol) %>%
+ add_trace(y = c(rep(NA, 2000), pred_out), x = myts$index, name = "LSTM prediction", mode = "lines")
 {% endhighlight %}
 
 
@@ -934,14 +931,14 @@ more on validation:
 
 
 {% highlight r %}
-plot(x = y.test,y = pred_out)
+plot(x = y.test, y = pred_out)
 {% endhighlight %}
 
 ![center](/figure/source/2018-11-27-LSTM-with-Keras-TensorFlow/unnamed-chunk-34-1.png)
 
 
 ## Some notes on Deep Learning
-A deep learning (DL) model is a neural network with many layers of neurons <span class="citation">(Schmidhuber 2015)</span>, it is an algorithmic approach rather than probabilistic in its nature, see <span class="citation">(Breiman and others 2001)</span> for the merits of both approaches. Each neuron is a deterministic function such that a neuron of a neuron is a function of a function along with an associated weight $w$. Essentially for a response variable $Y_i$ for the unit $i$ and a predictor $X_i$ we have to estimate $Y_i = w_1f_1(w_2f_2(...(w_kf_k(X_i))))$, and the larger $k$ is, the "deeper" is the network. With many stacked layers of neurons all connected (a.k.a. dense layers) it is possible to capture high non-linearities and all interactions among variables. The approach to model estimation underpinned by a DL model is that of composition function against that od additive function underpinned by the usual regression techniques including the most modern one (i.e. $Y_i = w_1f_1(X_i)+w_2f_2(X_i)+...+w_kf_k(X_i)$). A throughout review of DL can be found at <span class="citation">(Schmidhuber 2015)</span>. 
+A deep learning (DL) model is a neural network with many layers of neurons <span class="citation">(Schmidhuber 2015)</span>, it is an algorithmic approach rather than probabilistic in its nature, see <span class="citation">(Breiman and others 2001)</span> for the merits of both approaches. Each neuron is a deterministic function such that a neuron of a neuron is a function of a function along with an associated weight $w$. Essentially for a response variable $Y_i$ for the unit $i$ and a predictor $X_i$ we have to estimate $Y_i = w_1f_1(w_2f_2(...(w_kf_k(X_i))))$, and the larger $k$ is, the "deeper" is the network. With many stacked layers of neurons all connected (a.k.a. dense layers) it is possible to capture high non-linearities and all interactions among variables. The approach to model estimation underpinned by a DL model is that of composition function against that od additive function underpinned by the usual regression techniques including the most modern one (i.e. $Y_i = w_1f_1(X_i)+w_2f_2(X_i)+...+w_kf_k(X_i)$). A thorough review of DL can be found at <span class="citation">(Schmidhuber 2015)</span>. 
 
 Likely the DL model can be also interpreted as a maximum a posteriori estimation of $Pr(Y\|X,Data)$ <span class="citation">(Polson, Sokolov, and others 2017)</span> for Gaussian process priors. Despite this and because of its complexity it cannot be evaluated the whole distribution $Pr(Y\|X,Data)$, but only its mode. 
 
