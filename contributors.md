@@ -6,7 +6,7 @@ contributorsY2:
   - name: Stefano Cabras
     image_path: /public/contributor/StefanoCabras.jpg
     link: https://stefano-cabras.webnode.es/
-    description: TBA.
+    description: Stefano Cabras born in Cagliari (Sardinia, Italy) in 1974. In 1999 and in 2004 he obtained his PhD in Statistics at the University of Florence. During this period he visited the Department of Statistics at the Carnegie Mellon University (Pittsburgh-PA, USA) where he obtained in 2003 the Master in Statistics. Since 2005 he is Associate Professor at University of Cagliari (in leave) and since 2018 at Universidad Carlos III de Madrid after being Ramón y Cajal Professor. His research topics in Statistics concern either theoretical aspects along with applications to several scientific fields.
   
   - name: Miguel Ángel Daza Arbolí
     image_path: /public/contributor/MiguelAngel.jpg
