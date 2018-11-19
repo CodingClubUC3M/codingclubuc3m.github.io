@@ -64,12 +64,40 @@ images:
       </a> 
 </td>
 <td align="center">
-      <a href="http://hoanguc3m.github.io/">
-        <img src="/public/contributor/hoang.jpg" width="200" alt="Hoang Nguyen" class="avatar"/> 
+      <a href="https://www.enchufa2.es/acerca_de/inaki">
+        <img src="/public/contributor/Inaki.jpeg" width="200" alt="Iñaki Ucar" class="avatar"/> 
         <h4>Hoang Nguyen</h4>
       </a> 
 </td>
 
+
+</tr>
+
+</tbody>
+</table>
+
+<table align="center">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody>
+
+<tr>
+<td align="center">
+</td>
+<td align="center">
+</td>
+<td align="center">
+</td>
+<td align="center">
+      <a href="http://hoanguc3m.github.io/">
+        <img src="/public/contributor/hoang.jpg" width="200" alt="Hoang Nguyen" class="avatar"/> 
+        <h4>Hoang Nguyen</h4>  <pre>  (Up to 12/2018) </pre>
+      </a> 
+</td>
 
 </tr>
 
