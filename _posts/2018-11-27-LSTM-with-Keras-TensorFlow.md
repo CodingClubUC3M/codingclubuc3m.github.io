@@ -38,13 +38,14 @@ The code below has the aim to quick introduce Deep Learning analysis with Tensor
 
 ## Installing KERAS and TensorFlow in Windows ... otherwise it will be more simple
 
-1. Install Anaconda: https://www.anaconda.com/download/
+1. Install Anaconda: [https://www.anaconda.com/download/](https://www.anaconda.com/download/)
 
-2. Install Rtools(34): https://cran.r-project.org/bin/windows/Rtools/
+2. Install Rtools(34): [https://cran.r-project.org/bin/windows/Rtools/](https://cran.r-project.org/bin/windows/Rtools/)
 
 ## GPU-TensorFlow
 
-To use the option GPU-TensorFlow, you need CUDA Toolkit that matches the version of your GCC compiler: https://developer.nvidia.com/cuda-toolkit
+To use the option GPU-TensorFlow, you need CUDA Toolkit that matches the version of your GCC compiler: [https://developer.nvidia.com/cuda-toolkit](https://developer.nvidia.com/cuda-toolkit)
+
 
 
 If you have Python (i.e. Anaconda) just
