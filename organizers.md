@@ -66,7 +66,7 @@ images:
 <td align="center">
       <a href="https://www.enchufa2.es/acerca_de/inaki">
         <img src="/public/contributor/Inaki.jpeg" width="200" alt="Iñaki Ucar" class="avatar"/> 
-        <h4>Hoang Nguyen</h4>
+        <h4>Iñaki Ucar</h4>
       </a> 
 </td>
 
