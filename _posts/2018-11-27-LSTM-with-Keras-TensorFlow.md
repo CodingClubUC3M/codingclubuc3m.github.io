@@ -5,7 +5,7 @@ title: "LSTM with Keras TensorFlow"
 author: Stefano Cabras
 date: 2018-11-27
 published: true
-visible: false
+visible: true
 categories: [Deep Learning, Keras, LSTM]
 bibliography: deeplearning.bib
 excerpt_seperator: ""
