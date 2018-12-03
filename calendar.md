@@ -5,19 +5,19 @@ title: Calendar
 
 ## Next events
 
-<div class="highlighter-black"> Title: <span style="color:red;"> Tensorflow and Keras </span> </div>
-<div class="highlighter-black"> Time:  <span style="color:red;"> 27.11.2018, 13.00 - 14:00 </span>
+<div class="highlighter-black"> Title: <span style="color:red;"> An introduction to Stan with R </span> </div>
+<div class="highlighter-black"> Time:  <span style="color:red;"> 22.01.2019 </span>
 	<a href="https://calendar.google.com/calendar/r/eventedit?
 	text=CodingClubUC3M
-	&dates=20181127T120000Z/20181127T130000Z
+	&dates=20190122T120000Z/20190122T130000Z
 	&details=For+details,+link+here:+https://codingclubuc3m.github.io/calendar.html
 	&location=Edificio+López+Aranguren+15.1.41
 	&sf=true
 	&output=xml"
 	target="_blank" rel="nofollow">(Add to my calendar)</a> 
 </div> 
-<div class="highlighter-black"> Presenter: <a href="https://stefano-cabras.webnode.es/" class="highlighter-red">  Stefano Cabras  </a></div> 
-<div class="highlighter-black"> Location: <a href="https://www.google.com/maps/place/Juan+Benet+Building/@40.3340949,-3.7665842,18z/data=!3m1!4b1!4m5!3m4!1s0xd41898b6414e047:0x8f09ae494530ed2d!8m2!3d40.3340949!4d-3.7654872"> Leganes campus, Juan Benet Building, 7.3.J06 </a> </div>
+<div class="highlighter-black"> Presenter: <a href="http://portal.uc3m.es/portal/page/portal/dpto_estadistica/personal/juan_miguel_marin_diazaraque" class="highlighter-red">  Juan Miguel Marin Diazaraque  </a></div> 
+<div class="highlighter-black"> Location: <a href="https://www.google.com/maps/place/Juan+Benet+Building/@40.3340949,-3.7665842,18z/data=!3m1!4b1!4m5!3m4!1s0xd41898b6414e047:0x8f09ae494530ed2d!8m2!3d40.3340949!4d-3.7654872"> TBA </a> </div>
 
 
 

@@ -3,6 +3,11 @@ title: "Contributors"
 layout: page
 
 contributorsY2:
+  - name: Juan Miguel Marín Diazaraque
+    image_path: /public/contributor/JMiguel.png
+    link: http://portal.uc3m.es/portal/page/portal/dpto_estadistica/personal/juan_miguel_marin_diazaraque
+    description: TBA.
+
   - name: Stefano Cabras
     image_path: /public/contributor/StefanoCabras.jpg
     link: https://stefano-cabras.webnode.es/
